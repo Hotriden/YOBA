@@ -1,0 +1,8 @@
+D:\YOBA\YOBA_Application\YOBA_Finance.BLL\bin\Debug\netcoreapp3.0\YOBA_Finance.BLL.deps.json
+D:\YOBA\YOBA_Application\YOBA_Finance.BLL\bin\Debug\netcoreapp3.0\YOBA_Finance.BLL.dll
+D:\YOBA\YOBA_Application\YOBA_Finance.BLL\bin\Debug\netcoreapp3.0\YOBA_Finance.BLL.pdb
+D:\YOBA\YOBA_Application\YOBA_Finance.BLL\obj\Debug\netcoreapp3.0\YOBA_Finance.BLL.csprojAssemblyReference.cache
+D:\YOBA\YOBA_Application\YOBA_Finance.BLL\obj\Debug\netcoreapp3.0\YOBA_Finance.BLL.AssemblyInfoInputs.cache
+D:\YOBA\YOBA_Application\YOBA_Finance.BLL\obj\Debug\netcoreapp3.0\YOBA_Finance.BLL.AssemblyInfo.cs
+D:\YOBA\YOBA_Application\YOBA_Finance.BLL\obj\Debug\netcoreapp3.0\YOBA_Finance.BLL.dll
+D:\YOBA\YOBA_Application\YOBA_Finance.BLL\obj\Debug\netcoreapp3.0\YOBA_Finance.BLL.pdb

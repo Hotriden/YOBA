@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "YOBA_Employee.BLL/1.0.0": {
+        "runtime": {
+          "YOBA_Employee.BLL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "YOBA_Employee.BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

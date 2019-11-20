@@ -1,0 +1,8 @@
+D:\YOBA\YOBA_Application\YOBA_Users.BLL\bin\Debug\netcoreapp3.0\YOBA_Users.BLL.deps.json
+D:\YOBA\YOBA_Application\YOBA_Users.BLL\bin\Debug\netcoreapp3.0\YOBA_Users.BLL.dll
+D:\YOBA\YOBA_Application\YOBA_Users.BLL\bin\Debug\netcoreapp3.0\YOBA_Users.BLL.pdb
+D:\YOBA\YOBA_Application\YOBA_Users.BLL\obj\Debug\netcoreapp3.0\YOBA_Users.BLL.csprojAssemblyReference.cache
+D:\YOBA\YOBA_Application\YOBA_Users.BLL\obj\Debug\netcoreapp3.0\YOBA_Users.BLL.AssemblyInfoInputs.cache
+D:\YOBA\YOBA_Application\YOBA_Users.BLL\obj\Debug\netcoreapp3.0\YOBA_Users.BLL.AssemblyInfo.cs
+D:\YOBA\YOBA_Application\YOBA_Users.BLL\obj\Debug\netcoreapp3.0\YOBA_Users.BLL.dll
+D:\YOBA\YOBA_Application\YOBA_Users.BLL\obj\Debug\netcoreapp3.0\YOBA_Users.BLL.pdb

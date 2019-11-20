@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YOBA_Employee.BLL\YOBA_Employee.BLL.csproj" />
+    <ProjectReference Include="..\YOBA_Finance.BLL\YOBA_Finance.BLL.csproj" />
+    <ProjectReference Include="..\YOBA_Products.BLL\YOBA_Products.BLL.csproj" />
+  </ItemGroup>
+
+</Project>

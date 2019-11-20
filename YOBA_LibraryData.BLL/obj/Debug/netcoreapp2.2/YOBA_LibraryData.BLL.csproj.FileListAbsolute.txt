@@ -1,0 +1,16 @@
+D:\YOBA\YOBA_Application\YOBA_LibraryData.BLL\bin\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.deps.json
+D:\YOBA\YOBA_Application\YOBA_LibraryData.BLL\bin\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.dll
+D:\YOBA\YOBA_Application\YOBA_LibraryData.BLL\obj\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.csprojAssemblyReference.cache
+D:\YOBA\YOBA_Application\YOBA_LibraryData.BLL\obj\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.AssemblyInfoInputs.cache
+D:\YOBA\YOBA_Application\YOBA_LibraryData.BLL\obj\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.AssemblyInfo.cs
+D:\YOBA\YOBA_Application\YOBA_LibraryData.BLL\bin\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.pdb
+D:\YOBA\YOBA_Application\YOBA_LibraryData.BLL\obj\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.dll
+D:\YOBA\YOBA_Application\YOBA_LibraryData.BLL\obj\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.pdb
+D:\YOBA\YOBA_LibraryData.BLL\bin\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.deps.json
+D:\YOBA\YOBA_LibraryData.BLL\bin\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.dll
+D:\YOBA\YOBA_LibraryData.BLL\bin\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.pdb
+D:\YOBA\YOBA_LibraryData.BLL\obj\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.csprojAssemblyReference.cache
+D:\YOBA\YOBA_LibraryData.BLL\obj\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.AssemblyInfoInputs.cache
+D:\YOBA\YOBA_LibraryData.BLL\obj\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.AssemblyInfo.cs
+D:\YOBA\YOBA_LibraryData.BLL\obj\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.dll
+D:\YOBA\YOBA_LibraryData.BLL\obj\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.pdb
