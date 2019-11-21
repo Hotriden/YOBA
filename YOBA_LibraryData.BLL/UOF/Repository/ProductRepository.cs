@@ -6,7 +6,7 @@ using YOBA_LibraryData.BLL.Interfaces;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
-    public class ProductRepository : IBaseRepository<Product>
+    public class ProductRepository : IProductRepository
     {
         private YOBAContext _context;
         public ProductRepository(YOBAContext context)
