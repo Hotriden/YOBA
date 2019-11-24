@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using YOBA_LibraryData.BLL.Entities.Products;
 using YOBA_LibraryData.BLL.Interfaces;
@@ -46,7 +47,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public Product GetById(int id)
         {
-            return _context.Products.Find(id);
+            return _context.Products.FirstOrDefault(product => product.ProductId==id);
         }
 
         public void Save()
