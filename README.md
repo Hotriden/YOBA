@@ -5,10 +5,8 @@ YOBA - Your own business application it's way to make business easy on web. This
 
 Information for developers:
 
-You can join to open source CRM development in case of making TDD way to write code. All pull requests gona accept just in case of parallel tests for all business logic on code.
-
 ```diff
-+Notice: No need to create tests for POCO objects - it's useless.
+You can join to open source CRM development in case of making TDD way to write code. Pull request gona be accepted just in case of tests for code.
 ```
 Stack tools:
 
@@ -16,7 +14,7 @@ Stack tools:
 | --- | --- |
 | Environment | .NET Core 2.2 |
 | DataBase | MsSqlServer |
-| ORM    | EntityFrameWorkCore |
-| Tests | MsTests, MOQ|
+| ORM    | EF Core |
+| Tests | NUnit, MOQ, FluentAssertions|
 | Container   |  Docker |
 | Logger | NLog |
