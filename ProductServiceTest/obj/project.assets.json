@@ -1896,13 +1896,24 @@
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "2.2.6",
-          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6"
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6",
+          "YOBA_Services": "1.0.0"
         },
         "compile": {
           "bin/placeholder/YOBA_LibraryData.BLL.dll": {}
         },
         "runtime": {
           "bin/placeholder/YOBA_LibraryData.BLL.dll": {}
+        }
+      },
+      "YOBA_Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/YOBA_Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/YOBA_Services.dll": {}
         }
       }
     }
@@ -6666,6 +6677,11 @@
       "type": "project",
       "path": "../YOBA_LibraryData.BLL/YOBA_LibraryData.BLL.csproj",
       "msbuildProject": "../YOBA_LibraryData.BLL/YOBA_LibraryData.BLL.csproj"
+    },
+    "YOBA_Services/1.0.0": {
+      "type": "project",
+      "path": "../YOBA_Services/YOBA_Services.csproj",
+      "msbuildProject": "../YOBA_Services/YOBA_Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6680,19 +6696,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rifter\\.nuget\\packages\\": {}
+    "C:\\Users\\Вячеслав\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Temp\\YOBA\\ProductServiceTest\\ProductServiceTest.csproj",
+      "projectUniqueName": "D:\\YOBA\\ProductServiceTest\\ProductServiceTest.csproj",
       "projectName": "ProductServiceTest",
-      "projectPath": "C:\\Temp\\YOBA\\ProductServiceTest\\ProductServiceTest.csproj",
-      "packagesPath": "C:\\Users\\Rifter\\.nuget\\packages\\",
-      "outputPath": "C:\\Temp\\YOBA\\ProductServiceTest\\obj\\",
+      "projectPath": "D:\\YOBA\\ProductServiceTest\\ProductServiceTest.csproj",
+      "packagesPath": "C:\\Users\\Вячеслав\\.nuget\\packages\\",
+      "outputPath": "D:\\YOBA\\ProductServiceTest\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Rifter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Вячеслав\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6705,8 +6725,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Temp\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj": {
-              "projectPath": "C:\\Temp\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj"
+            "D:\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj": {
+              "projectPath": "D:\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj"
             }
           }
         }

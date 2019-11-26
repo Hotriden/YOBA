@@ -17,7 +17,7 @@ namespace YOBA_LibraryData.BLL.Entities.Staff
         [Required]
         public Branch Branch { get; set; }
         [Required]
-        public Position Position { get; set; }
+        public string Position { get; set; }
         [Required]
         public string TelephoneNumber { get; set; }
         [Required]
