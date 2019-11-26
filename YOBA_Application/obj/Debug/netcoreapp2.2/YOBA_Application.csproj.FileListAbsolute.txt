@@ -100,3 +100,5 @@ C:\Temp\YOBA\YOBA_Application\obj\Debug\netcoreapp2.2\YOBA_Application.Views.pdb
 C:\Temp\YOBA\YOBA_Application\obj\Debug\netcoreapp2.2\YOBA_Application.csproj.CopyComplete
 C:\Temp\YOBA\YOBA_Application\obj\Debug\netcoreapp2.2\YOBA_Application.dll
 C:\Temp\YOBA\YOBA_Application\obj\Debug\netcoreapp2.2\YOBA_Application.pdb
+D:\YOBA\YOBA_Application\bin\Debug\netcoreapp2.2\YOBA_Services.dll
+D:\YOBA\YOBA_Application\bin\Debug\netcoreapp2.2\YOBA_Services.pdb

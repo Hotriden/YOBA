@@ -238,13 +238,22 @@
       "YOBA_LibraryData.BLL/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "2.2.6",
-          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6"
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.6",
+          "YOBA_Services": "1.0.0"
         },
         "runtime": {
           "YOBA_LibraryData.BLL.dll": {}
         },
         "compile": {
           "YOBA_LibraryData.BLL.dll": {}
+        }
+      },
+      "YOBA_Services/1.0.0": {
+        "runtime": {
+          "YOBA_Services.dll": {}
+        },
+        "compile": {
+          "YOBA_Services.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3439,6 +3448,11 @@
       "hashPath": "system.text.encoding.codepages.4.5.0.nupkg.sha512"
     },
     "YOBA_LibraryData.BLL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "YOBA_Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

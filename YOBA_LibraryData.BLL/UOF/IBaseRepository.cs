@@ -10,7 +10,7 @@ namespace YOBA_LibraryData.BLL.Interfaces
         void Add(T item);
         T GetById(int id);
         void Delete(T item);
-        void Update(T item);
+        void Change(T item);
         void Save();
     }
 }
