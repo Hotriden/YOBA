@@ -25,5 +25,6 @@ namespace YOBA_LibraryData.BLL
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<WareHouse> WareHouses { get; set; }
     }
 }

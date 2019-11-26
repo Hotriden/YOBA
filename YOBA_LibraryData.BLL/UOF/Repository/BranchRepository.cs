@@ -18,7 +18,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         }
         public void Add(Branch item)
         {
-            if (_context.Branches.Find(item.BranchId) == null)
+            if (_context.Branches.Find(item.BranchName) == null)
             {
                 _context.Add(item);
                 _context.SaveChanges();

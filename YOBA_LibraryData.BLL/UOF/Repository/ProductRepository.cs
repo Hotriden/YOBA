@@ -18,7 +18,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public void Add(Product item)
         {
-            if (_context.Products.Find(item.ProductId) == null)
+            if (_context.Products.Find(item.ProductName) == null)
             {
                 _context.Add(item);
                 _context.SaveChanges();

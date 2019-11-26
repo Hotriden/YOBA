@@ -22,11 +22,7 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Branches).Returns(mockDbSet.Object);
             var res = new BranchRepository(mockContext.Object);
 
-            var data = new List<Employee>() { 
-                new Employee() { EmployeeId=1, LastName="Dou", Name="John", Position="Account", Sallery=1200, TelephoneNumber="8800555785"},
-                new Employee(){EmployeeId=2, LastName="Dou", Name="Jane", Position="Sells", Sallery=1500, TelephoneNumber="885552222" }
-            };
-            res.Add(new Branch() { BranchId = 1, BranchName = "Finance", Employees = data });
+            res.Add(new Branch() { BranchId = 1, BranchName = "Finance" });
 
             mockContext.Verify(s => s.Add(It.IsAny<Branch>()), Times.Once());
             mockContext.Verify(s => s.SaveChanges(), Times.Once());

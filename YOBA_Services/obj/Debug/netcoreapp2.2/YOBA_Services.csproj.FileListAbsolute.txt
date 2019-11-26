@@ -17,11 +17,8 @@ D:\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.csprojAssemblyRefere
 C:\Temp\YOBA\YOBA_Services\bin\Debug\netcoreapp2.2\YOBA_Services.deps.json
 C:\Temp\YOBA\YOBA_Services\bin\Debug\netcoreapp2.2\YOBA_Services.dll
 C:\Temp\YOBA\YOBA_Services\bin\Debug\netcoreapp2.2\YOBA_Services.pdb
-C:\Temp\YOBA\YOBA_Services\bin\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.dll
-C:\Temp\YOBA\YOBA_Services\bin\Debug\netcoreapp2.2\YOBA_LibraryData.BLL.pdb
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.csprojAssemblyReference.cache
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.AssemblyInfoInputs.cache
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.AssemblyInfo.cs
-C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.csproj.CopyComplete
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.dll
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.pdb

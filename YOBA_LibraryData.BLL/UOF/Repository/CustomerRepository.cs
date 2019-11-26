@@ -17,7 +17,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         }
         public void Add(Customer item)
         {
-            if (_context.Customers.Find(item.CustomerId) == null)
+            if (_context.Customers.Find(item.CustomerEmail) == null)
             {
                 _context.Add(item);
                 _context.SaveChanges();

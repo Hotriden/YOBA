@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\YOBA\\YOBA_Services\\YOBA_Services.csproj": {}
+    "C:\\Temp\\YOBA\\YOBA_Services\\YOBA_Services.csproj": {}
   },
   "projects": {
-    "D:\\YOBA\\YOBA_Services\\YOBA_Services.csproj": {
+    "C:\\Temp\\YOBA\\YOBA_Services\\YOBA_Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\YOBA\\YOBA_Services\\YOBA_Services.csproj",
+        "projectUniqueName": "C:\\Temp\\YOBA\\YOBA_Services\\YOBA_Services.csproj",
         "projectName": "YOBA_Services",
-        "projectPath": "D:\\YOBA\\YOBA_Services\\YOBA_Services.csproj",
-        "packagesPath": "C:\\Users\\Вячеслав\\.nuget\\packages\\",
-        "outputPath": "D:\\YOBA\\YOBA_Services\\obj\\",
+        "projectPath": "C:\\Temp\\YOBA\\YOBA_Services\\YOBA_Services.csproj",
+        "packagesPath": "C:\\Users\\Rifter\\.nuget\\packages\\",
+        "outputPath": "C:\\Temp\\YOBA\\YOBA_Services\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Вячеслав\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Rifter\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
