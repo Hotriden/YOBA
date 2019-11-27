@@ -13,7 +13,6 @@ namespace ProductServiceTest
 {
     public class ProductRepositoryTests
     {
-
         [Test]
         public void ProductRepo_Add()
         {
@@ -107,13 +106,73 @@ namespace ProductServiceTest
         [Test]
         public void ProductRepo_Delete()
         {
+            var data = new List<Product>()
+            {
+                new Product
+                {
+                    Cost=10,
+                    Price=15,
+                    ProductId=5,
+                    ProductName="Pasta"
+                },
+                new Product
+                {
+                    Cost=15,
+                    Price=25,
+                    ProductId=12,
+                    ProductName="Papper"
+                }
+            }.AsQueryable();
 
+            var mockDbSet = new Mock<DbSet<Product>>();
+            mockDbSet.As<IQueryable<Product>>().Setup(x => x.Provider).Returns(data.Provider);
+            mockDbSet.As<IQueryable<Product>>().Setup(x => x.Expression).Returns(data.Expression);
+            mockDbSet.As<IQueryable<Product>>().Setup(x => x.ElementType).Returns(data.ElementType);
+            mockDbSet.As<IQueryable<Product>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
+
+            var context = new Mock<YOBAContext>();
+            context.Setup(c => c.Products).Returns(mockDbSet.Object);
+            var repo = new ProductRepository(context.Object);
+            repo.Delete(new Product() { Cost = 15, Price = 25, ProductId = 12, ProductName = "Papper" });
+
+            repo.Should().NotBeSameAs(data);
+            context.Verify(s => s.SaveChanges(), Times.Once());
         }
 
         [Test]
         public void ProductRepo_Update()
         {
+            var data = new List<Product>()
+            {
+                new Product
+                {
+                    Cost=10,
+                    Price=15,
+                    ProductId=5,
+                    ProductName="Pasta"
+                },
+                new Product
+                {
+                    Cost=15,
+                    Price=25,
+                    ProductId=12,
+                    ProductName="Papper"
+                }
+            }.AsQueryable();
 
+            var mockDbSet = new Mock<DbSet<Product>>();
+            mockDbSet.As<IQueryable<Product>>().Setup(x => x.Provider).Returns(data.Provider);
+            mockDbSet.As<IQueryable<Product>>().Setup(x => x.Expression).Returns(data.Expression);
+            mockDbSet.As<IQueryable<Product>>().Setup(x => x.ElementType).Returns(data.ElementType);
+            mockDbSet.As<IQueryable<Product>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
+
+            var context = new Mock<YOBAContext>();
+            context.Setup(c => c.Products).Returns(mockDbSet.Object);
+            var repo = new ProductRepository(context.Object);
+            repo.Change(new Product() { Cost = 15, Price = 25, ProductId = 12, ProductName = "Nugget" });
+
+            repo.Should().NotBeSameAs(data);
+            context.Verify(s => s.SaveChanges(), Times.Once());
         }
     }
 }

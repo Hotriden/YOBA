@@ -17,7 +17,7 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
         public DateTime CreateTime { get; set; }
 
         public virtual ICollection<Payment> Payments { get; set; }
-        public virtual ICollection<Entrance> Entrances { get; set; }
+        public virtual ICollection<Receipt> Entrances { get; set; }
         public string TelephoneNumber { get; set; }
     }
 }

@@ -1,8 +1,0 @@
-D:\YOBA\YOBA_Application\YOBA_Employee.BLL\bin\Debug\netcoreapp3.0\YOBA_Employee.BLL.deps.json
-D:\YOBA\YOBA_Application\YOBA_Employee.BLL\bin\Debug\netcoreapp3.0\YOBA_Employee.BLL.dll
-D:\YOBA\YOBA_Application\YOBA_Employee.BLL\bin\Debug\netcoreapp3.0\YOBA_Employee.BLL.pdb
-D:\YOBA\YOBA_Application\YOBA_Employee.BLL\obj\Debug\netcoreapp3.0\YOBA_Employee.BLL.csprojAssemblyReference.cache
-D:\YOBA\YOBA_Application\YOBA_Employee.BLL\obj\Debug\netcoreapp3.0\YOBA_Employee.BLL.AssemblyInfoInputs.cache
-D:\YOBA\YOBA_Application\YOBA_Employee.BLL\obj\Debug\netcoreapp3.0\YOBA_Employee.BLL.AssemblyInfo.cs
-D:\YOBA\YOBA_Application\YOBA_Employee.BLL\obj\Debug\netcoreapp3.0\YOBA_Employee.BLL.dll
-D:\YOBA\YOBA_Application\YOBA_Employee.BLL\obj\Debug\netcoreapp3.0\YOBA_Employee.BLL.pdb
