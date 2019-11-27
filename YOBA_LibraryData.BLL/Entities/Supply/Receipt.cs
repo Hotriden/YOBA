@@ -7,11 +7,13 @@ using YOBA_LibraryData.BLL.Entities.Products;
 
 namespace YOBA_LibraryData.BLL.Entities.Supply
 {
-    public class Entrance
+    public class Receipt
     {
         [Required]
-        public int EntranceId { get; set; }
+        public int ReceiptId { get; set; }
         [Required]
+
+        public string DocumentNumber { get; set; }
         public Product Product { get; set; }
         [Required]
         public WareHouse WareHouse { get; set; }
@@ -19,7 +21,7 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
         public DateTime OrderTime { get; set; }
         [Required]
         [Column(TypeName = "decimal(18,2)")]
-        public decimal OrderSum { get; set; }
+        public decimal ReceiptSum { get; set; }
         public bool Shipped { get; set; }
         public bool Paid { get; set; }
     }

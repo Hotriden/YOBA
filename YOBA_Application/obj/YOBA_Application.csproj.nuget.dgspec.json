@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Temp\\YOBA\\YOBA_Application\\YOBA_Application.csproj": {}
+    "D:\\YOBA\\YOBA_Application\\YOBA_Application.csproj": {}
   },
   "projects": {
-    "C:\\Temp\\YOBA\\YOBA_Application\\YOBA_Application.csproj": {
+    "D:\\YOBA\\YOBA_Application\\YOBA_Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Temp\\YOBA\\YOBA_Application\\YOBA_Application.csproj",
+        "projectUniqueName": "D:\\YOBA\\YOBA_Application\\YOBA_Application.csproj",
         "projectName": "YOBA_Application",
-        "projectPath": "C:\\Temp\\YOBA\\YOBA_Application\\YOBA_Application.csproj",
-        "packagesPath": "C:\\Users\\Rifter\\.nuget\\packages\\",
-        "outputPath": "C:\\Temp\\YOBA\\YOBA_Application\\obj\\",
+        "projectPath": "D:\\YOBA\\YOBA_Application\\YOBA_Application.csproj",
+        "packagesPath": "C:\\Users\\Вячеслав\\.nuget\\packages\\",
+        "outputPath": "D:\\YOBA\\YOBA_Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Rifter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Вячеслав\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Temp\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj": {
-                "projectPath": "C:\\Temp\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj"
+              "D:\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj": {
+                "projectPath": "D:\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj"
               }
             }
           }
@@ -78,17 +81,20 @@
         }
       }
     },
-    "C:\\Temp\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj": {
+    "D:\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Temp\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj",
+        "projectUniqueName": "D:\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj",
         "projectName": "YOBA_LibraryData.BLL",
-        "projectPath": "C:\\Temp\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj",
-        "packagesPath": "C:\\Users\\Rifter\\.nuget\\packages\\",
-        "outputPath": "C:\\Temp\\YOBA\\YOBA_LibraryData.BLL\\obj\\",
+        "projectPath": "D:\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.BLL.csproj",
+        "packagesPath": "C:\\Users\\Вячеслав\\.nuget\\packages\\",
+        "outputPath": "D:\\YOBA\\YOBA_LibraryData.BLL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Rifter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Вячеслав\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -101,8 +107,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Temp\\YOBA\\YOBA_Services\\YOBA_Services.csproj": {
-                "projectPath": "C:\\Temp\\YOBA\\YOBA_Services\\YOBA_Services.csproj"
+              "D:\\YOBA\\YOBA_Services\\YOBA_Services.csproj": {
+                "projectPath": "D:\\YOBA\\YOBA_Services\\YOBA_Services.csproj"
               }
             }
           }
@@ -145,17 +151,20 @@
         }
       }
     },
-    "C:\\Temp\\YOBA\\YOBA_Services\\YOBA_Services.csproj": {
+    "D:\\YOBA\\YOBA_Services\\YOBA_Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Temp\\YOBA\\YOBA_Services\\YOBA_Services.csproj",
+        "projectUniqueName": "D:\\YOBA\\YOBA_Services\\YOBA_Services.csproj",
         "projectName": "YOBA_Services",
-        "projectPath": "C:\\Temp\\YOBA\\YOBA_Services\\YOBA_Services.csproj",
-        "packagesPath": "C:\\Users\\Rifter\\.nuget\\packages\\",
-        "outputPath": "C:\\Temp\\YOBA\\YOBA_Services\\obj\\",
+        "projectPath": "D:\\YOBA\\YOBA_Services\\YOBA_Services.csproj",
+        "packagesPath": "C:\\Users\\Вячеслав\\.nuget\\packages\\",
+        "outputPath": "D:\\YOBA\\YOBA_Services\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Rifter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Вячеслав\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

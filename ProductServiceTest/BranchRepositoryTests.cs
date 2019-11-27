@@ -4,10 +4,10 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using YOBA_LibraryData.BLL;
-using YOBA_LibraryData.BLL.Entities.Products;
 using YOBA_LibraryData.BLL.UOF.Repository;
 using FluentAssertions;
 using YOBA_LibraryData.BLL.Entities.Staff;
+using YOBA_LibraryData.BLL.Entities.Sell;
 
 namespace ProductServiceTest
 {

@@ -6,8 +6,6 @@ using System.Linq;
 using YOBA_LibraryData.BLL;
 using YOBA_LibraryData.BLL.UOF.Repository;
 using FluentAssertions;
-using YOBA_LibraryData.BLL.Entities.Staff;
-using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.Entities.Finance;
 
 namespace ProductServiceTest
@@ -107,7 +105,7 @@ namespace ProductServiceTest
         }
 
         [Test]
-        public void WareHouseRepo_Update()
+        public void TaxRepo_Update()
         {
             var data = new List<Tax>() {
                 new Tax() { Id=1, Name = "Freight", Percent = 20},

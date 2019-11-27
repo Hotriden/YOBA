@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_Services", "YOBA_Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_LibraryData.BLL", "YOBA_LibraryData.BLL\YOBA_LibraryData.BLL.csproj", "{365EA439-180D-49DE-9B95-25433E381B4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductServiceTest", "ProductServiceTest\ProductServiceTest.csproj", "{918828E6-3F00-4CF9-83FF-620E0B7DB1A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductServiceTest", "ProductServiceTest\ProductServiceTest.csproj", "{918828E6-3F00-4CF9-83FF-620E0B7DB1A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

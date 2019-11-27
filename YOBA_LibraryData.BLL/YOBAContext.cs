@@ -18,11 +18,13 @@ namespace YOBA_LibraryData.BLL
         public virtual DbSet<Income> Incomes { get; set; }
         public virtual DbSet<Tax> Taxes { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductGroup> ProductGroups { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Branch> Branches { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Receipt> Receipts { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<WareHouse> WareHouses { get; set; }

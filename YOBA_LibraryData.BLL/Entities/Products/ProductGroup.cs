@@ -10,7 +10,7 @@ namespace YOBA_LibraryData.BLL.Entities.Products
         [Required]
         public int GroupId { get; set; }
         [Required]
-        public string GropName { get; set; }
+        public string GroupName { get; set; }
         public virtual ICollection<Product> Products { get; set; }
     }
 }
