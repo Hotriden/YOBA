@@ -1,41 +1,98 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Sell;
-using YOBA_LibraryData.BLL.Interfaces;
+using YOBA_LibraryData.BLL.UOF.Interfaces;
+using YOBA_Services.Exceptions;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
-    public class OrderRepository : IBaseRepository<Order>
+    public class OrderRepository : IOrderRepository
     {
+        private YOBAContext _context;
+        public OrderRepository(YOBAContext context)
+        {
+            _context = context;
+        }
         public void Add(Order item)
         {
-            throw new NotImplementedException();
+            if (_context.Orders.Find(item.OrderIdentity) == null)
+            {
+                _context.Add(item);
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new AlreadyExistException(item.OrderIdentity);
+            }
         }
 
         public void Delete(Order item)
         {
-            throw new NotImplementedException();
+            if (_context.Orders.First(order => order.OrderIdentity == item.OrderIdentity) != null)
+            {
+                _context.Remove(item);
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new NotFoundException(item.OrderIdentity);
+            }
         }
 
         public IEnumerable<Order> GetAll()
         {
-            throw new NotImplementedException();
+            if (_context.Orders != null)
+            {
+                return _context.Orders;
+            }
+            else
+            {
+                throw new EmptyDataException(typeof(Payment).ToString());
+            }
         }
 
         public Order GetById(int id)
         {
-            throw new NotImplementedException();
+            var result = _context.Orders.First(order => order.Id == id);
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new EmptyDataException(typeof(Order).ToString());
+            }
+        }
+
+        public Order GetByIdentity(string identity)
+        {
+            var result = _context.Orders.First(order => order.OrderIdentity == identity);
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new EmptyDataException(typeof(Order).ToString());
+            }
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
         public void Change(Order item)
         {
-            throw new NotImplementedException();
+            if (_context.Orders.First(order => order.OrderIdentity == item.OrderIdentity) != null)
+            {
+                _context.Orders.Update(item);
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new NotFoundException(item.Id);
+            }
         }
     }
 }

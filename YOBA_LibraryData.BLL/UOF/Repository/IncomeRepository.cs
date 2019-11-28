@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using YOBA_LibraryData.BLL.Entities.Finance;
-using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_Services.Exceptions;
 using System.Linq;
+using YOBA_LibraryData.BLL.UOF.Interfaces;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
-    public class IncomeRepository : IBaseRepository<Income>
+    public class IncomeRepository : IIncomeRepository
     {
         private YOBAContext _context;
         public IncomeRepository(YOBAContext context)

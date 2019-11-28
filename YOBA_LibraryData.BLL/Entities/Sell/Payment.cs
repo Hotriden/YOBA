@@ -14,6 +14,7 @@ namespace YOBA_LibraryData.BLL.Entities.Sell
         public Order Order { get; set; }
         public Customer Cusmoter { get; set; }
         public DateTime PayTime { get; set; }
-        public int IdentialPayNumber { get; set; }
+        [Required]
+        public string IdentialPayNumber { get; set; }
     }
 }

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using YOBA_LibraryData.BLL.Entities.Supply;
-using YOBA_LibraryData.BLL.Interfaces;
+using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_Services.Exceptions;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
-    public class ReceiptRepository : IBaseRepository<Receipt>
+    public class ReceiptRepository : IReceiptRepository
     {
         private YOBAContext _context;
         public ReceiptRepository(YOBAContext context)

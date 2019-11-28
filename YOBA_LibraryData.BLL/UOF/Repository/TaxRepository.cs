@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using YOBA_LibraryData.BLL.Entities.Finance;
-using YOBA_LibraryData.BLL.Interfaces;
+using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_Services.Exceptions;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
-    public class TaxRepository : IBaseRepository<Tax>
+    public class TaxRepository : ITaxRepository
     {
         private YOBAContext _context;
         public TaxRepository(YOBAContext context)

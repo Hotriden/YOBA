@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using YOBA_LibraryData.BLL.Entities.Staff;
-using YOBA_LibraryData.BLL.Interfaces;
+using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_Services.Exceptions;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
-    public class EmployeeRepository : IBaseRepository<Employee>
+    public class EmployeeRepository : IEmployeeRepository
     {
         private YOBAContext _context;
         public EmployeeRepository(YOBAContext context)

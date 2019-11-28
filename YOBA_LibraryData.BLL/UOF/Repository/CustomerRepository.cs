@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using YOBA_LibraryData.BLL.Entities.Sell;
-using YOBA_LibraryData.BLL.Interfaces;
+using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_Services.Exceptions;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
-    public class CustomerRepository : IBaseRepository<Customer>
+    public class CustomerRepository : ICustomerRepository
     {
         private YOBAContext _context;
         public CustomerRepository(YOBAContext context)

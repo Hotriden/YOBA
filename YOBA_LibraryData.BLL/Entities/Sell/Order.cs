@@ -25,5 +25,6 @@ namespace YOBA_LibraryData.BLL.Entities.Sell
         public decimal OrderSum { get; set; }
         public bool Shipped { get; set; }
         public bool Paid { get; set; }
+        public string OrderIdentity { get; set; }
     }
 }
