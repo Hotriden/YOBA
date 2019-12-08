@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using YOBA_LibraryData.BLL.Entities.Supply;
 
 namespace YOBA_LibraryData.BLL.Entities.Products
 {
@@ -16,5 +17,10 @@ namespace YOBA_LibraryData.BLL.Entities.Products
         public decimal Price { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal Cost { get; set; }
+
+        public WareHouse Placement { get; set; }
+
+        public double ProductTime { get; set; }
+        public ICollection<Receipt> Receipts { get; set; }
     }
 }

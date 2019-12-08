@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YOBA_LibraryData.BLL\YOBA_LibraryData.BLL.csproj" />
+    <ProjectReference Include="..\YOBA_LibraryData.BLL\YOBA_LibraryData.DAL.csproj" />
   </ItemGroup>
 
 </Project>

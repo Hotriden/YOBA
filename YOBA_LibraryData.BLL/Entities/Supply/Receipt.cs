@@ -21,7 +21,7 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
         public DateTime OrderTime { get; set; }
         [Required]
         [Column(TypeName = "decimal(18,2)")]
-        public decimal ReceiptSum { get; set; }
+        public decimal ReceiptValue { get; set; }
         public bool Shipped { get; set; }
         public bool Paid { get; set; }
     }

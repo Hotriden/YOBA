@@ -17,5 +17,7 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
         public string Address { get; set; }
         public Employee StockMan { get; set; }
         public ICollection<Product> Products { get; set; }
+        public ICollection<Receipt> Receipts { get; set; }
+        public bool ProductOportunity { get; set; }
     }
 }

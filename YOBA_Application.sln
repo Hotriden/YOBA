@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_Application", "YOBA_Application\YOBA_Application.csproj", "{533465A8-EEAC-4C8C-BBCE-577EB4E4418A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2642F19F-DD09-4A4E-84EE-B38B4947F252}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_Services", "YOBA_Services\YOBA_Services.csproj", "{0BF44217-C141-4B40-938A-47FB8BD906AE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_LibraryData.BLL", "YOBA_LibraryData.BLL\YOBA_LibraryData.BLL.csproj", "{365EA439-180D-49DE-9B95-25433E381B4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_LibraryData.DAL", "YOBA_LibraryData.BLL\YOBA_LibraryData.DAL.csproj", "{365EA439-180D-49DE-9B95-25433E381B4D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductServiceTest", "ProductServiceTest\ProductServiceTest.csproj", "{918828E6-3F00-4CF9-83FF-620E0B7DB1A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_UI", "YOBA_UI\YOBA_UI.csproj", "{62291D27-4B7A-4E2A-9AFE-8F4600B46BAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YOBA_BLL", "YOBA_BLL\YOBA_BLL.csproj", "{D61D8DB4-A12C-4896-B7A1-1C49AA057399}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{533465A8-EEAC-4C8C-BBCE-577EB4E4418A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{533465A8-EEAC-4C8C-BBCE-577EB4E4418A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{533465A8-EEAC-4C8C-BBCE-577EB4E4418A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{533465A8-EEAC-4C8C-BBCE-577EB4E4418A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0BF44217-C141-4B40-938A-47FB8BD906AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0BF44217-C141-4B40-938A-47FB8BD906AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BF44217-C141-4B40-938A-47FB8BD906AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,12 +31,17 @@ Global
 		{918828E6-3F00-4CF9-83FF-620E0B7DB1A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{918828E6-3F00-4CF9-83FF-620E0B7DB1A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{918828E6-3F00-4CF9-83FF-620E0B7DB1A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62291D27-4B7A-4E2A-9AFE-8F4600B46BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62291D27-4B7A-4E2A-9AFE-8F4600B46BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62291D27-4B7A-4E2A-9AFE-8F4600B46BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62291D27-4B7A-4E2A-9AFE-8F4600B46BAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61D8DB4-A12C-4896-B7A1-1C49AA057399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61D8DB4-A12C-4896-B7A1-1C49AA057399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61D8DB4-A12C-4896-B7A1-1C49AA057399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61D8DB4-A12C-4896-B7A1-1C49AA057399}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{918828E6-3F00-4CF9-83FF-620E0B7DB1A2} = {2642F19F-DD09-4A4E-84EE-B38B4947F252}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9928DAF5-A169-46D8-A46D-EFEFB7ADB664}

@@ -24,7 +24,7 @@ namespace YOBA_LibraryData.BLL.UOF
         private TaxRepository taxRepo;
         private WareHouseRepository wareHouseRepo;
 
-        public UnitOfWork(string connectionString)
+        public UnitOfWork()
         {
             db = new YOBAContext(); /// connection string
         }
