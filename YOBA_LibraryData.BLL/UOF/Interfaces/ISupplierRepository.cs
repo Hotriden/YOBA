@@ -5,5 +5,6 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
 {
     public interface ISupplierRepository:IBaseRepository<Supplier>
     {
+        Supplier GetByNumber(string identity);
     }
 }

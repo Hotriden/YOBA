@@ -1,15 +1,15 @@
-﻿
-
-using System;
+﻿using System;
 using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_LibraryData.BLL.UOF.Repository;
+using YOBA_LibraryData.DAL.UOF.Interfaces;
+using YOBA_LibraryData.DAL.UOF.Repository;
 
 namespace YOBA_LibraryData.BLL.UOF
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private YOBAContext db;
+        private readonly YOBAContext db;
         private BranchRepository branchRepo;
         private CustomerRepository customerRepo;
         private EmployeeRepository employeeRepo;
@@ -19,14 +19,25 @@ namespace YOBA_LibraryData.BLL.UOF
         private PaymentRepository paymentRepo;
         private ProductGroupRepository productGroupRepo;
         private ProductRepository productRepo;
-        private ReceiptRepository receiptRepo;
         private SupplierRepository supplierRepo;
         private TaxRepository taxRepo;
         private WareHouseRepository wareHouseRepo;
+        private ClientRepository clientRepo;
+        private ClientLogRepository clientLogRepo;
 
         public UnitOfWork()
         {
             db = new YOBAContext(); /// connection string
+        }
+
+        public IClientRepository ClientRepository
+        {
+            get
+            {
+                if (clientRepo == null)
+                    clientRepo = new ClientRepository(db);
+                return clientRepo;
+            }
         }
 
         public IBranchRepository BranchRepository
@@ -112,15 +123,6 @@ namespace YOBA_LibraryData.BLL.UOF
                 return productGroupRepo;
             }
         }
-        public IReceiptRepository ReceiptRepository 
-        {
-            get 
-            {
-                if (receiptRepo == null)
-                    receiptRepo = new ReceiptRepository(db);
-                return receiptRepo;
-            }
-        }
         public ISupplierRepository SupplierRepository
         {
             get
@@ -146,6 +148,16 @@ namespace YOBA_LibraryData.BLL.UOF
                 if (wareHouseRepo == null)
                     wareHouseRepo = new WareHouseRepository(db);
                 return wareHouseRepo;
+            }
+        }
+
+        public IClientLogRepository ClientLogRepository
+        {
+            get
+            {
+                if (clientLogRepo == null)
+                    clientLogRepo = new ClientLogRepository(db);
+                return clientLogRepo;
             }
         }
 

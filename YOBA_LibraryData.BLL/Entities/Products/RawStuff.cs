@@ -6,7 +6,7 @@ using YOBA_LibraryData.BLL.Entities.Supply;
 
 namespace YOBA_LibraryData.DAL.Entities.Products
 {
-    public class RawStuff
+    public class RawStuff: AuditableEntity
     {
         [Required]
         public int Id { get; set; }

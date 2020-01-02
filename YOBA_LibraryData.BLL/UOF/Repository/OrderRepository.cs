@@ -8,7 +8,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class OrderRepository : IOrderRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public OrderRepository(YOBAContext context)
         {
             _context = context;
@@ -75,11 +75,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             {
                 throw new EmptyDataException(typeof(Order).ToString());
             }
-        }
-
-        public void Save()
-        {
-            _context.SaveChanges();
         }
 
         public void Change(Order item)

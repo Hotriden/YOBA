@@ -8,7 +8,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class ProductRepository : IProductRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public ProductRepository(YOBAContext context)
         {
             _context = context;
@@ -64,11 +64,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
         public void Change(Product item)
         {
             if (_context.Products.First(x=>x.ProductId==item.ProductId) != null)
@@ -80,6 +75,11 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             {
                 throw new NotFoundException(item.ProductId);
             }
+        }
+
+        public Product GetByName(string name)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

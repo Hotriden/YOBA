@@ -8,7 +8,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class PaymentRepository : IPaymentRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public PaymentRepository(YOBAContext context)
         {
             _context = context;
@@ -76,11 +76,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             {
                 throw new EmptyDataException(typeof(Payment).ToString());
             }
-        }
-
-        public void Save()
-        {
-            _context.SaveChanges();
         }
 
         public void Change(Payment item)

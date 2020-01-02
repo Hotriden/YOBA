@@ -8,7 +8,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class WareHouseRepository : IWareHouseRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public WareHouseRepository(YOBAContext context)
         {
             _context = context;
@@ -64,9 +64,17 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public void Save()
+        public WareHouse GetByName(string name)
         {
-            _context.SaveChanges();
+            var result = _context.WareHouses.First(warehouse => warehouse.WareHouseName == name);
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new EmptyDataException(typeof(WareHouse).ToString());
+            }
         }
 
         public void Change(WareHouse item)

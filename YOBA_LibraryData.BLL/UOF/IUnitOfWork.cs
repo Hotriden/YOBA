@@ -1,10 +1,12 @@
 ﻿using System;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
+using YOBA_LibraryData.DAL.UOF.Interfaces;
 
 namespace YOBA_LibraryData.BLL.Interfaces
 {
     public interface IUnitOfWork:IDisposable
     {
+        IClientRepository ClientRepository { get; }
         IBranchRepository BranchRepository { get; }
         ICustomerRepository CustomerRepository { get; }
         IEmployeeRepository EmployeeRepository { get; }
@@ -14,10 +16,10 @@ namespace YOBA_LibraryData.BLL.Interfaces
         IPaymentRepository PaymentRepository { get; }
         IProductRepository ProductRepository { get; }
         IProductGroupRepository ProductGroupRepository { get; }
-        IReceiptRepository ReceiptRepository { get; }
         ISupplierRepository SupplierRepository { get; }
         ITaxRepository TaxRepository { get; }
         IWareHouseRepository WareHouseRepository { get; }
+        IClientLogRepository ClientLogRepository { get; }
         void Save();
     }
 }

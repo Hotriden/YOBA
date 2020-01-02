@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using YOBA_BLL.Supply;
 using YOBA_LibraryData.BLL.Entities.Products;
@@ -25,17 +26,22 @@ namespace YOBA_BLL.Production
 
         public string Produce(Product product, WareHouse wareHouse)
         {
-            if (wareHouse.ProductOportunity == true && UOW.WareHouseRepository.GetById(wareHouse.Id)!=null)
+            if (wareHouse.ProductOportunity == true && UOW.WareHouseRepository.GetById(wareHouse.Id) != null)
             {
-                string result = _wareHouseBLL.CheckRawStuff(product, wareHouse);
-                if(result == null)
+                var result = product.Receipts.Intersect(wareHouse.Receipts);
+                if (result == product.Receipts)
                 {
-                    // UOW.WareHouseRepository.GetById(wareHouse.Id).Receipts;
-                    return "Product created";
+                    return $"{product.ProductName} successful created";
                 }
                 else
                 {
-                    return result;
+                    var falseResult = product.Receipts.Except(wareHouse.Receipts);
+                    string distinctResult = null;
+                    foreach(var receip in falseResult)
+                    {
+                        distinctResult += receip;
+                    }
+                    return distinctResult;
                 }
             }
             else
@@ -47,6 +53,11 @@ namespace YOBA_BLL.Production
         public bool ProductRelocation(Product product, WareHouse wareHouseTo, WareHouse wareHouseFrom)
         {
             throw new NotImplementedException();
+        }
+
+        static public bool IsIntersects(IList<int> target, IList<int> second)
+        {
+            return target.Intersect(second).Count() == target.Count;
         }
     }
 }

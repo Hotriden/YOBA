@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using YOBA_LibraryData.BLL.Entities.Products;
 using YOBA_LibraryData.BLL.Entities.Staff;
+using YOBA_LibraryData.DAL.Entities;
 
 namespace YOBA_LibraryData.BLL.Entities.Supply
 {
-    public class WareHouse
+    public class WareHouse: AuditableEntity
     {
         [Required]
         public int Id { get; set; }

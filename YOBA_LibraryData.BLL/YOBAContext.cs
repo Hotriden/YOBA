@@ -5,6 +5,7 @@ using YOBA_LibraryData.BLL.Entities.Sell;
 using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.Entities.User;
+using YOBA_LibraryData.DAL.UOF.Repository;
 
 namespace YOBA_LibraryData.BLL
 {
@@ -14,6 +15,7 @@ namespace YOBA_LibraryData.BLL
 
         public YOBAContext(DbContextOptions options) : base(options) { }
 
+        public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Expence> Expences { get; set; }
         public virtual DbSet<Income> Incomes { get; set; }
         public virtual DbSet<Tax> Taxes { get; set; }
@@ -26,7 +28,7 @@ namespace YOBA_LibraryData.BLL
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Receipt> Receipts { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
-        public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<WareHouse> WareHouses { get; set; }
+        public virtual DbSet<ClientLogRepository> ClientLogs { get; set; }
     }
 }

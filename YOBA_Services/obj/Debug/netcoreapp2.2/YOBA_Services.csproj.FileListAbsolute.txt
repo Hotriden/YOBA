@@ -13,12 +13,11 @@ D:\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.AssemblyInfoInputs.c
 D:\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.AssemblyInfo.cs
 D:\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.dll
 D:\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.pdb
+D:\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.csprojAssemblyReference.cache
 C:\Temp\YOBA\YOBA_Services\bin\Debug\netcoreapp2.2\YOBA_Services.deps.json
 C:\Temp\YOBA\YOBA_Services\bin\Debug\netcoreapp2.2\YOBA_Services.dll
 C:\Temp\YOBA\YOBA_Services\bin\Debug\netcoreapp2.2\YOBA_Services.pdb
-C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.csprojAssemblyReference.cache
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.AssemblyInfoInputs.cache
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.AssemblyInfo.cs
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.dll
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.pdb
-D:\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.csprojAssemblyReference.cache

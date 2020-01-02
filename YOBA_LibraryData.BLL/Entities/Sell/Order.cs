@@ -5,10 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using YOBA_LibraryData.BLL.Entities.Products;
 using YOBA_LibraryData.BLL.Entities.Staff;
+using YOBA_LibraryData.DAL.Entities;
 
 namespace YOBA_LibraryData.BLL.Entities.Sell
 {
-    public class Order
+    public class Order: AuditableEntity
     {
         [Required]
         public int Id { get; set; }

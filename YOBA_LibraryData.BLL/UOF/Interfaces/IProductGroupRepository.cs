@@ -5,5 +5,6 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
 {
     public interface IProductGroupRepository : IBaseRepository<ProductGroup>
     {
+        ProductGroup GetByName(string name);
     }
 }

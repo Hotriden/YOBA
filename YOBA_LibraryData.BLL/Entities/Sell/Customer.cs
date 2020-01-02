@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using YOBA_LibraryData.DAL.Entities;
 
 namespace YOBA_LibraryData.BLL.Entities.Sell
 {
-    public class Customer
+    public class Customer: AuditableEntity
     {
         [Required]
         public int CustomerId { get; set; }
@@ -16,8 +17,8 @@ namespace YOBA_LibraryData.BLL.Entities.Sell
         [Required]
         public string CustomerEmail { get; set; }
         [Required]
-        public virtual ICollection<Order> CustomerOrders { get; set; }
-        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<Order> CustomerOrders { get; private set; }
+        public virtual ICollection<Payment> Payments { get; private set; }
         public string TelephoneNumber { get; set; }
         public string Address { get; set; }
     }

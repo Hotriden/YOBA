@@ -5,30 +5,39 @@ using YOBA_LibraryData.BLL.Entities.Products;
 using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF;
+using System.Linq;
 
 namespace YOBA_BLL.Supply
 {
-    class WareHouseBLL:IWareHouseBLL
+    public class WareHouseBLL:IWareHouseBLL
     {
-        private IUnitOfWork UOW;
-
+        IUnitOfWork db;
         public WareHouseBLL()
         {
-            UOW = new UnitOfWork();
+            db = new UnitOfWork();
         }
         public string CheckRawStuff(Product product, WareHouse wareHouse)
         {
             string result = null;
-            var _wareHouse = UOW.WareHouseRepository.GetById(wareHouse.Id);
-            if (_wareHouse !=null && wareHouse.ProductOportunity == true)
+            if (wareHouse !=null & wareHouse.ProductOportunity == true)
             {
                 foreach(var component in product.Receipts)
                 {
-                    if (_wareHouse.Receipts.Contains(component)) { }
-                    else { result += $"Not anought {_wareHouse.Receipts} on {_wareHouse.WareHouseName}"; }
+                    var presence = (from q in wareHouse.Receipts
+                                    where q.ReceiptId == component.ReceiptId
+                                    select q.ReceiptValue).First();
+                    if (presence >= component.ReceiptValue) { }
+                    else { result += $"Not anought {product.Receipts} on {wareHouse.WareHouseName}"; }
                 }
             }
-            return result;
+            if (result == null)
+            {
+                return $"{product.ProductName} successful created";
+            }
+            else
+            {
+                return result;
+            }
         }
     }
 }

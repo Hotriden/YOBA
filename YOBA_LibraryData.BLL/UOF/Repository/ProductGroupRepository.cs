@@ -8,7 +8,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class ProductGroupRepository : IProductGroupRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public ProductGroupRepository(YOBAContext context)
         {
             _context = context;
@@ -64,11 +64,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
         public void Change(ProductGroup item)
         {
             if (_context.ProductGroups.First(productGroup => productGroup.GroupId == item.GroupId) != null)
@@ -80,6 +75,11 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             {
                 throw new NotFoundException(item.GroupId);
             }
+        }
+
+        public ProductGroup GetByName(string name)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

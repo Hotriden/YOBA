@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using YOBA_LibraryData.BLL.Entities.Supply;
+using YOBA_LibraryData.DAL.Entities;
 
 namespace YOBA_LibraryData.BLL.Entities.Products
 {
-    public class Product
+    public class Product: AuditableEntity
     {
         [Required]
         public int ProductId { get; set; }

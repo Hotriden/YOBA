@@ -8,7 +8,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class SupplierRepository : ISupplierRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public SupplierRepository(YOBAContext context)
         {
             _context = context;
@@ -64,11 +64,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
         public void Change(Supplier item)
         {
             if (_context.Suppliers.First(x => x.SupplierId == item.SupplierId) != null)
@@ -80,6 +75,11 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             {
                 throw new NotFoundException(item.SupplierId);
             }
+        }
+
+        public Supplier GetByNumber(string identity)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

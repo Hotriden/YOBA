@@ -8,7 +8,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class ExpenceRepository : IExpenceRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public ExpenceRepository(YOBAContext context)
         {
             _context = context;
@@ -64,11 +64,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
         public void Change(Expence item)
         {
             if (_context.Expences.First(x => x.Id == item.Id) != null)
@@ -80,6 +75,11 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             {
                 throw new NotFoundException(item.Id);
             }
+        }
+
+        public Expence GetByName(string name)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

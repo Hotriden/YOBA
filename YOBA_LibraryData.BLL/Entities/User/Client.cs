@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using YOBA_LibraryData.DAL.Entities;
 
 namespace YOBA_LibraryData.BLL.Entities.User
 {
-    public class Client
+    public class Client: AuditableEntity
     {
         [Required]
         public int ClientId { get; set; }

@@ -8,7 +8,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public EmployeeRepository(YOBAContext context)
         {
             _context = context;
@@ -64,11 +64,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
         public void Change(Employee item)
         {
             if (_context.Employees.First(x => x.EmployeeId == item.EmployeeId) != null)
@@ -80,6 +75,11 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             {
                 throw new NotFoundException(item.EmployeeId);
             }
+        }
+
+        public Employee GetByNumber(string name)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

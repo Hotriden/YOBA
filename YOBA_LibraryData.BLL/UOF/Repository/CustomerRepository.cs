@@ -8,7 +8,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public CustomerRepository(YOBAContext context)
         {
             _context = context;
@@ -62,11 +62,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             {
                 throw new EmptyDataException(typeof(Customer).ToString());
             }
-        }
-
-        public void Save()
-        {
-            _context.SaveChanges();
         }
 
         public void Change(Customer item)

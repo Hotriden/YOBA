@@ -9,7 +9,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class BranchRepository : IBranchRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public BranchRepository(YOBAContext context)
         {
             _context = context;
@@ -65,11 +65,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
         public void Change(Branch item)
         {
             if (_context.Branches.First(x=>x.BranchId==item.BranchId) != null)
@@ -80,6 +75,19 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             else
             {
                 throw new NotFoundException(item.BranchId);
+            }
+        }
+
+        public Branch GetByName(string name)
+        {
+            var result = _context.Branches.First(branch => branch.BranchName == name);
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new EmptyDataException(typeof(Product).ToString());
             }
         }
     }

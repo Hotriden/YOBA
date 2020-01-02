@@ -5,6 +5,6 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
 {
     public interface IWareHouseRepository:IBaseRepository<WareHouse>
     {
-
+        WareHouse GetByName(string name);
     }
 }
