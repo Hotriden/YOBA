@@ -7,6 +7,6 @@ namespace YOBA_BLL.Services.MessageService
 {
     public interface IMessageService
     {
-        void InfoMessage(Client client, string message);
+        void InfoMessage(object obj, Client client, string message);
     }
 }

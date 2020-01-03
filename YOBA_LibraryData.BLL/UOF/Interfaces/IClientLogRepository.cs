@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using YOBA_LibraryData.BLL.Interfaces;
-using YOBA_LibraryData.DAL.Entities.User;
+﻿using YOBA_LibraryData.BLL.Entities.User;
 
 namespace YOBA_LibraryData.DAL.UOF.Interfaces
 {
-    public interface IClientLogRepository:IBaseRepository<ClientLog>
+    public interface IClientLogRepository
     {
+        void AddClientChanges(object obj, Client client, string message);
     }
 }

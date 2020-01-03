@@ -16,9 +16,9 @@ namespace YOBA_BLL.Services.MessageService
             db = repository;
         }
 
-        public void InfoMessage(Client client, string message)
+        public void InfoMessage(object obj, Client client, string message)
         {
-            db.ClientRepository.Add(client);
+            db.ClientLogRepository.AddClientChanges(obj, client, message);
         }
     }
 }
