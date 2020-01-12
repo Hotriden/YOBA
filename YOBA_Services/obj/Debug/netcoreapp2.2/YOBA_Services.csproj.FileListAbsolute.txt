@@ -21,3 +21,4 @@ C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.AssemblyInfoInp
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.AssemblyInfo.cs
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.dll
 C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.pdb
+C:\Temp\YOBA\YOBA_Services\obj\Debug\netcoreapp2.2\YOBA_Services.csprojAssemblyReference.cache

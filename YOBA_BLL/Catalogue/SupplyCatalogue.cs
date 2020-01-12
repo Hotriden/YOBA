@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using YOBA_BLL.Services.MessageService;
 using YOBA_LibraryData.BLL.Entities.Supply;
-using YOBA_LibraryData.BLL.Entities.User;
 using YOBA_LibraryData.BLL.Interfaces;
-using YOBA_LibraryData.BLL.UOF.Interfaces;
 
 namespace YOBA_BLL.Catalogue
 {
-    public class SupplyCatalogue:ISupplyCatalogue
+    public class SupplyCatalogue:ICatalogue<Supplier>
     {
         private readonly IUnitOfWork db;
         private readonly IMessageService messageService;
@@ -20,57 +16,66 @@ namespace YOBA_BLL.Catalogue
             db = _repo;
         }
 
-        public void CreateSupplier(Supplier supplier, Client client)
+        public void Create(Supplier supplier, string UserId)
         {
             if (supplier.SupplierName == null & supplier.Address == null)
             {
-                messageService.InfoMessage(client, "Wrong SupplierName or Address");
+                messageService.InfoMessage(this, "Supplier name or supplier address spelled wrong", UserId);
             }
             else 
             { 
                 if (db.SupplierRepository.GetById(supplier.SupplierId) == null)
                 {
-                    db.SupplierRepository.Add(supplier);
+                    var _supplier = supplier;
+                    _supplier.CreatedBy = UserId;
+                    _supplier.Created = DateTime.Now;
+                    db.SupplierRepository.Add(_supplier);
                     db.Save();
 
-                    messageService.InfoMessage(client, $"{supplier} successful created");
+                    messageService.InfoMessage(this, $"{supplier} successful created", UserId);
                 }
                 else
                 {
-                    messageService.InfoMessage(client, $"{supplier.SupplierId} already exist");
+                    messageService.InfoMessage(this, $"{supplier.SupplierId} already exist", UserId);
                 }
             }
         }
 
-        public void ChangeSupplier(Supplier supplier, Client client)
+        public void Update(Supplier supplier, string UserId)
         {
             var result = db.SupplierRepository.GetById(supplier.SupplierId);
             if (result != null)
             {
-                db.SupplierRepository.Change(supplier);
+                var _supplier = supplier;
+                _supplier.LastModifiedBy = UserId;
+                _supplier.LastModified = DateTime.Now;
+                db.SupplierRepository.Change(_supplier);
                 db.Save();
 
-                messageService.InfoMessage(client, $"{result.SupplierName} successful changed");
+                messageService.InfoMessage(this, $"{result.SupplierName} successful changed", UserId);
             }
             else
             {
-                messageService.InfoMessage(client, $"{result.SupplierId} doesn't exist");
+                messageService.InfoMessage(this, $"{result.SupplierId} doesn't exist", UserId);
             }
         }
 
-        public void DeleteSupplier(Supplier supplier, Client client)
+        public void Delete(Supplier supplier, string UserId)
         {
             var result = db.SupplierRepository.GetById(supplier.SupplierId);
             if (result != null)
             {
-                db.SupplierRepository.Delete(supplier);
+                var _supplier = supplier;
+                _supplier.LastModifiedBy = UserId;
+                _supplier.LastModified = DateTime.Now;
+                db.SupplierRepository.Delete(_supplier);
                 db.Save();
 
-                messageService.InfoMessage(client, $"{result.SupplierName} successful deleted");
+                messageService.InfoMessage(this, $"{result.SupplierName} successful deleted", UserId);
             }
             else
             {
-                messageService.InfoMessage(client, $"{result.SupplierId} doesn't exist");
+                messageService.InfoMessage(this, $"{result.SupplierId} doesn't exist", UserId);
             }
         }
     }

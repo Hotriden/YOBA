@@ -35,9 +35,6 @@
               },
               "C:\\Temp\\YOBA\\YOBA_Services\\YOBA_Services.csproj": {
                 "projectPath": "C:\\Temp\\YOBA\\YOBA_Services\\YOBA_Services.csproj"
-              },
-              "C:\\Temp\\YOBA\\YOBA_UI\\YOBA_UI.csproj": {
-                "projectPath": "C:\\Temp\\YOBA\\YOBA_UI\\YOBA_UI.csproj"
               }
             }
           }
@@ -269,84 +266,6 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Temp\\YOBA\\YOBA_UI\\YOBA_UI.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Temp\\YOBA\\YOBA_UI\\YOBA_UI.csproj",
-        "projectName": "YOBA_UI",
-        "projectPath": "C:\\Temp\\YOBA\\YOBA_UI\\YOBA_UI.csproj",
-        "packagesPath": "C:\\Users\\Rifter\\.nuget\\packages\\",
-        "outputPath": "C:\\Temp\\YOBA\\YOBA_UI\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Rifter\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp2.2"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp2.2": {
-            "projectReferences": {
-              "C:\\Temp\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj": {
-                "projectPath": "C:\\Temp\\YOBA\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp2.2": {
-          "dependencies": {
-            "Microsoft.AspNetCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.0, )",
-              "autoReferenced": true
-            },
-            "Microsoft.AspNetCore.Razor.Design": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.NETCore.App": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.2.0, )",
-              "autoReferenced": true
-            },
-            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
-              "target": "Package",
-              "version": "[1.9.5, )"
-            },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-              "target": "Package",
-              "version": "[2.2.4, )"
             }
           },
           "imports": [

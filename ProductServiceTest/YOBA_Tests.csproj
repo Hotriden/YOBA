@@ -19,7 +19,6 @@
     <ProjectReference Include="..\YOBA_BLL\YOBA_BLL.csproj" />
     <ProjectReference Include="..\YOBA_LibraryData.BLL\YOBA_LibraryData.DAL.csproj" />
     <ProjectReference Include="..\YOBA_Services\YOBA_Services.csproj" />
-    <ProjectReference Include="..\YOBA_UI\YOBA_UI.csproj" />
   </ItemGroup>
 
 </Project>

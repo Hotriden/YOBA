@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using YOBA_LibraryData.BLL.Entities.Supply;
-using YOBA_LibraryData.BLL.Entities.User;
 
 namespace YOBA_BLL.Catalogue
 {
-    public interface ISupplyCatalogue
+    public interface ICatalogue<T>
     {
-        void CreateSupplier(Supplier suppier, Client client);
-        void ChangeSupplier(Supplier supplier, Client client);
-        void DeleteSupplier(Supplier supplier, Client client);
+        void Create(T branch, string UserId);
+        void Update(T branch, string UserId);
+        void Delete(T branch, string UserId);
     }
 }

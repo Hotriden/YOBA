@@ -22,22 +22,11 @@ namespace YOBA_LibraryData.BLL.UOF
         private SupplierRepository supplierRepo;
         private TaxRepository taxRepo;
         private WareHouseRepository wareHouseRepo;
-        private ClientRepository clientRepo;
         private ClientLogRepository clientLogRepo;
 
         public UnitOfWork()
         {
             db = new YOBAContext(); /// connection string
-        }
-
-        public IClientRepository ClientRepository
-        {
-            get
-            {
-                if (clientRepo == null)
-                    clientRepo = new ClientRepository(db);
-                return clientRepo;
-            }
         }
 
         public IBranchRepository BranchRepository

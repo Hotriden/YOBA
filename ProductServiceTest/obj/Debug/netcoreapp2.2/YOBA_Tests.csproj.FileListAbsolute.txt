@@ -1,11 +1,6 @@
 C:\Temp\YOBA\ProductServiceTest\obj\Debug\netcoreapp2.2\YOBA_Tests.csprojAssemblyReference.cache
 C:\Temp\YOBA\ProductServiceTest\obj\Debug\netcoreapp2.2\YOBA_Tests.AssemblyInfoInputs.cache
 C:\Temp\YOBA\ProductServiceTest\obj\Debug\netcoreapp2.2\YOBA_Tests.AssemblyInfo.cs
-C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\YOBA_UI.Views.dll
-C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\YOBA_UI.Views.pdb
-C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\appsettings.Development.json
-C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\appsettings.json
-C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
 C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
 C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
 C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\nunit.engine.netstandard.dll
@@ -17,11 +12,9 @@ C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\YOBA_Tests.pdb
 C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\YOBA_BLL.dll
 C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\YOBA_LibraryData.DAL.dll
 C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\YOBA_Services.dll
-C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\YOBA_UI.dll
 C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\YOBA_BLL.pdb
 C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\YOBA_LibraryData.DAL.pdb
 C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\YOBA_Services.pdb
-C:\Temp\YOBA\ProductServiceTest\bin\Debug\netcoreapp2.2\YOBA_UI.pdb
 C:\Temp\YOBA\ProductServiceTest\obj\Debug\netcoreapp2.2\YOBA_Tests.csproj.CopyComplete
 C:\Temp\YOBA\ProductServiceTest\obj\Debug\netcoreapp2.2\YOBA_Tests.dll
 C:\Temp\YOBA\ProductServiceTest\obj\Debug\netcoreapp2.2\YOBA_Tests.pdb

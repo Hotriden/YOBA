@@ -6,7 +6,6 @@ namespace YOBA_LibraryData.BLL.Interfaces
 {
     public interface IUnitOfWork:IDisposable
     {
-        IClientRepository ClientRepository { get; }
         IBranchRepository BranchRepository { get; }
         ICustomerRepository CustomerRepository { get; }
         IEmployeeRepository EmployeeRepository { get; }

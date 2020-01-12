@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using YOBA_LibraryData.BLL;
-using YOBA_LibraryData.BLL.Entities.User;
-using YOBA_LibraryData.DAL.Entities.User;
+using YOBA_LibraryData.DAL.Entities;
 using YOBA_LibraryData.DAL.UOF.Interfaces;
 using YOBA_Services.Exceptions;
 
@@ -18,14 +17,10 @@ namespace YOBA_LibraryData.DAL.UOF.Repository
             _context = context;
         }
 
-        public void AddClientChanges(object obj, Client client, string message)
+        public void AddClientChanges(object obj, string UserId, string message)
         {
-            ClientLog log = new ClientLog();
-            log.Client = client;
-            log.Message = message;
-            log.StackTraceType = obj.GetType().ToString();
-            log.Created = DateTime.Now;
-            _context.ClientLogs.Add(log);
+            UserLog log = new UserLog() { Id = UserId, Message = message, ObjectMessage = obj.GetType().ToString(), Time = DateTime.Now };
+            _context.Add(log);
             _context.SaveChanges();
         }
     }
