@@ -11,12 +11,11 @@ namespace YOBA_LibraryData.BLL.Interfaces
         IEmployeeRepository EmployeeRepository { get; }
         IExpenceRepository ExpenceRepository { get; }
         IIncomeRepository IncomeRepository { get; }
-        IOrderRepository RrderRepository { get; }
+        IOrderRepository OrderRepository { get; }
         IPaymentRepository PaymentRepository { get; }
-        IProductRepository ProductRepository { get; }
-        IProductGroupRepository ProductGroupRepository { get; }
         ISupplierRepository SupplierRepository { get; }
         ITaxRepository TaxRepository { get; }
+        IReceiptRepository ReceiptRepository { get; }
         IWareHouseRepository WareHouseRepository { get; }
         IClientLogRepository ClientLogRepository { get; }
         void Save();

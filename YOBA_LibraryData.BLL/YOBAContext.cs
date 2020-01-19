@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using YOBA_LibraryData.BLL.Entities.Finance;
-using YOBA_LibraryData.BLL.Entities.Products;
 using YOBA_LibraryData.BLL.Entities.Sell;
 using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.BLL.Entities.Supply;
@@ -17,8 +16,6 @@ namespace YOBA_LibraryData.BLL
         public virtual DbSet<Expence> Expences { get; set; }
         public virtual DbSet<Income> Incomes { get; set; }
         public virtual DbSet<Tax> Taxes { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductGroup> ProductGroups { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }

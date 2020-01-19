@@ -17,12 +17,11 @@ namespace YOBA_LibraryData.BLL.UOF
         private IncomeRepository incomeRepo;
         private OrderRepository orderRepo;
         private PaymentRepository paymentRepo;
-        private ProductGroupRepository productGroupRepo;
-        private ProductRepository productRepo;
         private SupplierRepository supplierRepo;
         private TaxRepository taxRepo;
         private WareHouseRepository wareHouseRepo;
         private ClientLogRepository clientLogRepo;
+        private ReceiptRepository receiptRepo;
 
         public UnitOfWork()
         {
@@ -94,24 +93,7 @@ namespace YOBA_LibraryData.BLL.UOF
             }
 
         }
-        public IProductRepository ProductRepository
-        {
-            get
-            {
-                if (productRepo == null)
-                    productRepo = new ProductRepository(db);
-                return productRepo;
-            }
-        }
-        public IProductGroupRepository ProductGroupRepository 
-        {
-            get 
-            {
-                if (productGroupRepo == null)
-                    productGroupRepo = new ProductGroupRepository(db);
-                return productGroupRepo;
-            }
-        }
+
         public ISupplierRepository SupplierRepository
         {
             get
@@ -147,6 +129,26 @@ namespace YOBA_LibraryData.BLL.UOF
                 if (clientLogRepo == null)
                     clientLogRepo = new ClientLogRepository(db);
                 return clientLogRepo;
+            }
+        }
+
+        public IReceiptRepository ReceiptRepository
+        {
+            get
+            {
+                if (receiptRepo == null)
+                    receiptRepo = new ReceiptRepository(db);
+                return receiptRepo;
+            }
+        }
+
+        public IOrderRepository OrderRepository
+        {
+            get
+            {
+                if (orderRepo == null)
+                    orderRepo = new OrderRepository(db);
+                return orderRepo;
             }
         }
 

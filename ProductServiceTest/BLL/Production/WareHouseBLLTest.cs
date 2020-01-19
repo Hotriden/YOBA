@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using YOBA_BLL.Supply;
-using YOBA_LibraryData.BLL.Entities.Products;
 using YOBA_LibraryData.BLL.Entities.Supply;
 using FluentAssertions;
 using Moq;
@@ -31,7 +30,7 @@ namespace YOBA_Tests.BLL.Production
                 new Receipt() { DocumentNumber="101010CD", Shipped=true, ReceiptId=4, ReceiptValue=55 }
             };
             
-            var product = new Product() { Cost = 10, Price = 20, ProductName = "Detail B", ProductId = 1, ProductTime = 11, Receipts=receipt };
+            var product = new Receipt() { Cost = 10, Price = 20, ProductName = "Detail B", ProductId = 1, ProductTime = 11, Receipts=receipt };
             var wareHouse = new WareHouse() { Id = 1, ProductOportunity = true, WareHouseName = "First wareHouse", Receipts = receiptForWareHouse };
 
             IWareHouseBLL WareHouse = new WareHouseBLL();

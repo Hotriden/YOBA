@@ -12,4 +12,8 @@
     <ProjectReference Include="..\YOBA_LibraryData.BLL\YOBA_LibraryData.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>

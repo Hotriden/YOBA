@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using YOBA_LibraryData.BLL.Entities.Products;
 using YOBA_LibraryData.BLL.Entities.Staff;
+using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_Services.Exceptions;
 
@@ -48,7 +48,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
             else
             {
-                throw new EmptyDataException(typeof(Product).ToString());
+                throw new EmptyDataException(typeof(Branch).ToString());
             }
         }
 
@@ -61,7 +61,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
             else
             {
-                throw new EmptyDataException(typeof(Product).ToString());
+                throw new EmptyDataException(typeof(Branch).ToString());
             }
         }
 
@@ -87,7 +87,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
             else
             {
-                throw new EmptyDataException(typeof(Product).ToString());
+                throw new EmptyDataException(typeof(Branch).ToString());
             }
         }
     }

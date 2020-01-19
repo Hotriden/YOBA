@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using YOBA_LibraryData.BLL.Entities.Products;
 using YOBA_LibraryData.DAL.Entities;
 
 namespace YOBA_LibraryData.BLL.Entities.Supply
@@ -13,7 +12,7 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
         [Required]
         public int ReceiptId { get; set; }
         [Required]
-        public Product Product { get; set; }
+        public string ReceiptName { get; set; }
         [Required]
         public string DocumentNumber { get; set; }
         [Required]
