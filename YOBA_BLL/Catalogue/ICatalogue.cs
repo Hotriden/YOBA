@@ -7,8 +7,8 @@ namespace YOBA_BLL.Catalogue
 {
     public interface ICatalogue<T>
     {
-        void Create(T branch, string UserId);
-        void Update(T branch, string UserId);
-        void Delete(T branch, string UserId);
+        void Create(T item, string UserId);
+        void Update(T item, string UserId);
+        void Delete(T item, string UserId);
     }
 }

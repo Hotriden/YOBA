@@ -30,14 +30,14 @@ namespace YOBA_Tests.BLL.Production
                 new Receipt() { DocumentNumber="101010CD", Shipped=true, ReceiptId=4, ReceiptValue=55 }
             };
             
-            var product = new Receipt() { Cost = 10, Price = 20, ProductName = "Detail B", ProductId = 1, ProductTime = 11, Receipts=receipt };
+            var product = new Receipt() { Cost = 10, Price = 20, ReceiptName = "Detail B", ReceiptId = 1 };
             var wareHouse = new WareHouse() { Id = 1, ProductOportunity = true, WareHouseName = "First wareHouse", Receipts = receiptForWareHouse };
 
             IWareHouseBLL WareHouse = new WareHouseBLL();
             var result = WareHouse.CheckRawStuff(product, wareHouse);
 
             result.Should().NotBeNullOrEmpty();
-            result.Should().Be($"{product.ProductName} successful created");
+            result.Should().Be($"{product.ReceiptName} successful created");
         }
     }
 }

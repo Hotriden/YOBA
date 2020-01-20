@@ -14,6 +14,9 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
         [Required]
         public string ReceiptName { get; set; }
         [Required]
+        public decimal Cost { get; set; }
+        public decimal? Price { get; set; }
+        [Required]
         public string DocumentNumber { get; set; }
         [Required]
         public WareHouse WareHouse { get; set; }

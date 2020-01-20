@@ -6,5 +6,7 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 {
     public interface IStaffCatalogue
     {
+        BranchCatalogue BranchCatalogue { get; }
+        EmployeeCatalogue EmployeeCatalogue { get; }
     }
 }

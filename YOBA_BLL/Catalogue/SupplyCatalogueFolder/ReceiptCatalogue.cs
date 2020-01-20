@@ -44,15 +44,43 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
             }
         }
 
-        public void Delete(Receipt branch, string UserId)
+        public void Delete(Receipt receipt, string UserId)
         {
-            throw new NotImplementedException();
+            var result = db.ReceiptRepository.GetById(receipt.ReceiptId);
+            if (result != null)
+            {
+                var _receipt = receipt;
+                _receipt.LastModifiedBy = UserId;
+                _receipt.LastModified = DateTime.Now;
+                db.ReceiptRepository.Delete(_receipt);
+                db.Save();
+
+                messageService.InfoMessage(this, $"{result.ReceiptName} successful deleted", UserId);
+            }
+            else
+            {
+                messageService.InfoMessage(this, $"{result.ReceiptName} doesn't exist", UserId);
+            }
         }
 
 
-        public void Update(Receipt branch, string UserId)
+        public void Update(Receipt receipt, string UserId)
         {
-            throw new NotImplementedException();
+            var result = db.ReceiptRepository.GetById(receipt.ReceiptId);
+            if (result != null)
+            {
+                var _receipt = receipt;
+                _receipt.LastModifiedBy = UserId;
+                _receipt.LastModified = DateTime.Now;
+                db.ReceiptRepository.Change(_receipt);
+                db.Save();
+
+                messageService.InfoMessage(this, $"{result.ReceiptName} successful changed", UserId);
+            }
+            else
+            {
+                messageService.InfoMessage(this, $"{result.ReceiptName} doesn't exist", UserId);
+            }
         }
     }
 }
