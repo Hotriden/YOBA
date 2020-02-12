@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Staff;
-using YOBA_LibraryData.BLL.Entities.Supply;
+using YOBA_LibraryData.DAL;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_Services.Exceptions;
 
@@ -52,7 +52,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public Branch GetById(int id)
+        public Branch GetById(string id)
         {
             var result = _context.Branches.First(branch => branch.BranchId == id);
             if (result != null)

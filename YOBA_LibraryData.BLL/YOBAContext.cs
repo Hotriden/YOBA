@@ -3,14 +3,13 @@ using YOBA_LibraryData.BLL.Entities.Finance;
 using YOBA_LibraryData.BLL.Entities.Sell;
 using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.BLL.Entities.Supply;
-using YOBA_LibraryData.DAL.UOF.Repository;
+using YOBA_LibraryData.DAL.Entities;
 
-namespace YOBA_LibraryData.BLL
+namespace YOBA_LibraryData.DAL
 {
     public class YOBAContext:DbContext
-    {
+    { 
         public YOBAContext() { }
-
         public YOBAContext(DbContextOptions options) : base(options) { }
 
         public virtual DbSet<Expence> Expences { get; set; }
@@ -24,6 +23,6 @@ namespace YOBA_LibraryData.BLL
         public virtual DbSet<Receipt> Receipts { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<WareHouse> WareHouses { get; set; }
-        public virtual DbSet<ClientLogRepository> ClientLogs { get; set; }
+        public virtual DbSet<UserLog> ClientLogs { get; set; }
     }
 }

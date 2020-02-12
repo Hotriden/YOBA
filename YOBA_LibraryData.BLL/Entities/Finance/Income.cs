@@ -10,7 +10,7 @@ namespace YOBA_LibraryData.BLL.Entities.Finance
     public class Income: AuditableEntity
     {
         [Required]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

@@ -3,6 +3,7 @@ using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_Services.Exceptions;
+using YOBA_LibraryData.DAL;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -51,7 +52,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public Supplier GetById(int id)
+        public Supplier GetById(string id)
         {
             var result = _context.Suppliers.First(supplier => supplier.SupplierId == id);
             if (result != null)

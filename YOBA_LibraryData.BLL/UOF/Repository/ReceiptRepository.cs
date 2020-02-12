@@ -55,7 +55,7 @@ namespace YOBA_LibraryData.DAL.UOF.Repository
             }
         }
 
-        public Receipt GetById(int id)
+        public Receipt GetById(string id)
         {
             var result = _context.Receipts.First(receipt => receipt.ReceiptId == id);
             if (result != null)

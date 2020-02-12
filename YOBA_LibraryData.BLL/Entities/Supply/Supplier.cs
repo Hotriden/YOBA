@@ -10,7 +10,7 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
     public class Supplier: AuditableEntity
     {
         [Required]
-        public int SupplierId { get; set; }
+        public string SupplierId { get; set; }
         [Required]
         public string SupplierName { get; set; }
         [Required]

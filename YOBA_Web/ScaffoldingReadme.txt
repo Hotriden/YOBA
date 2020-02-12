@@ -13,7 +13,12 @@ To use ASP.NET Core Identity you also need to enable authentication. To authenti
 
 The generated UI requires MVC. To add MVC to your app:
 1. Call services.AddMvc() from your ConfigureServices method
-2. Call app.UseMvc() from your Configure method (after authentication)
+2. Call app.UseRouting() at the top your Configure method, and UseEndpoints() after authentication:
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+        endpoints.MapRazorPages();
+    });
 
 The generated database code requires Entity Framework Core Migrations. Run the following commands:
 1. dotnet ef migrations add CreateIdentitySchema

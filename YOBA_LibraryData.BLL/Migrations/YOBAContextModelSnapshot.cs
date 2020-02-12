@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using YOBA_LibraryData.BLL;
+using YOBA_LibraryData.DAL;
 
-namespace YOBA_LibraryData.BLL.Migrations
+namespace YOBA_LibraryData.DAL.Migrations
 {
     [DbContext(typeof(YOBAContext))]
     partial class YOBAContextModelSnapshot : ModelSnapshot
@@ -25,6 +25,14 @@ namespace YOBA_LibraryData.BLL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("LastModifiedBy");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -41,6 +49,14 @@ namespace YOBA_LibraryData.BLL.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("LastModifiedBy");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -59,6 +75,14 @@ namespace YOBA_LibraryData.BLL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("LastModifiedBy");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -69,30 +93,6 @@ namespace YOBA_LibraryData.BLL.Migrations
                     b.ToTable("Taxes");
                 });
 
-            modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Products.Product", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired();
-
-                    b.Property<int?>("WareHouseId");
-
-                    b.HasKey("ProductId");
-
-                    b.HasIndex("WareHouseId");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Sell.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
@@ -100,6 +100,10 @@ namespace YOBA_LibraryData.BLL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
 
                     b.Property<string>("CustomerEmail")
                         .IsRequired();
@@ -109,6 +113,10 @@ namespace YOBA_LibraryData.BLL.Migrations
 
                     b.Property<string>("CustomerName")
                         .IsRequired();
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("LastModifiedBy");
 
                     b.Property<string>("TelephoneNumber");
 
@@ -123,9 +131,19 @@ namespace YOBA_LibraryData.BLL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CustomerId");
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<int?>("CustomerId");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("LastModifiedBy");
 
                     b.Property<int>("ManagerEmployeeId");
+
+                    b.Property<string>("OrderIdentity");
 
                     b.Property<decimal>("OrderSum")
                         .HasColumnType("decimal(18,2)");
@@ -134,7 +152,7 @@ namespace YOBA_LibraryData.BLL.Migrations
 
                     b.Property<bool>("Paid");
 
-                    b.Property<int>("ProductId");
+                    b.Property<int>("ReceiptId");
 
                     b.Property<bool>("Shipped");
 
@@ -144,7 +162,7 @@ namespace YOBA_LibraryData.BLL.Migrations
 
                     b.HasIndex("ManagerEmployeeId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ReceiptId");
 
                     b.ToTable("Orders");
                 });
@@ -155,9 +173,18 @@ namespace YOBA_LibraryData.BLL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
                     b.Property<int?>("CusmoterCustomerId");
 
-                    b.Property<int>("IdentialPayNumber");
+                    b.Property<string>("IdentialPayNumber")
+                        .IsRequired();
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("LastModifiedBy");
 
                     b.Property<int?>("OrderId");
 
@@ -188,6 +215,14 @@ namespace YOBA_LibraryData.BLL.Migrations
                     b.Property<string>("BranchName")
                         .IsRequired();
 
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("LastModifiedBy");
+
                     b.HasKey("BranchId");
 
                     b.ToTable("Branches");
@@ -201,13 +236,22 @@ namespace YOBA_LibraryData.BLL.Migrations
 
                     b.Property<int>("BranchId");
 
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("LastModifiedBy");
+
                     b.Property<string>("LastName")
                         .IsRequired();
 
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<int>("PositionId");
+                    b.Property<string>("Position")
+                        .IsRequired();
 
                     b.Property<decimal>("Sallery")
                         .HasColumnType("decimal(18,2)");
@@ -219,55 +263,51 @@ namespace YOBA_LibraryData.BLL.Migrations
 
                     b.HasIndex("BranchId");
 
-                    b.HasIndex("PositionId");
-
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Staff.Position", b =>
+            modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Supply.Receipt", b =>
                 {
-                    b.Property<int>("PositionId")
+                    b.Property<int>("ReceiptId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("PositionName")
+                    b.Property<decimal>("Cost");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<string>("DocumentNumber")
                         .IsRequired();
 
-                    b.HasKey("PositionId");
+                    b.Property<DateTime?>("LastModified");
 
-                    b.ToTable("Positions");
-                });
-
-            modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Supply.Entrance", b =>
-                {
-                    b.Property<int>("EntranceId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("OrderSum")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("OrderTime");
+                    b.Property<string>("LastModifiedBy");
 
                     b.Property<bool>("Paid");
 
-                    b.Property<int>("ProductId");
+                    b.Property<decimal?>("Price");
+
+                    b.Property<string>("ReceiptName")
+                        .IsRequired();
+
+                    b.Property<decimal>("ReceiptValue")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("Shipped");
 
                     b.Property<int?>("SupplierId");
 
-                    b.Property<int>("WareHouseId");
+                    b.Property<int?>("WareHouseId");
 
-                    b.HasKey("EntranceId");
-
-                    b.HasIndex("ProductId");
+                    b.HasKey("ReceiptId");
 
                     b.HasIndex("SupplierId");
 
                     b.HasIndex("WareHouseId");
 
-                    b.ToTable("Entrance");
+                    b.ToTable("Receipts");
                 });
 
             modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Supply.Supplier", b =>
@@ -279,7 +319,13 @@ namespace YOBA_LibraryData.BLL.Migrations
                     b.Property<string>("Address")
                         .IsRequired();
 
-                    b.Property<DateTime>("CreateTime");
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("LastModifiedBy");
 
                     b.Property<string>("SupplierName")
                         .IsRequired();
@@ -300,6 +346,16 @@ namespace YOBA_LibraryData.BLL.Migrations
                     b.Property<string>("Address")
                         .IsRequired();
 
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime?>("LastModified");
+
+                    b.Property<string>("LastModifiedBy");
+
+                    b.Property<bool>("ProductOportunity");
+
                     b.Property<int?>("StockManEmployeeId");
 
                     b.Property<string>("WareHouseName")
@@ -309,53 +365,42 @@ namespace YOBA_LibraryData.BLL.Migrations
 
                     b.HasIndex("StockManEmployeeId");
 
-                    b.ToTable("WareHouse");
+                    b.ToTable("WareHouses");
                 });
 
-            modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.User.Client", b =>
+            modelBuilder.Entity("YOBA_LibraryData.DAL.Entities.UserLog", b =>
                 {
-                    b.Property<int>("ClientId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CompanyName");
+                    b.Property<string>("Message");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("ObjectMessage");
 
-                    b.Property<string>("Login")
-                        .IsRequired();
+                    b.Property<DateTime>("Time");
 
-                    b.Property<string>("Password")
-                        .IsRequired();
+                    b.Property<string>("UserId");
 
-                    b.HasKey("ClientId");
+                    b.HasKey("Id");
 
-                    b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Products.Product", b =>
-                {
-                    b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.WareHouse")
-                        .WithMany("Products")
-                        .HasForeignKey("WareHouseId");
+                    b.ToTable("ClientLogs");
                 });
 
             modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Sell.Order", b =>
                 {
                     b.HasOne("YOBA_LibraryData.BLL.Entities.Sell.Customer", "Customer")
                         .WithMany("CustomerOrders")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("YOBA_LibraryData.BLL.Entities.Staff.Employee", "Manager")
                         .WithMany()
                         .HasForeignKey("ManagerEmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("YOBA_LibraryData.BLL.Entities.Products.Product", "Product")
+                    b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.Receipt", "Receipt")
                         .WithMany()
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("ReceiptId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -380,28 +425,17 @@ namespace YOBA_LibraryData.BLL.Migrations
                         .WithMany("Employees")
                         .HasForeignKey("BranchId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("YOBA_LibraryData.BLL.Entities.Staff.Position", "Position")
-                        .WithMany()
-                        .HasForeignKey("PositionId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Supply.Entrance", b =>
+            modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Supply.Receipt", b =>
                 {
-                    b.HasOne("YOBA_LibraryData.BLL.Entities.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.Supplier")
                         .WithMany("Entrances")
                         .HasForeignKey("SupplierId");
 
-                    b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.WareHouse", "WareHouse")
-                        .WithMany()
-                        .HasForeignKey("WareHouseId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.WareHouse")
+                        .WithMany("Receipts")
+                        .HasForeignKey("WareHouseId");
                 });
 
             modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Supply.WareHouse", b =>

@@ -46,7 +46,6 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
                 if (supplierCatalogue == null)
                     supplierCatalogue = new SupplierCatalogue(db, messageService);
                 return supplierCatalogue;
-                    
             }
         }
     }

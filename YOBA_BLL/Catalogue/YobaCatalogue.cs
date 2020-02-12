@@ -35,10 +35,22 @@ namespace YOBA_BLL.Catalogue
             }
         }
 
-        public ISellCatalogue SellCatalogue => throw new NotImplementedException();
+        public ISellCatalogue SellCatalogue
+        {
+            get
+            {
+                return new SellCatalogue(_UOF, _messageService);
+            }
+        }
 
 
-        public IFinanceCatalogue FinanceCatalogue => throw new NotImplementedException();
+        public IFinanceCatalogue FinanceCatalogue
+        {
+            get
+            {
+                return new FinanceCatalogue(_UOF, _messageService);
+            }
+        }
 
     }
 }

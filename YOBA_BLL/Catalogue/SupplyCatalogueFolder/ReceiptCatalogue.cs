@@ -21,7 +21,7 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
 
         public void Create(Receipt receipt, string UserId)
         {
-            if (receipt.ReceiptName == null & receipt.ReceiptValue == 0)
+            if (receipt.ReceiptName == null || receipt.ReceiptValue == 0)
             {
                 messageService.InfoMessage(this, "Receipt name or receipt value spelled wrong", UserId);
             }
@@ -55,11 +55,11 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
                 db.ReceiptRepository.Delete(_receipt);
                 db.Save();
 
-                messageService.InfoMessage(this, $"{result.ReceiptName} successful deleted", UserId);
+                messageService.InfoMessage(this, $"{_receipt.ReceiptName} successful deleted", UserId);
             }
             else
             {
-                messageService.InfoMessage(this, $"{result.ReceiptName} doesn't exist", UserId);
+                messageService.InfoMessage(this, $"{receipt.ReceiptName} doesn't exist", UserId);
             }
         }
 
@@ -75,12 +75,17 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
                 db.ReceiptRepository.Change(_receipt);
                 db.Save();
 
-                messageService.InfoMessage(this, $"{result.ReceiptName} successful changed", UserId);
+                messageService.InfoMessage(this, $"{receipt.ReceiptName} successful changed", UserId);
             }
             else
             {
-                messageService.InfoMessage(this, $"{result.ReceiptName} doesn't exist", UserId);
+                messageService.InfoMessage(this, $"{receipt.ReceiptName} doesn't exist", UserId);
             }
+        }
+
+        public IEnumerable<Receipt> GetAll()
+        {
+            return db.ReceiptRepository.GetAll();
         }
     }
 }

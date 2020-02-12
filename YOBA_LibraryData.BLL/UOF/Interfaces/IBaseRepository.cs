@@ -6,7 +6,7 @@ namespace YOBA_LibraryData.BLL.Interfaces
     {
         IEnumerable<T> GetAll();
         void Add(T item);
-        T GetById(int id);
+        T GetById(string id);
         void Delete(T item);
         void Change(T item);
     }

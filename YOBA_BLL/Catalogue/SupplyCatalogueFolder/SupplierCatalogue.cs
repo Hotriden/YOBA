@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using YOBA_BLL.Catalogue;
 using YOBA_BLL.Catalogue.SupplyCatalogueFolder;
 using YOBA_BLL.Services.MessageService;
@@ -20,7 +21,7 @@ namespace YOBA_BLL.SupplyCatalogueFolder
 
         public void Create(Supplier supplier, string UserId)
         {
-            if (supplier.SupplierName == null & supplier.Address == null)
+            if (supplier.SupplierName == null || supplier.Address == null)
             {
                 messageService.InfoMessage(this, "Supplier name or supplier address spelled wrong", UserId);
             }
@@ -79,6 +80,11 @@ namespace YOBA_BLL.SupplyCatalogueFolder
             {
                 messageService.InfoMessage(this, $"{result.SupplierId} doesn't exist", UserId);
             }
+        }
+
+        public IEnumerable<Supplier> GetAll()
+        {
+            return db.SupplierRepository.GetAll();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Finance;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_Services.Exceptions;
+using YOBA_LibraryData.DAL;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -51,7 +52,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public Tax GetById(int id)
+        public Tax GetById(string id)
         {
             var result = _context.Taxes.First(tax => tax.Id == id);
             if (result != null)

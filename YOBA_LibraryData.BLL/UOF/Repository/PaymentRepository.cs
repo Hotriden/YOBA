@@ -3,6 +3,7 @@ using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Sell;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_Services.Exceptions;
+using YOBA_LibraryData.DAL;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -52,7 +53,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public Payment GetById(int id)
+        public Payment GetById(string id)
         {
             var result = _context.Payments.First(payment => payment.Id == id);
             if (result != null)

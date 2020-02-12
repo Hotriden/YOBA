@@ -10,7 +10,7 @@ namespace YOBA_LibraryData.BLL.Entities.Finance
     public class Expence: AuditableEntity
     {
         [Required]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Column(TypeName = "decimal(18,2)")]

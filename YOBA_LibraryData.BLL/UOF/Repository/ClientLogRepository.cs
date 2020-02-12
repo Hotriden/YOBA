@@ -17,9 +17,9 @@ namespace YOBA_LibraryData.DAL.UOF.Repository
             _context = context;
         }
 
-        public void AddClientChanges(object obj, string UserId, string message)
+        public void AddClientChanges(object obj, string userId, string message)
         {
-            UserLog log = new UserLog() { Id = UserId, Message = message, ObjectMessage = obj.GetType().ToString(), Time = DateTime.Now };
+            UserLog log = new UserLog() { UserId = userId, Message = message, ObjectMessage = obj.GetType().ToString(), Time = DateTime.Now };
             _context.Add(log);
             _context.SaveChanges();
         }

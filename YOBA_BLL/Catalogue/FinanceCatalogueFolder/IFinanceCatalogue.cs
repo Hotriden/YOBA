@@ -7,5 +7,8 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
 {
     public interface IFinanceCatalogue
     {
+        ExpenceCatalogue ExpenceCatalogue { get; }
+        TaxCatalogue TaxCatalogue { get; }
+        IncomeCatalogue IncomeCatalogue { get; }
     }
 }

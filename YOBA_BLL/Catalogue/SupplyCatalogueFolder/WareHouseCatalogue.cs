@@ -22,7 +22,7 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
 
         public void Create(WareHouse wareHouse, string UserId)
         {
-            if (wareHouse.WareHouseName == null & wareHouse.Address == null)
+            if (wareHouse.WareHouseName == null || wareHouse.Address == null)
             {
                 messageService.InfoMessage(this, "Warehouse name or warehouse address spelled wrong", UserId);
             }
@@ -62,6 +62,11 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
             {
                 messageService.InfoMessage(this, $"{result.WareHouseName} doesn't exist", UserId);
             }
+        }
+
+        public IEnumerable<WareHouse> GetAll()
+        {
+            return db.WareHouseRepository.GetAll();
         }
 
         public void Update(WareHouse wareHouse, string UserId)

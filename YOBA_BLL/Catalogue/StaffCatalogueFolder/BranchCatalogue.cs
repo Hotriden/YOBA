@@ -20,17 +20,71 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 
         public void Create(Branch item, string UserId)
         {
-            throw new NotImplementedException();
+            if (item.BranchName == null)
+            {
+                messageService.InfoMessage(this, "Branch name spelled wrong", UserId);
+            }
+            else
+            {
+                if (db.BranchRepository.GetById(item.BranchId) == null)
+                {
+                    var _branch = item;
+                    _branch.CreatedBy = UserId;
+                    _branch.Created = DateTime.Now;
+                    db.BranchRepository.Add(_branch);
+                    db.Save();
+
+                    messageService.InfoMessage(this, $"{item} successful created", UserId);
+                }
+                else
+                {
+                    messageService.InfoMessage(this, $"{item.BranchId} already exist", UserId);
+                }
+            }
         }
 
         public void Delete(Branch item, string UserId)
         {
-            throw new NotImplementedException();
+            var result = db.BranchRepository.GetById(item.BranchId);
+            if (result != null)
+            {
+                var _branch = item;
+                _branch.LastModifiedBy = UserId;
+                _branch.LastModified = DateTime.Now;
+                db.BranchRepository.Delete(_branch);
+                db.Save();
+
+                messageService.InfoMessage(this, $"{_branch.BranchName} successful deleted", UserId);
+            }
+            else
+            {
+                messageService.InfoMessage(this, $"{item.BranchName} doesn't exist", UserId);
+            }
         }
+
 
         public void Update(Branch item, string UserId)
         {
-            throw new NotImplementedException();
+            var result = db.BranchRepository.GetById(item.BranchId);
+            if (result != null)
+            {
+                var _branch = item;
+                _branch.LastModifiedBy = UserId;
+                _branch.LastModified = DateTime.Now;
+                db.BranchRepository.Change(_branch);
+                db.Save();
+
+                messageService.InfoMessage(this, $"{item.BranchName} successful changed", UserId);
+            }
+            else
+            {
+                messageService.InfoMessage(this, $"{item.BranchName} doesn't exist", UserId);
+            }
+        }
+
+        public IEnumerable<Branch> GetAll()
+        {
+            return db.BranchRepository.GetAll();
         }
     }
 }

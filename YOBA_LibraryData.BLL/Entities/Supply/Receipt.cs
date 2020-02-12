@@ -10,7 +10,7 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
     public class Receipt: AuditableEntity
     {
         [Required]
-        public int ReceiptId { get; set; }
+        public string ReceiptId { get; set; }
         [Required]
         public string ReceiptName { get; set; }
         [Required]
@@ -18,8 +18,6 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
         public decimal? Price { get; set; }
         [Required]
         public string DocumentNumber { get; set; }
-        [Required]
-        public WareHouse WareHouse { get; set; }
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         public decimal ReceiptValue { get; set; }

@@ -5,6 +5,6 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
 {
     public interface IEmployeeRepository:IBaseRepository<Employee>
     {
-        Employee GetByNumber(string name);
+
     }
 }

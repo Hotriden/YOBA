@@ -3,6 +3,7 @@ using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_Services.Exceptions;
+using YOBA_LibraryData.DAL;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -51,7 +52,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public Employee GetById(int id)
+        public Employee GetById(string id)
         {
             var result = _context.Employees.First(emp => emp.EmployeeId == id);
             if (result != null)
@@ -75,11 +76,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             {
                 throw new NotFoundException(item.EmployeeId);
             }
-        }
-
-        public Employee GetByNumber(string name)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
