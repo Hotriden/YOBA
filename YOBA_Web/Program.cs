@@ -18,7 +18,11 @@ namespace YOBA_Web
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+                .ConfigureLogging(logBuilder =>
+                {
+                    logBuilder.ClearProviders();
+                    logBuilder.AddConsole();
+                }).ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });

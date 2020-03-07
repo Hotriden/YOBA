@@ -1,8 +1,11 @@
 ﻿class CommentList extends React.Component {
     render() {
-        return (
-            <div className="commentList">Hello, world! I am a CommentList.</div>
-        );
+        const commentNodes = this.props.data.map(comment => (
+            <Comment author={comment.author} key={comment.id}>
+                {comment.text}
+            </Comment>
+        ));
+        return <div className="commentList">{commentNodes}</div>;
     }
 }
 
@@ -19,13 +22,31 @@ class CommentBox extends React.Component {
         return (
             <div className="commentBox">
                 <h1>Comments</h1>
-                <CommentList />
+                <CommentList data={this.props.data} />
                 <CommentForm />
             </div>
         );
     }
 }
 
+class Comment extends React.Component {
+    render() {
+        return (
+            <div className="comment">
+                <h2 className="commentAuthor">{this.props.author}</h2>
+                {this.props.children}
+            </div>
+        );
+    }
+}
+
+const data = [
+    { id: 1, author: 'Daniel Lo Nigro', text: 'Hello ReactJS.NET World!' },
+    { id: 2, author: 'Pete Hunt', text: 'This is one comment' },
+    { id: 3, author: 'Jordan Walke', text: 'This is *another* comment' },
+];
+
 ReactDOM.render(
-    <SupplyList apiUrl="/api/Supply" />,
-    document.getElementById("content"));
+    <CommentBox url="/comments" />,
+    document.getElementById('content')
+);

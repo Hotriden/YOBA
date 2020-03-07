@@ -5,7 +5,6 @@ using System.Text;
 using YOBA_LibraryData.BLL;
 using YOBA_LibraryData.DAL.Entities;
 using YOBA_LibraryData.DAL.UOF.Interfaces;
-using YOBA_Services.Exceptions;
 
 namespace YOBA_LibraryData.DAL.UOF.Repository
 {

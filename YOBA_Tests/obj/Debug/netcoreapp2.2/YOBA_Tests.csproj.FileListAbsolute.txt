@@ -28,10 +28,8 @@ C:\Temp\YOBA\YOBA_Tests\bin\Debug\netcoreapp2.2\YOBA_Tests.dll
 C:\Temp\YOBA\YOBA_Tests\bin\Debug\netcoreapp2.2\YOBA_Tests.pdb
 C:\Temp\YOBA\YOBA_Tests\bin\Debug\netcoreapp2.2\YOBA_BLL.dll
 C:\Temp\YOBA\YOBA_Tests\bin\Debug\netcoreapp2.2\YOBA_LibraryData.DAL.dll
-C:\Temp\YOBA\YOBA_Tests\bin\Debug\netcoreapp2.2\YOBA_Services.dll
 C:\Temp\YOBA\YOBA_Tests\bin\Debug\netcoreapp2.2\YOBA_BLL.pdb
 C:\Temp\YOBA\YOBA_Tests\bin\Debug\netcoreapp2.2\YOBA_LibraryData.DAL.pdb
-C:\Temp\YOBA\YOBA_Tests\bin\Debug\netcoreapp2.2\YOBA_Services.pdb
 C:\Temp\YOBA\YOBA_Tests\obj\Debug\netcoreapp2.2\YOBA_Tests.csprojAssemblyReference.cache
 C:\Temp\YOBA\YOBA_Tests\obj\Debug\netcoreapp2.2\YOBA_Tests.AssemblyInfoInputs.cache
 C:\Temp\YOBA\YOBA_Tests\obj\Debug\netcoreapp2.2\YOBA_Tests.AssemblyInfo.cs

@@ -24,9 +24,9 @@ namespace YOBA_LibraryData.BLL.UOF
         private ClientLogRepository clientLogRepo;
         private ReceiptRepository receiptRepo;
 
-        public UnitOfWork()
+        public UnitOfWork(YOBAContext context)
         {
-            db = new YOBAContext(); /// connection string
+            db = context;
         }
 
         public IBranchRepository BranchRepository

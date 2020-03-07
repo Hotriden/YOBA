@@ -2,80 +2,44 @@
 using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Finance;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
-using YOBA_Services.Exceptions;
 using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
-    public class ExpenceRepository : IExpenceRepository
+    public class ExpenceRepository :IExpenceRepository
     {
         private readonly YOBAContext _context;
         public ExpenceRepository(YOBAContext context)
         {
             _context = context;
         }
-        public void Add(Expence item)
+        public async Task Add(Expence item)
         {
-            if (_context.Expences.Find(item.Name) == null)
-            {
-                _context.Add(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new AlreadyExistException(item.Name);
-            }
+            _context.Add(item);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Expence item)
+        public async Task Delete(Expence item)
         {
-            if (_context.Expences.First(expence => expence.Id == item.Id) != null)
-            {
-                _context.Remove(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.Id);
-            }
+            _context.Remove(item);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Expence> GetAll()
         {
-            if (_context.Expences != null)
-            {
-                return _context.Expences;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Expence).ToString());
-            }
+            return _context.Expences;
         }
 
-        public Expence GetById(string id)
+        public Expence GetById(int id)
         {
-            var result = _context.Expences.First(expence => expence.Id == id);
-            if (result != null)
-            {
-                return result;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Expence).ToString());
-            }
+            return _context.Expences.First(expence => expence.Id == id);
         }
 
-        public void Change(Expence item)
+        public async Task Change(Expence item)
         {
-            if (_context.Expences.First(x => x.Id == item.Id) != null)
-            {
-                _context.Update(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.Id);
-            }
+            _context.Update(item);
+            await _context.SaveChangesAsync();
         }
 
         public Expence GetByName(string name)

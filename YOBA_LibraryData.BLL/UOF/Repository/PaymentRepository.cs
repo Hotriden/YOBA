@@ -2,8 +2,8 @@
 using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Sell;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
-using YOBA_Services.Exceptions;
 using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -15,81 +15,37 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             _context = context;
         }
 
-        public void Add(Payment item)
+        public async Task Add(Payment item)
         {
-            if (_context.Payments.Find(item.IdentialPayNumber) == null)
-            {
-                _context.Add(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new AlreadyExistException(item.IdentialPayNumber);
-            }
+            _context.Add(item);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Payment item)
+        public async Task Delete(Payment item)
         {
-            if (_context.Payments.First(payment => payment.IdentialPayNumber == item.IdentialPayNumber) != null)
-            {
-                _context.Remove(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.IdentialPayNumber);
-            }
+            _context.Remove(item);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Payment> GetAll()
         {
-            if (_context.Payments != null)
-            {
-                return _context.Payments;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Payment).ToString());
-            }
+            return _context.Payments;
         }
 
-        public Payment GetById(string id)
+        public Payment GetById(int id)
         {
-            var result = _context.Payments.First(payment => payment.Id == id);
-            if (result != null)
-            {
-                return result;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Payment).ToString());
-            }
+            return _context.Payments.First(payment => payment.Id == id);
         }
 
         public Payment GetByIdentity(string id)
         {
-            var result = _context.Payments.First(payment => payment.IdentialPayNumber == id);
-            if (result != null)
-            {
-                return result;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Payment).ToString());
-            }
+            return _context.Payments.First(payment => payment.IdentialPayNumber == id);
         }
 
-        public void Change(Payment item)
+        public async Task Change(Payment item)
         {
-            if (_context.Payments.First(payment => payment.Id == item.Id) != null)
-            {
-                _context.Payments.Update(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.Id);
-            }
+            _context.Payments.Update(item);
+            await _context.SaveChangesAsync();
         }
     }
 }

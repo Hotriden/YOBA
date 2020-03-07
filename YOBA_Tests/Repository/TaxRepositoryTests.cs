@@ -22,7 +22,7 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Taxes).Returns(mockDbSet.Object);
             var res = new TaxRepository(mockContext.Object);
 
-            res.Add(new Tax() { Id = "1", Name = "Freight", Percent = 20 });
+            res.Add(new Tax() { Id = 1, Name = "Freight", Percent = 20 });
 
             mockContext.Verify(s => s.Add(It.IsAny<Tax>()), Times.Once());
             mockContext.Verify(s => s.SaveChanges(), Times.Once());
@@ -32,8 +32,8 @@ namespace ProductServiceTest
         public void TaxRepo_GetByID()
         {
             var data = new List<Tax>() {
-                new Tax() { Id="1", Name = "Freight", Percent = 20},
-                new Tax() { Id="101", Name = "VAT", Percent = 18}
+                new Tax() { Id=1, Name = "Freight", Percent = 20},
+                new Tax() { Id=101, Name = "VAT", Percent = 18}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Tax>>();
@@ -46,7 +46,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Taxes).Returns(mockDbSet.Object);
 
             var repo = new TaxRepository(context.Object);
-            var result = repo.GetById("101");
+            var result = repo.GetById(101);
 
             Assert.IsTrue(result.Name == "VAT");
         }
@@ -55,9 +55,9 @@ namespace ProductServiceTest
         public void TaxRepo_GetAll()
         {
             var data = new List<Tax>() {
-                new Tax() { Id="1", Name = "Freight", Percent = 20},
-                new Tax() { Id="101", Name = "VAT", Percent = 18},
-                new Tax(){Id="3", Name="Medicine", Percent=3}
+                new Tax() { Id=1, Name = "Freight", Percent = 20},
+                new Tax() { Id=101, Name = "VAT", Percent = 18},
+                new Tax(){Id=3, Name="Medicine", Percent=3}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Tax>>();
@@ -81,9 +81,9 @@ namespace ProductServiceTest
         public void TaxRepo_Delete()
         {
             var data = new List<Tax>() {
-                new Tax() { Id="1", Name = "Freight", Percent = 20},
-                new Tax() { Id="101", Name = "VAT", Percent = 18},
-                new Tax(){Id="3", Name="Medicine", Percent=3}
+                new Tax() { Id=1, Name = "Freight", Percent = 20},
+                new Tax() { Id=101, Name = "VAT", Percent = 18},
+                new Tax(){Id=3, Name="Medicine", Percent=3}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Tax>>();
@@ -97,7 +97,7 @@ namespace ProductServiceTest
 
             var repo = new TaxRepository(context.Object);
             repo.Delete(new Tax() {
-                Id = "3",
+                Id = 3,
                 Name = "Medicine",
                 Percent = 3 });
 
@@ -109,9 +109,9 @@ namespace ProductServiceTest
         public void TaxRepo_Update()
         {
             var data = new List<Tax>() {
-                new Tax() { Id="1", Name = "Freight", Percent = 20},
-                new Tax() { Id="101", Name = "VAT", Percent = 18},
-                new Tax(){Id="3", Name="Medicine", Percent=3}
+                new Tax() { Id=1, Name = "Freight", Percent = 20},
+                new Tax() { Id=101, Name = "VAT", Percent = 18},
+                new Tax(){Id=3, Name="Medicine", Percent=3}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Tax>>();
@@ -124,7 +124,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Taxes).Returns(mockDbSet.Object);
 
             var repo = new TaxRepository(context.Object);
-            repo.Change(new Tax() { Id = "3", Name = "Medicine", Percent = 3 });
+            repo.Change(new Tax() { Id = 3, Name = "Medicine", Percent = 3 });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

@@ -23,7 +23,7 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Incomes).Returns(mockDbSet.Object);
             var res = new IncomeRepository(mockContext.Object);
 
-            res.Add(new Income() { Id= "1", Name="Net income", Value=3000});
+            res.Add(new Income() { Id= 1, Name="Net income", Value=3000});
 
             mockContext.Verify(s => s.Add(It.IsAny<Income>()), Times.Once());
             mockContext.Verify(s => s.SaveChanges(), Times.Once());
@@ -33,8 +33,8 @@ namespace ProductServiceTest
         public void IncomeRepo_GetByID()
         {
             var data = new List<Income>() {
-                new Income() { Id="1", Name="Net income", Value=3000 },
-                new Income() { Id="2", Name="Another income", Value=200}
+                new Income() { Id=1, Name="Net income", Value=3000 },
+                new Income() { Id=2, Name="Another income", Value=200}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Income>>();
@@ -47,7 +47,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Incomes).Returns(mockDbSet.Object);
 
             var repo = new IncomeRepository(context.Object);
-            var result = repo.GetById("1");
+            var result = repo.GetById(1);
 
             Assert.IsTrue(result.Name == "Net income");
         }
@@ -56,8 +56,8 @@ namespace ProductServiceTest
         public void IncomeRepo_GetAll()
         {
             var data = new List<Income>() {
-                new Income() { Id="1", Name="Net income", Value=3000 },
-                new Income() { Id="2", Name="Another income", Value=200}
+                new Income() { Id=1, Name="Net income", Value=3000 },
+                new Income() { Id=2, Name="Another income", Value=200}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Income>>();
@@ -81,8 +81,8 @@ namespace ProductServiceTest
         public void IncomeRepo_Delete()
         {
             var data = new List<Income>() {
-                new Income() { Id="1", Name="Net income", Value=3000 },
-                new Income() { Id="2", Name="Another income", Value=200}
+                new Income() { Id=1, Name="Net income", Value=3000 },
+                new Income() { Id=2, Name="Another income", Value=200}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Income>>();
@@ -98,7 +98,7 @@ namespace ProductServiceTest
 
             repo.Delete(new Income()
             {
-                Id = "1",
+                Id = 1,
                 Name = "Net income",
                 Value = 3000
             });
@@ -111,8 +111,8 @@ namespace ProductServiceTest
         public void IncomeRepo_Update()
         {
             var data = new List<Income>() {
-                new Income() { Id="1", Name="Net income", Value=3000 },
-                new Income() { Id="2", Name="Another income", Value=200}
+                new Income() { Id=1, Name="Net income", Value=3000 },
+                new Income() { Id=2, Name="Another income", Value=200}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Income>>();
@@ -125,7 +125,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Incomes).Returns(mockDbSet.Object);
 
             var repo = new IncomeRepository(context.Object);
-            repo.Change(new Income() { Id= "2", Name = "Sales income" });
+            repo.Change(new Income() { Id= 2, Name = "Sales income" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

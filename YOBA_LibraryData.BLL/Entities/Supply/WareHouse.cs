@@ -10,7 +10,7 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
     public class WareHouse: AuditableEntity
     {
         [Required]
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string WareHouseName { get; set; }
         [Required]

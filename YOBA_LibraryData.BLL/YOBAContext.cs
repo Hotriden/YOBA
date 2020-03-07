@@ -9,8 +9,16 @@ namespace YOBA_LibraryData.DAL
 {
     public class YOBAContext:DbContext
     { 
-        public YOBAContext() { }
-        public YOBAContext(DbContextOptions options) : base(options) { }
+        public YOBAContext(DbContextOptions<YOBAContext> options) 
+            : base(options) 
+        {
+            Database.EnsureCreated(); 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<WareHouse>().Property(e => e.Id).ValueGeneratedOnAdd();
+        }
 
         public virtual DbSet<Expence> Expences { get; set; }
         public virtual DbSet<Income> Incomes { get; set; }

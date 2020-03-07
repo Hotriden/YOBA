@@ -10,7 +10,7 @@ namespace YOBA_LibraryData.BLL.Entities.Staff
     public class Employee: AuditableEntity
     {
         [Required]
-        public string EmployeeId { get; set; }
+        public int EmployeeId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]

@@ -9,7 +9,7 @@ namespace YOBA_LibraryData.BLL.Entities.Sell
     public class Customer: AuditableEntity
     {
         [Required]
-        public string CustomerId { get; set; }
+        public int CustomerId { get; set; }
         [Required]
         public string CustomerName { get; set; }
         [Required]

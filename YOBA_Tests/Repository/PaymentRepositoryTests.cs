@@ -22,8 +22,8 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Payments).Returns(mockDbSet.Object);
             var res = new PaymentRepository(mockContext.Object);
 
-            res.Add(new Payment() { Id= "1", Value=200, IdentialPayNumber="H0234200502020" });
-            res.Add(new Payment() { Id = "2", Value = 12200, IdentialPayNumber = "K0134506502111" });
+            res.Add(new Payment() { Id= 1, Value=200, IdentialPayNumber="H0234200502020" });
+            res.Add(new Payment() { Id = 2, Value = 12200, IdentialPayNumber = "K0134506502111" });
 
             mockContext.Verify(s => s.Add(It.IsAny<Payment>()), Times.AtLeast(2));
             mockContext.Verify(s => s.SaveChanges(), Times.AtLeast(2));
@@ -34,9 +34,9 @@ namespace ProductServiceTest
         {
             var data = new List<Payment>()
             {
-                new Payment { Id="1", Value=200, IdentialPayNumber="H0234200502020" },
-                new Payment { Id="2", Value = 12200, IdentialPayNumber = "K0134506502111" },
-                new Payment { Id="4", Value = 1001, IdentialPayNumber = "L01545265011517"}
+                new Payment { Id=1, Value=200, IdentialPayNumber="H0234200502020" },
+                new Payment { Id=2, Value = 12200, IdentialPayNumber = "K0134506502111" },
+                new Payment { Id=4, Value = 1001, IdentialPayNumber = "L01545265011517"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Payment>>();
@@ -49,7 +49,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Payments).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
-            var result = repo.GetById("4");
+            var result = repo.GetById(4);
 
             Assert.IsTrue(result.IdentialPayNumber == "L01545265011517");
         }
@@ -59,9 +59,9 @@ namespace ProductServiceTest
         {
             var data = new List<Payment>()
             {
-                new Payment { Id="1", Value=200, IdentialPayNumber="H0234200502020" },
-                new Payment { Id="2", Value = 12200, IdentialPayNumber = "K0134506502111" },
-                new Payment { Id="4", Value = 1001, IdentialPayNumber = "L01545265011517"}
+                new Payment { Id=1, Value=200, IdentialPayNumber="H0234200502020" },
+                new Payment { Id=2, Value = 12200, IdentialPayNumber = "K0134506502111" },
+                new Payment { Id=4, Value = 1001, IdentialPayNumber = "L01545265011517"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Payment>>();
@@ -76,7 +76,7 @@ namespace ProductServiceTest
             var repo = new PaymentRepository(context.Object);
             var result = repo.GetByIdentity("K0134506502111");
 
-            Assert.IsTrue(result.Id == "2");
+            Assert.IsTrue(result.Id == 2);
         }
 
         [Test]
@@ -84,9 +84,9 @@ namespace ProductServiceTest
         {
             var data = new List<Payment>()
             {
-                new Payment { Id="1", Value=200, IdentialPayNumber="H0234200502020" },
-                new Payment { Id="2", Value = 12200, IdentialPayNumber = "K0134506502111" },
-                new Payment { Id="4", Value = 1001, IdentialPayNumber = "L01545265011517"}
+                new Payment { Id=1, Value=200, IdentialPayNumber="H0234200502020" },
+                new Payment { Id=2, Value = 12200, IdentialPayNumber = "K0134506502111" },
+                new Payment { Id=4, Value = 1001, IdentialPayNumber = "L01545265011517"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Payment>>();
@@ -111,9 +111,9 @@ namespace ProductServiceTest
         {
             var data = new List<Payment>()
             {
-                new Payment { Id="1", Value=200, IdentialPayNumber="H0234200502020" },
-                new Payment { Id="2", Value = 12200, IdentialPayNumber = "K0134506502111" },
-                new Payment { Id="4", Value = 1001, IdentialPayNumber = "L01545265011517"}
+                new Payment { Id=1, Value=200, IdentialPayNumber="H0234200502020" },
+                new Payment { Id=2, Value = 12200, IdentialPayNumber = "K0134506502111" },
+                new Payment { Id=4, Value = 1001, IdentialPayNumber = "L01545265011517"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Payment>>();
@@ -126,7 +126,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Payments).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
-            repo.Delete(new Payment() { Id = "4", Value = 1001, IdentialPayNumber = "L01545265011517" });
+            repo.Delete(new Payment() { Id = 4, Value = 1001, IdentialPayNumber = "L01545265011517" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());
@@ -137,9 +137,9 @@ namespace ProductServiceTest
         {
             var data = new List<Payment>()
             {
-                new Payment { Id="1", Value=200, IdentialPayNumber="H0234200502020" },
-                new Payment { Id="2", Value = 12200, IdentialPayNumber = "K0134506502111" },
-                new Payment { Id="4", Value = 1001, IdentialPayNumber = "L01545265011517"}
+                new Payment { Id=1, Value=200, IdentialPayNumber="H0234200502020" },
+                new Payment { Id=2, Value = 12200, IdentialPayNumber = "K0134506502111" },
+                new Payment { Id=4, Value = 1001, IdentialPayNumber = "L01545265011517"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Payment>>();
@@ -152,7 +152,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Payments).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
-            repo.Change(new Payment() { Id = "2", Value = 13400, IdentialPayNumber = "K0134506502111" });
+            repo.Change(new Payment() { Id = 2, Value = 13400, IdentialPayNumber = "K0134506502111" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

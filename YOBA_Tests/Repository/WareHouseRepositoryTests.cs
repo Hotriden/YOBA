@@ -23,7 +23,7 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.WareHouses).Returns(mockDbSet.Object);
             var res = new WareHouseRepository(mockContext.Object);
 
-            res.Add(new WareHouse() { Id= "1", Address="Lincoln St. 12", WareHouseName="WareHouse#1"});
+            res.Add(new WareHouse() { Id= 1, Address="Lincoln St. 12", WareHouseName="WareHouse#1"});
 
             mockContext.Verify(s => s.Add(It.IsAny<WareHouse>()), Times.Once());
             mockContext.Verify(s => s.SaveChanges(), Times.Once());
@@ -33,8 +33,8 @@ namespace ProductServiceTest
         public void WareHouseRepo_GetByID()
         {
             var data = new List<WareHouse>() {
-                new WareHouse() { Id="1", Address="Lincoln St. 12", WareHouseName="WareHouse#1"},
-                new WareHouse() { Id="101", Address="Washington St. 25", WareHouseName="WareHouse#101" }
+                new WareHouse() { Id=1, Address="Lincoln St. 12", WareHouseName="WareHouse#1"},
+                new WareHouse() { Id=101, Address="Washington St. 25", WareHouseName="WareHouse#101" }
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<WareHouse>>();
@@ -47,7 +47,7 @@ namespace ProductServiceTest
             context.Setup(s => s.WareHouses).Returns(mockDbSet.Object);
 
             var repo = new WareHouseRepository(context.Object);
-            var result = repo.GetById("101");
+            var result = repo.GetById(101);
 
             Assert.IsTrue(result.WareHouseName == "WareHouse#101");
         }
@@ -56,9 +56,9 @@ namespace ProductServiceTest
         public void WareHouseRepo_GetAll()
         {
             var data = new List<WareHouse>() {
-                new WareHouse() { Id="1", Address="Lincoln St. 12", WareHouseName="WareHouse#1"},
-                new WareHouse() { Id="101", Address="Washington St. 25", WareHouseName="WareHouse#101" },
-                new WareHouse() { Id="201", Address="Morrison ave. 2", WareHouseName="WareHouse#201" }
+                new WareHouse() { Id=1, Address="Lincoln St. 12", WareHouseName="WareHouse#1"},
+                new WareHouse() { Id=101, Address="Washington St. 25", WareHouseName="WareHouse#101" },
+                new WareHouse() { Id=201, Address="Morrison ave. 2", WareHouseName="WareHouse#201" }
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<WareHouse>>();
@@ -82,9 +82,9 @@ namespace ProductServiceTest
         public void WareHouseRepo_Delete()
         {
             var data = new List<WareHouse>() {
-                new WareHouse() { Id="1", Address="Lincoln St. 12", WareHouseName="WareHouse#1"},
-                new WareHouse() { Id="101", Address="Washington St. 25", WareHouseName="WareHouse#101" },
-                new WareHouse() { Id="201", Address="Morrison ave. 2", WareHouseName="WareHouse#201" }
+                new WareHouse() { Id=1, Address="Lincoln St. 12", WareHouseName="WareHouse#1"},
+                new WareHouse() { Id=101, Address="Washington St. 25", WareHouseName="WareHouse#101" },
+                new WareHouse() { Id=201, Address="Morrison ave. 2", WareHouseName="WareHouse#201" }
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<WareHouse>>();
@@ -99,7 +99,7 @@ namespace ProductServiceTest
             var repo = new WareHouseRepository(context.Object);
             repo.Delete(new WareHouse()
             {
-                Id = "201",
+                Id = 201,
                 Address = "Morrison ave. 2",
                 WareHouseName = "WareHouse#201"
             });
@@ -112,9 +112,9 @@ namespace ProductServiceTest
         public void WareHouseRepo_Update()
         {
             var data = new List<WareHouse>() {
-                new WareHouse() { Id="1", Address="Lincoln St. 12", WareHouseName="WareHouse#1"},
-                new WareHouse() { Id="101", Address="Washington St. 25", WareHouseName="WareHouse#101" },
-                new WareHouse() { Id="201", Address="Morrison ave. 2", WareHouseName="WareHouse#201" }
+                new WareHouse() { Id=1, Address="Lincoln St. 12", WareHouseName="WareHouse#1"},
+                new WareHouse() { Id=101, Address="Washington St. 25", WareHouseName="WareHouse#101" },
+                new WareHouse() { Id=201, Address="Morrison ave. 2", WareHouseName="WareHouse#201" }
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<WareHouse>>();
@@ -127,7 +127,7 @@ namespace ProductServiceTest
             context.Setup(s => s.WareHouses).Returns(mockDbSet.Object);
 
             var repo = new WareHouseRepository(context.Object);
-            repo.Change(new WareHouse() { Id = "201", Address = "Morrison ave. 2", WareHouseName = "WareHouse#201" });
+            repo.Change(new WareHouse() { Id = 201, Address = "Morrison ave. 2", WareHouseName = "WareHouse#201" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

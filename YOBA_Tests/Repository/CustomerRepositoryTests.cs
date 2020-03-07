@@ -9,6 +9,7 @@ using FluentAssertions;
 using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.BLL.Entities.Sell;
 using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace ProductServiceTest
 {
@@ -23,7 +24,7 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Customers).Returns(mockDbSet.Object);
             var res = new CustomerRepository(mockContext.Object);
 
-            res.Add(new Customer() { Address="Lincoln st. 9", CustomerEmail="no@gmail.com", CustomerId= "1", CustomerLastName="Peterson", CustomerName="Bob", TelephoneNumber="123123" });
+            res.Add(new Customer() { Address="Lincoln st. 9", CustomerEmail="no@gmail.com", CustomerId= 1, CustomerLastName="Peterson", CustomerName="Bob", TelephoneNumber="123123" });
 
             mockContext.Verify(s => s.Add(It.IsAny<Customer>()), Times.Once());
             mockContext.Verify(s => s.SaveChanges(), Times.Once());
@@ -33,8 +34,8 @@ namespace ProductServiceTest
         public void CustomerRepo_GetByID()
         {
             var data = new List<Customer>() {
-                new Customer() { Address="Lincoln st. 9", CustomerEmail="noway@gmail.com", CustomerId="20", CustomerLastName="Dylan", CustomerName="Silvestry", TelephoneNumber="888555000"},
-                new Customer() { Address="Lincoln st. 12", CustomerEmail="no@gmail.com", CustomerId="25", CustomerLastName="Peterson", CustomerName="Bob", TelephoneNumber="380088713"}
+                new Customer() { Address="Lincoln st. 9", CustomerEmail="noway@gmail.com", CustomerId=20, CustomerLastName="Dylan", CustomerName="Silvestry", TelephoneNumber="888555000"},
+                new Customer() { Address="Lincoln st. 12", CustomerEmail="no@gmail.com", CustomerId=25, CustomerLastName="Peterson", CustomerName="Bob", TelephoneNumber="380088713"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Customer>>();
@@ -47,7 +48,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Customers).Returns(mockDbSet.Object);
 
             var repo = new CustomerRepository(context.Object);
-            var result = repo.GetById("20");
+            var result = repo.GetById(20);
 
             Assert.IsTrue(result.Address == "Lincoln st. 9");
         }
@@ -56,8 +57,8 @@ namespace ProductServiceTest
         public void CustomerRepo_GetAll()
         {
             var data = new List<Customer>() {
-                new Customer() { Address="Lincoln st. 9", CustomerEmail="noway@gmail.com", CustomerId="20", CustomerLastName="Silvestry", CustomerName="Dylan", TelephoneNumber="888555000"},
-                new Customer() { Address="Lincoln st. 12", CustomerEmail="no@gmail.com", CustomerId="25", CustomerLastName="Peterson", CustomerName="Bob", TelephoneNumber="380088713"}
+                new Customer() { Address="Lincoln st. 9", CustomerEmail="noway@gmail.com", CustomerId=20, CustomerLastName="Silvestry", CustomerName="Dylan", TelephoneNumber="888555000"},
+                new Customer() { Address="Lincoln st. 12", CustomerEmail="no@gmail.com", CustomerId=25, CustomerLastName="Peterson", CustomerName="Bob", TelephoneNumber="380088713"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Customer>>();
@@ -78,11 +79,11 @@ namespace ProductServiceTest
         }
 
         [Test]
-        public void CustomerRepo_Delete()
+        public async Task CustomerRepo_Delete()
         {
             var data = new List<Customer>() {
-                new Customer() { Address="Lincoln st. 9", CustomerEmail="noway@gmail.com", CustomerId="20", CustomerLastName="Silvestry", CustomerName="Dylan", TelephoneNumber="888555000"},
-                new Customer() { Address="Lincoln st. 12", CustomerEmail="no@gmail.com", CustomerId="25", CustomerLastName="Peterson", CustomerName="Bob", TelephoneNumber="380088713"}
+                new Customer() { Address="Lincoln st. 9", CustomerEmail="noway@gmail.com", CustomerId=20, CustomerLastName="Silvestry", CustomerName="Dylan", TelephoneNumber="888555000"},
+                new Customer() { Address="Lincoln st. 12", CustomerEmail="no@gmail.com", CustomerId=25, CustomerLastName="Peterson", CustomerName="Bob", TelephoneNumber="380088713"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Customer>>();
@@ -94,7 +95,7 @@ namespace ProductServiceTest
             var context = new Mock<YOBAContext>();
             context.Setup(c => c.Customers).Returns(mockDbSet.Object);
             var repo = new CustomerRepository(context.Object);
-            repo.Delete(new Customer() { Address = "Lincoln st. 9", CustomerEmail = "noway@gmail.com", CustomerId = "20", CustomerLastName = "Silvestry", CustomerName = "Dylan", TelephoneNumber = "888555000" });
+            await repo.Delete(new Customer() { Address = "Lincoln st. 9", CustomerEmail = "noway@gmail.com", CustomerId = 20, CustomerLastName = "Silvestry", CustomerName = "Dylan", TelephoneNumber = "888555000" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());
@@ -104,8 +105,8 @@ namespace ProductServiceTest
         public void CustomerRepo_Update()
         {
             var data = new List<Customer>() {
-                new Customer() { Address="Lincoln st. 9", CustomerEmail="noway@gmail.com", CustomerId="20", CustomerLastName="Silvestry", CustomerName="Dylan", TelephoneNumber="888555000"},
-                new Customer() { Address="Lincoln st. 12", CustomerEmail="no@gmail.com", CustomerId="25", CustomerLastName="Peterson", CustomerName="Bob", TelephoneNumber="380088713"}
+                new Customer() { Address="Lincoln st. 9", CustomerEmail="noway@gmail.com", CustomerId=20, CustomerLastName="Silvestry", CustomerName="Dylan", TelephoneNumber="888555000"},
+                new Customer() { Address="Lincoln st. 12", CustomerEmail="no@gmail.com", CustomerId=25, CustomerLastName="Peterson", CustomerName="Bob", TelephoneNumber="380088713"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Customer>>();
@@ -117,7 +118,7 @@ namespace ProductServiceTest
             var context = new Mock<YOBAContext>();
             context.Setup(c => c.Customers).Returns(mockDbSet.Object);
             var repo = new CustomerRepository(context.Object);
-            repo.Change(new Customer() { Address = "Lincoln st. 12", CustomerEmail = "no@gmail.com", CustomerId = "25", CustomerLastName = "Peterson", CustomerName = "Scot", TelephoneNumber = "380088713" });
+            repo.Change(new Customer() { Address = "Lincoln st. 12", CustomerEmail = "no@gmail.com", CustomerId = 25, CustomerLastName = "Peterson", CustomerName = "Scot", TelephoneNumber = "380088713" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

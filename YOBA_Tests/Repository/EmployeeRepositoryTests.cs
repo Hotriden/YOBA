@@ -22,8 +22,8 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Employees).Returns(mockDbSet.Object);
             var res = new EmployeeRepository(mockContext.Object);
 
-            res.Add(new Employee() { EmployeeId= "1", Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123"  });
-            res.Add(new Employee() { EmployeeId= "2", Name="Khal", LastName="Drogo", Sallery=20 });
+            res.Add(new Employee() { EmployeeId= 1, Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123"  });
+            res.Add(new Employee() { EmployeeId= 2, Name="Khal", LastName="Drogo", Sallery=20 });
 
             mockContext.Verify(s => s.Add(It.IsAny<Employee>()), Times.Exactly(2));
             mockContext.Verify(s => s.SaveChanges(), Times.Exactly(2));
@@ -33,8 +33,8 @@ namespace ProductServiceTest
         public void EmployeeRepo_GetByID()
         {
             var data = new List<Employee>() {
-                new Employee() { EmployeeId="1", Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
-                new Employee() { EmployeeId="2", Name="Khal", LastName="Drogo", Sallery=20}
+                new Employee() { EmployeeId=1, Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
+                new Employee() { EmployeeId=2, Name="Khal", LastName="Drogo", Sallery=20}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Employee>>();
@@ -47,7 +47,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Employees).Returns(mockDbSet.Object);
 
             var repo = new EmployeeRepository(context.Object);
-            var result = repo.GetById("2");
+            var result = repo.GetById(2);
 
             Assert.IsTrue(result.Name == "Khal");
         }
@@ -56,9 +56,9 @@ namespace ProductServiceTest
         public void EmployeeRepo_GetAll()
         {
             var data = new List<Employee>() {
-                new Employee() {EmployeeId="1", Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
-                new Employee() {EmployeeId="2", Name="Khal", LastName="Drogo", Sallery=20},
-                new Employee() {EmployeeId="5", Name="John", LastName="Snow", Sallery=500},
+                new Employee() {EmployeeId=1, Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
+                new Employee() {EmployeeId=2, Name="Khal", LastName="Drogo", Sallery=20},
+                new Employee() {EmployeeId=5, Name="John", LastName="Snow", Sallery=500},
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Employee>>();
@@ -82,9 +82,9 @@ namespace ProductServiceTest
         public void EmployeeRepo_Delete()
         {
             var data = new List<Employee>() {
-                new Employee() {EmployeeId="1", Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
-                new Employee() {EmployeeId="2", Name="Khal", LastName="Drogo", Sallery=20},
-                new Employee() {EmployeeId="5", Name="John", LastName="Snow", Sallery=500}
+                new Employee() {EmployeeId=1, Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
+                new Employee() {EmployeeId=2, Name="Khal", LastName="Drogo", Sallery=20},
+                new Employee() {EmployeeId=5, Name="John", LastName="Snow", Sallery=500}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Employee>>();
@@ -100,7 +100,7 @@ namespace ProductServiceTest
 
             repo.Delete(new Employee()
             {
-                EmployeeId = "5",
+                EmployeeId = 5,
                 Name = "John",
                 LastName = "Snow",
                 Sallery = 500
@@ -114,9 +114,9 @@ namespace ProductServiceTest
         public void EmployeeRepo_Update()
         { 
             var data = new List<Employee>() {
-                new Employee() {EmployeeId="1", Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
-                new Employee() {EmployeeId="2", Name="Khal", LastName="Drogo", Sallery=20},
-                new Employee() {EmployeeId="5", Name="John", LastName="Snow", Sallery=500}
+                new Employee() {EmployeeId=1, Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
+                new Employee() {EmployeeId=2, Name="Khal", LastName="Drogo", Sallery=20},
+                new Employee() {EmployeeId=5, Name="John", LastName="Snow", Sallery=500}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Employee>>();
@@ -129,7 +129,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Employees).Returns(mockDbSet.Object);
 
             var repo = new EmployeeRepository(context.Object);
-            repo.Change(new Employee() { EmployeeId = "5", Name = "John", LastName = "Snow", Sallery = 500 });
+            repo.Change(new Employee() { EmployeeId = 5, Name = "John", LastName = "Snow", Sallery = 500 });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

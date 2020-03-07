@@ -20,7 +20,7 @@ namespace YOBA_BLL.SupplyCatalogueFolder
         }
 
         public void Create(Supplier supplier, string UserId)
-        {
+         {
             if (supplier.SupplierName == null || supplier.Address == null)
             {
                 messageService.InfoMessage(this, "Supplier name or supplier address spelled wrong", UserId);

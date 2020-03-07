@@ -2,8 +2,8 @@
 using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Finance;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
-using YOBA_Services.Exceptions;
 using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -14,68 +14,32 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             _context = context;
         }
-        public void Add(Tax item)
+        public async Task Add(Tax item)
         {
-            if (_context.Taxes.Find(item.Name) == null)
-            {
-                _context.Add(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new AlreadyExistException(item.Name);
-            }
+            _context.Add(item);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Tax item)
+        public async Task Delete(Tax item)
         {
-            if (_context.Taxes.First(tax => tax.Id == item.Id) != null)
-            {
-                _context.Remove(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.Id);
-            }
+            _context.Remove(item);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Tax> GetAll()
         {
-            if (_context.Taxes != null)
-            {
-                return _context.Taxes;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Tax).ToString());
-            }
+            return _context.Taxes;
         }
 
-        public Tax GetById(string id)
+        public Tax GetById(int id)
         {
-            var result = _context.Taxes.First(tax => tax.Id == id);
-            if (result != null)
-            {
-                return result;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Tax).ToString());
-            }
+            return _context.Taxes.First(tax => tax.Id == id);
         }
 
-        public void Change(Tax item)
+        public async Task Change(Tax item)
         {
-            if (_context.Taxes.First(x => x.Id == item.Id) != null)
-            {
-                _context.Taxes.Update(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.Id);
-            }
+            _context.Taxes.Update(item);
+            await _context.SaveChangesAsync();
         }
 
         public Tax GetByName(string name)

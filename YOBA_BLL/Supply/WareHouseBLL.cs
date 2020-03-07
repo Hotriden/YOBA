@@ -7,10 +7,10 @@ namespace YOBA_BLL.Supply
 {
     public class WareHouseBLL:IWareHouseBLL
     {
-        IUnitOfWork db;
-        public WareHouseBLL()
+        private readonly IUnitOfWork db;
+        public WareHouseBLL(IUnitOfWork unitOfWork)
         {
-            db = new UnitOfWork();
+            db = unitOfWork;
         }
         public string CheckRawStuff(Receipt receipt, WareHouse wareHouse)
         {

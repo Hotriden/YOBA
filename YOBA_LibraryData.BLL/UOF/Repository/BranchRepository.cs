@@ -3,7 +3,7 @@ using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.DAL;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
-using YOBA_Services.Exceptions;
+using System.Threading.Tasks;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -14,81 +14,37 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             _context = context;
         }
-        public void Add(Branch item)
+        public async Task Add(Branch item)
         {
-            if (_context.Branches.Find(item.BranchName) == null)
-            {
-                _context.Add(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new AlreadyExistException(item.BranchName);
-            }
+            _context.Add(item);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Branch item)
+        public async Task Delete(Branch item)
         {
-            if (_context.Branches.First(branch => branch.BranchId == item.BranchId) != null)
-            {
-                _context.Remove(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.BranchId);
-            }
+            _context.Remove(item);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Branch> GetAll()
         {
-            if (_context.Branches != null)
-            {
-                return _context.Branches;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Branch).ToString());
-            }
+            return _context.Branches;
         }
 
-        public Branch GetById(string id)
+        public Branch GetById(int id)
         {
-            var result = _context.Branches.First(branch => branch.BranchId == id);
-            if (result != null)
-            {
-                return result;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Branch).ToString());
-            }
+            return _context.Branches.First(branch => branch.BranchId == id);
         }
 
-        public void Change(Branch item)
+        public async Task Change(Branch item)
         {
-            if (_context.Branches.First(x=>x.BranchId==item.BranchId) != null)
-            {
-                _context.Branches.Update(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.BranchId);
-            }
+            _context.Branches.Update(item);
+            await _context.SaveChangesAsync();
         }
 
         public Branch GetByName(string name)
         {
-            var result = _context.Branches.First(branch => branch.BranchName == name);
-            if (result != null)
-            {
-                return result;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Branch).ToString());
-            }
+            return _context.Branches.First(branch => branch.BranchName == name);
         }
     }
 }
