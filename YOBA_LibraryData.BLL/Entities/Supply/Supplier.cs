@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using YOBA_LibraryData.BLL.Entities.Sell;
+using YOBA_LibraryData.DAL.Entities;
 
 namespace YOBA_LibraryData.BLL.Entities.Supply
 {
-    public class Supplier
+    public class Supplier: AuditableEntity
     {
         [Required]
         public int SupplierId { get; set; }
@@ -14,10 +15,8 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
         public string SupplierName { get; set; }
         [Required]
         public string Address { get; set; }
-        public DateTime CreateTime { get; set; }
-
-        public virtual ICollection<Payment> Payments { get; set; }
-        public virtual ICollection<Receipt> Entrances { get; set; }
+        public virtual ICollection<Payment> Payments { get; private set; }
+        public virtual ICollection<Receipt> Entrances { get; private set; }
         public string TelephoneNumber { get; set; }
     }
 }

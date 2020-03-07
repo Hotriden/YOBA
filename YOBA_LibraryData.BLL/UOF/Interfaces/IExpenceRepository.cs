@@ -5,5 +5,6 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
 {
     public interface IExpenceRepository:IBaseRepository<Expence>
     {
+        Expence GetByName(string name);
     }
 }

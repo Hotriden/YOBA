@@ -5,5 +5,6 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
 {
     public interface ICustomerRepository:IBaseRepository<Customer>
     {
+
     }
 }

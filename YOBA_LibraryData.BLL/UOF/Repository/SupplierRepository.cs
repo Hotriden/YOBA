@@ -2,84 +2,49 @@
 using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
-using YOBA_Services.Exceptions;
+using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class SupplierRepository : ISupplierRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public SupplierRepository(YOBAContext context)
         {
             _context = context;
         }
-        public void Add(Supplier item)
+        public async Task Add(Supplier item)
         {
-            if (_context.Suppliers.Find(item.SupplierName) == null)
-            {
-                _context.Add(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new AlreadyExistException(item.SupplierName);
-            }
+            _context.Add(item);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Supplier item)
+        public async Task Delete(Supplier item)
         {
-            if (_context.Suppliers.First(supplier => supplier.SupplierId == item.SupplierId) != null)
-            {
-                _context.Remove(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.SupplierId);
-            }
+            _context.Remove(item);
+            await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Supplier> GetAll()
         {
-            if (_context.Suppliers != null)
-            {
-                return _context.Suppliers;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Supplier).ToString());
-            }
+            return _context.Suppliers;
         }
 
         public Supplier GetById(int id)
         {
-            var result = _context.Suppliers.First(supplier => supplier.SupplierId == id);
-            if (result != null)
-            {
-                return result;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Supplier).ToString());
-            }
+            return _context.Suppliers.First(supplier => supplier.SupplierId == id);
         }
 
-        public void Save()
+        public async Task Change(Supplier item)
         {
-            _context.SaveChanges();
+            _context.Suppliers.Update(item);
+            await _context.SaveChangesAsync();
         }
 
-        public void Change(Supplier item)
+        public Supplier GetByNumber(string identity)
         {
-            if (_context.Suppliers.First(x => x.SupplierId == item.SupplierId) != null)
-            {
-                _context.Suppliers.Update(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.SupplierId);
-            }
+            throw new System.NotImplementedException();
         }
     }
 }

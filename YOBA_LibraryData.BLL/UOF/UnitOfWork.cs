@@ -1,15 +1,16 @@
-﻿
-
-using System;
+﻿using System;
 using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_LibraryData.BLL.UOF.Repository;
+using YOBA_LibraryData.DAL.UOF.Interfaces;
+using YOBA_LibraryData.DAL.UOF.Repository;
+using YOBA_LibraryData.DAL;
 
 namespace YOBA_LibraryData.BLL.UOF
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private YOBAContext db;
+        private readonly YOBAContext db;
         private BranchRepository branchRepo;
         private CustomerRepository customerRepo;
         private EmployeeRepository employeeRepo;
@@ -17,16 +18,15 @@ namespace YOBA_LibraryData.BLL.UOF
         private IncomeRepository incomeRepo;
         private OrderRepository orderRepo;
         private PaymentRepository paymentRepo;
-        private ProductGroupRepository productGroupRepo;
-        private ProductRepository productRepo;
-        private ReceiptRepository receiptRepo;
         private SupplierRepository supplierRepo;
         private TaxRepository taxRepo;
         private WareHouseRepository wareHouseRepo;
+        private ClientLogRepository clientLogRepo;
+        private ReceiptRepository receiptRepo;
 
-        public UnitOfWork(string connectionString)
+        public UnitOfWork(YOBAContext context)
         {
-            db = new YOBAContext(); /// connection string
+            db = context;
         }
 
         public IBranchRepository BranchRepository
@@ -94,33 +94,7 @@ namespace YOBA_LibraryData.BLL.UOF
             }
 
         }
-        public IProductRepository ProductRepository
-        {
-            get
-            {
-                if (productRepo == null)
-                    productRepo = new ProductRepository(db);
-                return productRepo;
-            }
-        }
-        public IProductGroupRepository ProductGroupRepository 
-        {
-            get 
-            {
-                if (productGroupRepo == null)
-                    productGroupRepo = new ProductGroupRepository(db);
-                return productGroupRepo;
-            }
-        }
-        public IReceiptRepository ReceiptRepository 
-        {
-            get 
-            {
-                if (receiptRepo == null)
-                    receiptRepo = new ReceiptRepository(db);
-                return receiptRepo;
-            }
-        }
+
         public ISupplierRepository SupplierRepository
         {
             get
@@ -146,6 +120,36 @@ namespace YOBA_LibraryData.BLL.UOF
                 if (wareHouseRepo == null)
                     wareHouseRepo = new WareHouseRepository(db);
                 return wareHouseRepo;
+            }
+        }
+
+        public IClientLogRepository ClientLogRepository
+        {
+            get
+            {
+                if (clientLogRepo == null)
+                    clientLogRepo = new ClientLogRepository(db);
+                return clientLogRepo;
+            }
+        }
+
+        public IReceiptRepository ReceiptRepository
+        {
+            get
+            {
+                if (receiptRepo == null)
+                    receiptRepo = new ReceiptRepository(db);
+                return receiptRepo;
+            }
+        }
+
+        public IOrderRepository OrderRepository
+        {
+            get
+            {
+                if (orderRepo == null)
+                    orderRepo = new OrderRepository(db);
+                return orderRepo;
             }
         }
 

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
+using YOBA_LibraryData.DAL.UOF.Interfaces;
 
 namespace YOBA_LibraryData.BLL.Interfaces
 {
@@ -10,14 +12,13 @@ namespace YOBA_LibraryData.BLL.Interfaces
         IEmployeeRepository EmployeeRepository { get; }
         IExpenceRepository ExpenceRepository { get; }
         IIncomeRepository IncomeRepository { get; }
-        IOrderRepository RrderRepository { get; }
+        IOrderRepository OrderRepository { get; }
         IPaymentRepository PaymentRepository { get; }
-        IProductRepository ProductRepository { get; }
-        IProductGroupRepository ProductGroupRepository { get; }
-        IReceiptRepository ReceiptRepository { get; }
         ISupplierRepository SupplierRepository { get; }
         ITaxRepository TaxRepository { get; }
+        IReceiptRepository ReceiptRepository { get; }
         IWareHouseRepository WareHouseRepository { get; }
+        IClientLogRepository ClientLogRepository { get; }
         void Save();
     }
 }

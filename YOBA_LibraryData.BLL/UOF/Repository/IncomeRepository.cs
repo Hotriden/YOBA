@@ -1,85 +1,50 @@
 ﻿using System.Collections.Generic;
 using YOBA_LibraryData.BLL.Entities.Finance;
-using YOBA_Services.Exceptions;
 using System.Linq;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
+using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class IncomeRepository : IIncomeRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public IncomeRepository(YOBAContext context)
         {
             _context = context;
         }
-        public void Add(Income item)
+        public async Task Add(Income item)
         {
-            if (_context.Incomes.Find(item.Name) == null)
-            {
-                _context.Add(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new AlreadyExistException(item.Name);
-            }
+            _context.Add(item);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Income item)
+        public async Task Delete(Income item)
         {
-            if (_context.Incomes.First(income => income.Id == item.Id) != null)
-            {
-                _context.Remove(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.Id);
-            }
+           _context.Remove(item);
+           await _context.SaveChangesAsync();
         }
 
         public IEnumerable<Income> GetAll()
         {
-            if (_context.Incomes != null)
-            {
-                return _context.Incomes;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Income).ToString());
-            }
+            return _context.Incomes;
         }
 
         public Income GetById(int id)
         {
-            var result = _context.Incomes.First(income => income.Id == id);
-            if (result != null)
-            {
-                return result;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Income).ToString());
-            }
+            return _context.Incomes.First(income => income.Id == id);
         }
 
-        public void Save()
+        public async Task Change(Income item)
         {
-            _context.SaveChanges();
+           _context.Update(item);
+           await _context.SaveChangesAsync();
         }
 
-        public void Change(Income item)
+        public Income GetByName(string name)
         {
-            if (_context.Incomes.First(x => x.Id == item.Id) != null)
-            {
-                _context.Update(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.Id);
-            }
+            throw new System.NotImplementedException();
         }
     }
 }

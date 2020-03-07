@@ -2,84 +2,46 @@
 using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Sell;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
-using YOBA_Services.Exceptions;
+using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private YOBAContext _context;
+        private readonly YOBAContext _context;
         public CustomerRepository(YOBAContext context)
         {
             _context = context;
         }
-        public void Add(Customer item)
+        public async Task Add(Customer item)
         {
-            if (_context.Customers.Find(item.CustomerEmail) == null)
-            {
-                _context.Add(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new AlreadyExistException(item.CustomerName);
-            }
+            _context.Add(item);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Customer item)
+        public async Task Delete(Customer item)
         {
-            if (_context.Customers.First(customer => customer.CustomerId == item.CustomerId) != null)
-            {
-                _context.Remove(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.CustomerId);
-            }
+            _context.Remove(item);
+            await _context.SaveChangesAsync();
+
         }
 
         public IEnumerable<Customer> GetAll()
         {
-            if (_context.Customers != null)
-            {
-                return _context.Customers;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Customer).ToString());
-            }
+            return _context.Customers;
         }
 
         public Customer GetById(int id)
         {
-            var result = _context.Customers.First(customer => customer.CustomerId == id);
-            if (result != null)
-            {
-                return result;
-            }
-            else
-            {
-                throw new EmptyDataException(typeof(Customer).ToString());
-            }
+            return _context.Customers.First(customer => customer.CustomerId == id);
         }
 
-        public void Save()
+        public async Task Change(Customer item)
         {
-            _context.SaveChanges();
-        }
+            _context.Customers.Update(item);
+            await _context.SaveChangesAsync();
 
-        public void Change(Customer item)
-        {
-            if (_context.Customers.First(x => x.CustomerId == item.CustomerId) != null)
-            {
-                _context.Customers.Update(item);
-                _context.SaveChanges();
-            }
-            else
-            {
-                throw new NotFoundException(item.CustomerId);
-            }
         }
     }
 }

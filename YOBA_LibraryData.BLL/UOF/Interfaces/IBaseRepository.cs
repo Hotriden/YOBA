@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace YOBA_LibraryData.BLL.Interfaces
 {
     public interface IBaseRepository<T> where T:class
     {
         IEnumerable<T> GetAll();
-        void Add(T item);
+        Task Add(T item);
         T GetById(int id);
-        void Delete(T item);
-        void Change(T item);
-        void Save();
+        Task Delete(T item);
+        Task Change(T item);
     }
 }

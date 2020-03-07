@@ -1,0 +1,85 @@
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA\YOBA_Web
+Processing request /
+Processing request /api/warehouse
+Processing request /api/warehouse
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA\YOBA_Web
+Processing request /
+Processing request /favicon.ico
+Processing request /api/warehouse
+Processing request /api/Tax
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA\YOBA_Web
+Failed to determine the https port for redirect.
+No type was specified for the decimal column 'Cost' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+No type was specified for the decimal column 'Price' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+Log message in the Get() method
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA\YOBA_Web
+Processing request /api/supplies
+Processing request /api/warehouse
+Processing request /
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA\YOBA_Web
+Failed to determine the https port for redirect.
+No type was specified for the decimal column 'Cost' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+No type was specified for the decimal column 'Price' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Processing request /api/supplies
+Processing request /
+Content root path: C:\Temp\YOBA\YOBA_Web
+An unhandled exception has occurred while executing the request.
+An unhandled exception has occurred while executing the request.
+Processing request /api/warehouse
+An unhandled exception has occurred while executing the request.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA\YOBA_Web
+Processing request /
+Processing request /favicon.ico
+Processing request /
+Processing request /api/warehouse
+Processing request /api/warehouse
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA\YOBA_Web
+Failed to determine the https port for redirect.
+No type was specified for the decimal column 'Cost' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+No type was specified for the decimal column 'Price' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+Log message in the GetAll() method
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA\YOBA_Web
+Failed to determine the https port for redirect.
+No type was specified for the decimal column 'Cost' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+No type was specified for the decimal column 'Price' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+Log message in the GetAll() method
+Log message in the GetAll() method
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA\YOBA_Web
+Failed to determine the https port for redirect.
+No type was specified for the decimal column 'Cost' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+No type was specified for the decimal column 'Price' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA\YOBA_Web
+Failed to determine the https port for redirect.
+No type was specified for the decimal column 'Cost' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+No type was specified for the decimal column 'Price' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+Log message in the GetAll() method
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA\YOBA_Web
+Failed to determine the https port for redirect.
+No type was specified for the decimal column 'Cost' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+No type was specified for the decimal column 'Price' on entity type 'Receipt'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+Log message in the GetAll() method
+27.02.2020 00:08:03Log message in the GetById() method
