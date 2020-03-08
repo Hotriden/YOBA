@@ -181,8 +181,5 @@ C:\Temp\YOBA\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Debug
 C:\Temp\YOBA\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Temp\YOBA\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.EventSource.dll
 C:\Temp\YOBA\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.TraceSource.dll
-C:\Temp\YOBA\YOBA_Web\bin\Debug\netcoreapp3.1\Serilog.dll
-C:\Temp\YOBA\YOBA_Web\bin\Debug\netcoreapp3.1\Serilog.Sinks.Console.dll
-C:\Temp\YOBA\YOBA_Web\bin\Debug\netcoreapp3.1\Serilog.Sinks.File.dll
 C:\Temp\YOBA\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.MvcApplicationPartsAssemblyInfo.cs
 C:\Temp\YOBA\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.MvcApplicationPartsAssemblyInfo.cache
