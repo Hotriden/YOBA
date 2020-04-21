@@ -1,0 +1,11 @@
+C:\Temp\YOBA_react_branch\YOBA_BLL\bin\Release\netcoreapp3.1\YOBA_BLL.deps.json
+C:\Temp\YOBA_react_branch\YOBA_BLL\bin\Release\netcoreapp3.1\YOBA_BLL.dll
+C:\Temp\YOBA_react_branch\YOBA_BLL\bin\Release\netcoreapp3.1\YOBA_BLL.pdb
+C:\Temp\YOBA_react_branch\YOBA_BLL\bin\Release\netcoreapp3.1\YOBA_LibraryData.DAL.dll
+C:\Temp\YOBA_react_branch\YOBA_BLL\bin\Release\netcoreapp3.1\YOBA_LibraryData.DAL.pdb
+C:\Temp\YOBA_react_branch\YOBA_BLL\obj\Release\netcoreapp3.1\YOBA_BLL.csprojAssemblyReference.cache
+C:\Temp\YOBA_react_branch\YOBA_BLL\obj\Release\netcoreapp3.1\YOBA_BLL.AssemblyInfoInputs.cache
+C:\Temp\YOBA_react_branch\YOBA_BLL\obj\Release\netcoreapp3.1\YOBA_BLL.AssemblyInfo.cs
+C:\Temp\YOBA_react_branch\YOBA_BLL\obj\Release\netcoreapp3.1\YOBA_BLL.csproj.CopyComplete
+C:\Temp\YOBA_react_branch\YOBA_BLL\obj\Release\netcoreapp3.1\YOBA_BLL.dll
+C:\Temp\YOBA_react_branch\YOBA_BLL\obj\Release\netcoreapp3.1\YOBA_BLL.pdb

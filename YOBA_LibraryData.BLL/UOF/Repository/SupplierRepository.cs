@@ -1,0 +1,50 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using YOBA_LibraryData.BLL.Entities.Supply;
+using YOBA_LibraryData.BLL.UOF.Interfaces;
+using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
+
+namespace YOBA_LibraryData.BLL.UOF.Repository
+{
+    public class SupplierRepository : ISupplierRepository
+    {
+        private readonly YOBAContext _context;
+        public SupplierRepository(YOBAContext context)
+        {
+            _context = context;
+        }
+        public async Task Add(Supplier item)
+        {
+            _context.Add(item);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Delete(Supplier item)
+        {
+            _context.Remove(item);
+            await _context.SaveChangesAsync();
+        }
+
+        public IEnumerable<Supplier> GetAll()
+        {
+            return _context.Suppliers;
+        }
+
+        public Supplier GetById(int id)
+        {
+            return _context.Suppliers.First(supplier => supplier.SupplierId == id);
+        }
+
+        public async Task Change(Supplier item)
+        {
+            _context.Suppliers.Update(item);
+            await _context.SaveChangesAsync();
+        }
+
+        public Supplier GetByNumber(string identity)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+}

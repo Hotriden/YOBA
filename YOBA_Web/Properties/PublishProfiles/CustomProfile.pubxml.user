@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA8omakeN5a0SLkbCp3CBLFwAAAAACAAAAAAAQZgAAAAEAACAAAAB7OY32k8gNVIQJwll/oookBnWAMtDM/NMAAhYGx4kGEQAAAAAOgAAAAAIAACAAAABpfxj9HS21i7JZNtoyY9u8p6y5t33uII7C+Akwt1BV5jAAAACXu+XMMAK8IdH/Td2jRDurbyOQ8duOenm8hvCXnC+3CygXKwMTFyEAA+LSDPIPaVhAAAAA2Iv6nATaY+aqGVmNBQSWvKj7aCjrtB+GdlxHiNBjfbhJFMIh4IHq1WmoSYxAeKeDCXqqJ32s7IuHXM96K6h8lQ==</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="YOBA_DbConnection">
+      <Value>Data Source=SQL5050.site4now.net,1433%3bInitial Catalog=DB_A56DAB_yobaDb%3bUser Id=DB_A56DAB_yobaDb_admin%3bPassword=Belowrowblow2219%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
