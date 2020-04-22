@@ -7776,11 +7776,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Temp\\YOBA_react_branch\\YOBA_Tests\\YOBA_Tests.csproj",
+      "projectUniqueName": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_Tests\\YOBA_Tests.csproj",
       "projectName": "YOBA_Tests",
-      "projectPath": "C:\\Temp\\YOBA_react_branch\\YOBA_Tests\\YOBA_Tests.csproj",
+      "projectPath": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_Tests\\YOBA_Tests.csproj",
       "packagesPath": "C:\\Users\\Rifter\\.nuget\\packages\\",
-      "outputPath": "C:\\Temp\\YOBA_react_branch\\YOBA_Tests\\obj\\",
+      "outputPath": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Rifter\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7796,11 +7796,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Temp\\YOBA_react_branch\\YOBA_BLL\\YOBA_BLL.csproj": {
-              "projectPath": "C:\\Temp\\YOBA_react_branch\\YOBA_BLL\\YOBA_BLL.csproj"
+            "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_BLL\\YOBA_BLL.csproj": {
+              "projectPath": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_BLL\\YOBA_BLL.csproj"
             },
-            "C:\\Temp\\YOBA_react_branch\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj": {
-              "projectPath": "C:\\Temp\\YOBA_react_branch\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj"
+            "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj": {
+              "projectPath": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj"
             }
           }
         }

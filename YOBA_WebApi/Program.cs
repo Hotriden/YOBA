@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -18,6 +13,12 @@ namespace YOBA_WebApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                ////////////////////// LOGGER DON'T WORK ON SmarterASP.NET Hosting  ////////////
+                //ConfigureLogging(logBuilder =>
+                //{
+                //    logBuilder.ClearProviders();
+                //    logBuilder.AddConsole();
+                //})
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

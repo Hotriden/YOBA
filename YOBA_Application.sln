@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_Tests", "YOBA_Tests\YO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_Web", "YOBA_Web\YOBA_Web.csproj", "{BEF78D83-19FB-48FF-BD45-AA0AD655A94B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YOBA_WebApi", "YOBA_WebApi\YOBA_WebApi.csproj", "{FA7B9963-83A4-4912-9973-2F1FFB0089EC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{BEF78D83-19FB-48FF-BD45-AA0AD655A94B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEF78D83-19FB-48FF-BD45-AA0AD655A94B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEF78D83-19FB-48FF-BD45-AA0AD655A94B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA7B9963-83A4-4912-9973-2F1FFB0089EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA7B9963-83A4-4912-9973-2F1FFB0089EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA7B9963-83A4-4912-9973-2F1FFB0089EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA7B9963-83A4-4912-9973-2F1FFB0089EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

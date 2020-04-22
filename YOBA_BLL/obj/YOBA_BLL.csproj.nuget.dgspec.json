@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Temp\\YOBA_react_branch\\YOBA_BLL\\YOBA_BLL.csproj": {}
+    "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_BLL\\YOBA_BLL.csproj": {}
   },
   "projects": {
-    "C:\\Temp\\YOBA_react_branch\\YOBA_BLL\\YOBA_BLL.csproj": {
+    "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_BLL\\YOBA_BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Temp\\YOBA_react_branch\\YOBA_BLL\\YOBA_BLL.csproj",
+        "projectUniqueName": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_BLL\\YOBA_BLL.csproj",
         "projectName": "YOBA_BLL",
-        "projectPath": "C:\\Temp\\YOBA_react_branch\\YOBA_BLL\\YOBA_BLL.csproj",
+        "projectPath": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_BLL\\YOBA_BLL.csproj",
         "packagesPath": "C:\\Users\\Rifter\\.nuget\\packages\\",
-        "outputPath": "C:\\Temp\\YOBA_react_branch\\YOBA_BLL\\obj\\",
+        "outputPath": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_BLL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Rifter\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Temp\\YOBA_react_branch\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj": {
-                "projectPath": "C:\\Temp\\YOBA_react_branch\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj"
+              "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj": {
+                "projectPath": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj"
               }
             }
           }
@@ -69,14 +69,14 @@
         }
       }
     },
-    "C:\\Temp\\YOBA_react_branch\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj": {
+    "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Temp\\YOBA_react_branch\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj",
+        "projectUniqueName": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj",
         "projectName": "YOBA_LibraryData.DAL",
-        "projectPath": "C:\\Temp\\YOBA_react_branch\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj",
+        "projectPath": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj",
         "packagesPath": "C:\\Users\\Rifter\\.nuget\\packages\\",
-        "outputPath": "C:\\Temp\\YOBA_react_branch\\YOBA_LibraryData.BLL\\obj\\",
+        "outputPath": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_LibraryData.BLL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Rifter\\AppData\\Roaming\\NuGet\\NuGet.Config",
