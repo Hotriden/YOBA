@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +11,9 @@ using Microsoft.Extensions.Logging;
 using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF;
 using YOBA_LibraryData.DAL;
+using YOBA_WebApi.Logger;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace YOBA_WebApi
 {
@@ -48,13 +47,23 @@ namespace YOBA_WebApi
             services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            #region Logging
+            ////////////////////// LOGGER DON'T WORK ON SmarterASP.NET Hosting  ////////////
+            //if (Directory.GetCurrentDirectory() + "/Logs" != null)
+            //{
+            //    Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/Logs");
+            //}
+            //string path = Directory.GetCurrentDirectory() + "/Logs";
+            //loggerFactory.AddFile(Path.Combine(path, $"{DateTime.UtcNow.Date.ToString("yyyy/MM/dd")}_logs.txt"));
+            //var logger = loggerFactory.CreateLogger("FileLogger");
+            #endregion
 
             app.UseHttpsRedirection();
 

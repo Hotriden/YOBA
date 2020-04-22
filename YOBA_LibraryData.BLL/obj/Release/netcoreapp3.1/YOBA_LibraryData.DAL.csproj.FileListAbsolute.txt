@@ -6,3 +6,11 @@ C:\Temp\YOBA_react_branch\YOBA_LibraryData.BLL\obj\Release\netcoreapp3.1\YOBA_Li
 C:\Temp\YOBA_react_branch\YOBA_LibraryData.BLL\obj\Release\netcoreapp3.1\YOBA_LibraryData.DAL.AssemblyInfo.cs
 C:\Temp\YOBA_react_branch\YOBA_LibraryData.BLL\obj\Release\netcoreapp3.1\YOBA_LibraryData.DAL.dll
 C:\Temp\YOBA_react_branch\YOBA_LibraryData.BLL\obj\Release\netcoreapp3.1\YOBA_LibraryData.DAL.pdb
+C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\bin\Release\netcoreapp3.1\YOBA_LibraryData.DAL.deps.json
+C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\bin\Release\netcoreapp3.1\YOBA_LibraryData.DAL.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\bin\Release\netcoreapp3.1\YOBA_LibraryData.DAL.pdb
+C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\obj\Release\netcoreapp3.1\YOBA_LibraryData.DAL.csprojAssemblyReference.cache
+C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\obj\Release\netcoreapp3.1\YOBA_LibraryData.DAL.AssemblyInfoInputs.cache
+C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\obj\Release\netcoreapp3.1\YOBA_LibraryData.DAL.AssemblyInfo.cs
+C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\obj\Release\netcoreapp3.1\YOBA_LibraryData.DAL.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\obj\Release\netcoreapp3.1\YOBA_LibraryData.DAL.pdb

@@ -1,10 +1,7 @@
-using System;
-using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +11,6 @@ using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF;
 using YOBA_LibraryData.DAL;
 using YOBA_Web.Models;
-using YOBA_Web.Models.Logger;
 
 namespace YOBA_Web
 {
@@ -45,9 +41,6 @@ namespace YOBA_Web
             #endregion
 
             services.AddControllers();
-
-            services.AddRazorPages(); // ??????????
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -62,22 +55,20 @@ namespace YOBA_Web
                 app.UseHsts();
             }
             #region Logging
-            if (Directory.GetCurrentDirectory() + "/Logs" != null)
-            {
-                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/Logs");
-            }
-            string path = Directory.GetCurrentDirectory() + "/Logs";
-            loggerFactory.AddFile(Path.Combine(path, $"{DateTime.UtcNow.Date.ToString("yyyy/MM/dd")}_logs.txt"));
-            var logger = loggerFactory.CreateLogger("FileLogger");
+            ////////////////////// LOGGER DON'T WORK ON SmarterASP.NET Hosting  ////////////
+            //if (Directory.GetCurrentDirectory() + "/Logs" != null)
+            //{
+            //    Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/Logs");
+            //}
+            //string path = Directory.GetCurrentDirectory() + "/Logs";
+            //loggerFactory.AddFile(Path.Combine(path, $"{DateTime.UtcNow.Date.ToString("yyyy/MM/dd")}_logs.txt"));
+            //var logger = loggerFactory.CreateLogger("FileLogger");
             #endregion
-
-            app.UseStaticFiles(); // ?????????
 
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
