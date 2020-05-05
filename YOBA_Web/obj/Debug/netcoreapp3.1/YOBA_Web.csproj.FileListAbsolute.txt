@@ -509,8 +509,6 @@ C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\YOBA_LibraryData.DAL
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\YOBA_BLL.pdb
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\YOBA_LibraryData.DAL.pdb
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.csprojAssemblyReference.cache
-C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.MvcApplicationPartsAssemblyInfo.cs
-C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.MvcApplicationPartsAssemblyInfo.cache
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.RazorAssemblyInfo.cache
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.RazorAssemblyInfo.cs
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.AssemblyInfoInputs.cache
@@ -541,3 +539,13 @@ C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\staticwebassets\YOBA
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.pdb
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.genruntimeconfig.cache
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.MvcApplicationPartsAssemblyInfo.cs
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.MvcApplicationPartsAssemblyInfo.cache

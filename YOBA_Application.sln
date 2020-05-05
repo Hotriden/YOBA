@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_Tests", "YOBA_Tests\YO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_Web", "YOBA_Web\YOBA_Web.csproj", "{BEF78D83-19FB-48FF-BD45-AA0AD655A94B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YOBA_Identity", "YOBA_Identity\YOBA_Identity.csproj", "{71035DC8-7FAE-4CD7-8516-2D5A69BA7EA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtTest", "JwtTest\JwtTest.csproj", "{E70407B1-5BB7-4113-9BC6-744D7D399ACE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{BEF78D83-19FB-48FF-BD45-AA0AD655A94B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEF78D83-19FB-48FF-BD45-AA0AD655A94B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEF78D83-19FB-48FF-BD45-AA0AD655A94B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71035DC8-7FAE-4CD7-8516-2D5A69BA7EA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71035DC8-7FAE-4CD7-8516-2D5A69BA7EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71035DC8-7FAE-4CD7-8516-2D5A69BA7EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71035DC8-7FAE-4CD7-8516-2D5A69BA7EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E70407B1-5BB7-4113-9BC6-744D7D399ACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E70407B1-5BB7-4113-9BC6-744D7D399ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E70407B1-5BB7-4113-9BC6-744D7D399ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E70407B1-5BB7-4113-9BC6-744D7D399ACE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
