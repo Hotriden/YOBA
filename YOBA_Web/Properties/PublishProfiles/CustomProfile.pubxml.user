@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA8omakeN5a0SLkbCp3CBLFwAAAAACAAAAAAAQZgAAAAEAACAAAAB7OY32k8gNVIQJwll/oookBnWAMtDM/NMAAhYGx4kGEQAAAAAOgAAAAAIAACAAAABpfxj9HS21i7JZNtoyY9u8p6y5t33uII7C+Akwt1BV5jAAAACXu+XMMAK8IdH/Td2jRDurbyOQ8duOenm8hvCXnC+3CygXKwMTFyEAA+LSDPIPaVhAAAAA2Iv6nATaY+aqGVmNBQSWvKj7aCjrtB+GdlxHiNBjfbhJFMIh4IHq1WmoSYxAeKeDCXqqJ32s7IuHXM96K6h8lQ==</EncryptedPassword>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA8omakeN5a0SLkbCp3CBLFwAAAAACAAAAAAAQZgAAAAEAACAAAAByF8T3HF/3xpOhTTN/wzh0sil1FN7zqXjZB51RIiBUMwAAAAAOgAAAAAIAACAAAAB0XKnwY3mBqO0gLJ88AQr+O9tv4aVm9CybgM2436OoxjAAAABAEcXfzElXy2DwnDFJp3aXFFpkkcx2xVSit3cnT8BCL/QKauXnNQZFV55QUXTaeShAAAAAUsPk8yYL4xNEnYDx8/vDDnG0dMP158p07SIhirJYjlIDW50Azk/F8Xh9ttRgh3SOynKb4uF5DctOV/039VM8kg==</EncryptedPassword>
   </PropertyGroup>
   <ItemGroup>
     <DestinationConnectionStrings Include="YOBA_DbConnection">

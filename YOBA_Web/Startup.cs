@@ -11,6 +11,7 @@ using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF;
 using YOBA_LibraryData.DAL;
 using YOBA_Web.Models;
+using YOBA_Web.Models.JwtAuth;
 
 namespace YOBA_Web
 {
@@ -36,11 +37,12 @@ namespace YOBA_Web
             #region Autentification
             services.AddDbContext<YOBA_IdentityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(connectionString)));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>().AddDefaultUI()
                 .AddEntityFrameworkStores<YOBA_IdentityContext>();
             #endregion
 
             services.AddControllers();
+            services.AddTokenAuthentication(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -67,8 +69,10 @@ namespace YOBA_Web
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
             app.UseAuthentication();
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
