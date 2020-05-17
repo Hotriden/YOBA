@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NETCore.MailKit.Extensions;
+using NETCore.MailKit.Infrastructure.Internal;
 using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF;
 using YOBA_LibraryData.DAL;
@@ -26,23 +29,51 @@ namespace YOBA_Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = Configuration.GetConnectionString("YOBA_DbConnection");
 
             #region Data access layer
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddDbContext<YOBAContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<YOBAContext>(config => config.UseSqlServer(Configuration.GetConnectionString("YOBA_DbConnection"))); 
             #endregion
 
             #region Autentification
             services.AddDbContext<YOBA_IdentityContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString(connectionString)));
-            services.AddDefaultIdentity<IdentityUser>().AddDefaultUI()
-                .AddEntityFrameworkStores<YOBA_IdentityContext>();
+                options.UseSqlServer(Configuration.GetConnectionString("YOBA_IdentityContext")));
+            //services.AddDefaultIdentity<IdentityUser>().AddDefaultUI()
+            //    .AddEntityFrameworkStores<YOBA_IdentityContext>();
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie(options => options.LoginPath = new PathString("/Identity/Login")); // CANCER JUST FOR TEST
+            //services.AddControllersWithViews(); // CANCER JUST FOR TEST
+            services.AddIdentity<IdentityUser, IdentityRole>(config =>
+            {
+                config.Password.RequiredLength = 4;
+                config.Password.RequireDigit = false;
+                config.Password.RequireUppercase = false;
+                config.Password.RequireNonAlphanumeric = false;
+                config.SignIn.RequireConfirmedEmail = true;
+            })
+                .AddEntityFrameworkStores<YOBA_IdentityContext> ()
+                .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.Cookie.Name = "Identity.Cookie";
+                config.LoginPath = "/Identity/Login";
+            });
+            services.AddMailKit(config => config.UseMailKit(Configuration.GetSection("Email").Get<MailKitOptions>()));
             #endregion
 
             services.AddControllers();
             services.AddTokenAuthentication(Configuration);
+
+            #region CORS
+            services.AddCors(config => config.AddPolicy(name: "Web_UI", builder =>
+              {
+                  builder.WithOrigins("https://yoba.netlify.app/", "109.87.117.71", "http://localhost")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+              }));
+            #endregion
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -69,6 +100,10 @@ namespace YOBA_Web
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            #region CORS
+            app.UseCors("Web_UI");
+            #endregion
 
             app.UseAuthentication();
             app.UseAuthorization();

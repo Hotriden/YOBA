@@ -137,12 +137,12 @@ C:\Temp\YOBA_react_branch\YOBA_Tests\bin\Debug\netcoreapp3.1\runtimes\unix\lib\n
 C:\Temp\YOBA_react_branch\YOBA_Tests\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
 C:\Temp\YOBA_react_branch\YOBA_Tests\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Temp\YOBA_react_branch\YOBA_Tests\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\testhost.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\NUnit3.TestAdapter.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\NUnit3.TestAdapter.pdb
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\nunit.engine.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\nunit.engine.api.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\testhost.exe
-C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\testhost.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\YOBA_Tests.deps.json
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\YOBA_Tests.runtimeconfig.json
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\YOBA_Tests.runtimeconfig.dev.json
@@ -188,7 +188,9 @@ C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\NLog.Extensions.Lo
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\NLog.Web.AspNetCore.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\nunit.framework.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll

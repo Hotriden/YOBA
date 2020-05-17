@@ -356,3 +356,15 @@ C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Release\netcoreapp3.1\staticwebassets\YO
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Release\netcoreapp3.1\YOBA_Web.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Release\netcoreapp3.1\YOBA_Web.pdb
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Release\netcoreapp3.1\YOBA_Web.genruntimeconfig.cache
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\MailKit.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\MimeKit.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\NETCore.MailKit.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
