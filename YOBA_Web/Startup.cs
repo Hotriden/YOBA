@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,8 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using NETCore.MailKit.Extensions;
 using NETCore.MailKit.Infrastructure.Internal;
+using System;
+using System.Text;
+using System.Threading.Tasks;
 using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF;
 using YOBA_LibraryData.DAL;
@@ -29,7 +34,6 @@ namespace YOBA_Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             #region Data access layer
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -39,11 +43,34 @@ namespace YOBA_Web
             #region Autentification
             services.AddDbContext<YOBA_IdentityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("YOBA_IdentityContext")));
-            //services.AddDefaultIdentity<IdentityUser>().AddDefaultUI()
-            //    .AddEntityFrameworkStores<YOBA_IdentityContext>();
-            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            //    .AddCookie(options => options.LoginPath = new PathString("/Identity/Login")); // CANCER JUST FOR TEST
-            //services.AddControllersWithViews(); // CANCER JUST FOR TEST
+
+            services.AddAuthentication("OAuth")
+                .AddJwtBearer("OAuth", config =>
+                {
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Constants.Secret));
+
+                    config.Events = new JwtBearerEvents()
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            if (context.Request.Query.ContainsKey("access_token"))
+                            {
+                                context.Token = context.Request.Query["access_token"];
+                            }
+
+                            return Task.CompletedTask;
+                        }
+                    };
+
+                    config.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ClockSkew = TimeSpan.Zero,
+                        ValidIssuer = Constants.Issuer,
+                        ValidAudience = Constants.Audiance,
+                        IssuerSigningKey = key,
+                    };
+                });
+
             services.AddIdentity<IdentityUser, IdentityRole>(config =>
             {
                 config.Password.RequiredLength = 4;
@@ -51,6 +78,10 @@ namespace YOBA_Web
                 config.Password.RequireUppercase = false;
                 config.Password.RequireNonAlphanumeric = false;
                 config.SignIn.RequireConfirmedEmail = true;
+
+                config.Lockout.AllowedForNewUsers = true;
+                config.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
+                config.Lockout.MaxFailedAccessAttempts = 3;
             })
                 .AddEntityFrameworkStores<YOBA_IdentityContext> ()
                 .AddDefaultTokenProviders();
@@ -58,8 +89,10 @@ namespace YOBA_Web
             services.ConfigureApplicationCookie(config =>
             {
                 config.Cookie.Name = "Identity.Cookie";
-                config.LoginPath = "/Identity/Login";
+                config.LoginPath = "/Login/Login";
+                config.LogoutPath = "/Api/Logout";
             });
+
             services.AddMailKit(config => config.UseMailKit(Configuration.GetSection("Email").Get<MailKitOptions>()));
             #endregion
 
@@ -68,11 +101,11 @@ namespace YOBA_Web
 
             #region CORS
             services.AddCors(config => config.AddPolicy(name: "Web_UI", builder =>
-              {
-                  builder.WithOrigins("https://yoba.netlify.app/", "109.87.117.71", "http://localhost")
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-              }));
+            {
+                builder.WithOrigins("https://yoba.netlify.app/", "109.87.117.71", "http://localhost")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+            }));
             #endregion
         }
 

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Authentication;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace YOBA_Web.Areas.Identity.Data
 {
@@ -6,12 +8,7 @@ namespace YOBA_Web.Areas.Identity.Data
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        [Required(ErrorMessage = "Email is required")]
-        [EmailAddress]
         public string Email { get; set; }
-
-        [Required(ErrorMessage = "Password is required")]
-        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

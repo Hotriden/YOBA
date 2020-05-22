@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YOBA_LibraryData.BLL.Entities.Supply;
@@ -11,6 +11,7 @@ using YOBA_LibraryData.BLL.Interfaces;
 namespace YOBA_Web.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class WarehouseController : ControllerBase
     {
