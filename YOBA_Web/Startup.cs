@@ -86,12 +86,12 @@ namespace YOBA_Web
                 .AddEntityFrameworkStores<YOBA_IdentityContext> ()
                 .AddDefaultTokenProviders();
 
-            services.ConfigureApplicationCookie(config =>
-            {
-                config.Cookie.Name = "Identity.Cookie";
-                config.LoginPath = "/Login/Login";
-                config.LogoutPath = "/Api/Logout";
-            });
+            //services.ConfigureApplicationCookie(config =>
+            //{
+            //    config.Cookie.Name = "Identity.Cookie";
+            //    config.LoginPath = "/Login/Login";
+            //    config.LogoutPath = "/Api/Logout";
+            //});
 
             services.AddMailKit(config => config.UseMailKit(Configuration.GetSection("Email").Get<MailKitOptions>()));
             #endregion
@@ -102,7 +102,7 @@ namespace YOBA_Web
             #region CORS
             services.AddCors(config => config.AddPolicy(name: "Web_UI", builder =>
             {
-                builder.WithOrigins("https://yoba.netlify.app/", "109.87.117.71", "http://localhost")
+                builder.WithOrigins("https://yoba.netlify.app/", "http://localhost:3000")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
             }));
