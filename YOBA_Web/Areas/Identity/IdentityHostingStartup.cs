@@ -14,7 +14,7 @@ namespace YOBA_Web.Areas.Identity
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<YOBA_IdentityContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("YOBA_IdentityContextConnection")));
+                        context.Configuration.GetConnectionString("YOBA_DbConnection")));
             });
         }
     }

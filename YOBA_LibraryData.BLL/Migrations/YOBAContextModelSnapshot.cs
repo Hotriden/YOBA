@@ -15,7 +15,7 @@ namespace YOBA_LibraryData.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -23,21 +23,31 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
 
                     b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,2)")
+                        .HasMaxLength(10)
+                        .IsUnicode(false);
 
                     b.HasKey("Id");
 
@@ -48,18 +58,24 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(18,2)");
@@ -73,20 +89,27 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Percent");
+                    b.Property<double>("Percent")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -97,28 +120,38 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerEmail")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerLastName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CustomerName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TelephoneNumber");
+                    b.Property<string>("TelephoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerId");
 
@@ -129,32 +162,44 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CustomerId");
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ManagerEmployeeId");
+                    b.Property<int>("ManagerEmployeeId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("OrderIdentity");
+                    b.Property<string>("OrderIdentity")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("OrderSum")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("OrderTime");
+                    b.Property<DateTime>("OrderTime")
+                        .HasColumnType("datetime2");
 
-                    b.Property<bool>("Paid");
+                    b.Property<bool>("Paid")
+                        .HasColumnType("bit");
 
-                    b.Property<int>("ReceiptId");
+                    b.Property<int>("ReceiptId")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("Shipped");
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -171,26 +216,36 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CusmoterCustomerId");
+                    b.Property<int?>("CusmoterCustomerId")
+                        .HasColumnType("int");
 
                     b.Property<string>("IdentialPayNumber")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderId");
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("PayTime");
+                    b.Property<DateTime>("PayTime")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int?>("SupplierId");
+                    b.Property<int?>("SupplierId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(18,2)");
@@ -210,18 +265,24 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.Property<int>("BranchId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BranchName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("BranchId");
 
@@ -232,32 +293,42 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BranchId");
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Position")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Sallery")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TelephoneNumber")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeId");
 
@@ -270,36 +341,49 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.Property<int>("ReceiptId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Cost");
+                    b.Property<decimal>("Cost")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DocumentNumber")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Paid");
+                    b.Property<bool>("Paid")
+                        .HasColumnType("bit");
 
-                    b.Property<decimal?>("Price");
+                    b.Property<decimal?>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ReceiptName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ReceiptValue")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<bool>("Shipped");
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
 
-                    b.Property<int?>("SupplierId");
+                    b.Property<int?>("SupplierId")
+                        .HasColumnType("int");
 
-                    b.Property<int?>("WareHouseId");
+                    b.Property<int?>("WareHouseId")
+                        .HasColumnType("int");
 
                     b.HasKey("ReceiptId");
 
@@ -314,23 +398,31 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.Property<int>("SupplierId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SupplierName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TelephoneNumber");
+                    b.Property<string>("TelephoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SupplierId");
 
@@ -341,25 +433,38 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
 
-                    b.Property<DateTime>("Created");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedBy");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LastModified");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("LastModifiedBy");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("ProductOportunity");
+                    b.Property<bool>("ProductOportunity")
+                        .HasColumnType("bit")
+                        .HasMaxLength(5)
+                        .IsUnicode(false);
 
-                    b.Property<int?>("StockManEmployeeId");
+                    b.Property<int?>("StockManEmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("WareHouseName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -368,19 +473,59 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.ToTable("WareHouses");
                 });
 
+            modelBuilder.Entity("YOBA_LibraryData.DAL.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ConfirmPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Password")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("YOBA_LibraryData.DAL.Entities.UserLog", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Message");
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ObjectMessage");
+                    b.Property<string>("ObjectMessage")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Time");
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -396,12 +541,14 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.HasOne("YOBA_LibraryData.BLL.Entities.Staff.Employee", "Manager")
                         .WithMany()
                         .HasForeignKey("ManagerEmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.Receipt", "Receipt")
                         .WithMany()
                         .HasForeignKey("ReceiptId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Sell.Payment", b =>
@@ -414,7 +561,7 @@ namespace YOBA_LibraryData.DAL.Migrations
                         .WithMany()
                         .HasForeignKey("OrderId");
 
-                    b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.Supplier")
+                    b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.Supplier", null)
                         .WithMany("Payments")
                         .HasForeignKey("SupplierId");
                 });
@@ -424,16 +571,17 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.HasOne("YOBA_LibraryData.BLL.Entities.Staff.Branch", "Branch")
                         .WithMany("Employees")
                         .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Supply.Receipt", b =>
                 {
-                    b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.Supplier")
+                    b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.Supplier", null)
                         .WithMany("Entrances")
                         .HasForeignKey("SupplierId");
 
-                    b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.WareHouse")
+                    b.HasOne("YOBA_LibraryData.BLL.Entities.Supply.WareHouse", null)
                         .WithMany("Receipts")
                         .HasForeignKey("WareHouseId");
                 });

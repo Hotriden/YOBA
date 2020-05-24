@@ -15,11 +15,6 @@ namespace YOBA_LibraryData.DAL
             Database.EnsureCreated(); 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<WareHouse>().Property(e => e.Id).ValueGeneratedOnAdd();
-        }
-
         public virtual DbSet<Expence> Expences { get; set; }
         public virtual DbSet<Income> Incomes { get; set; }
         public virtual DbSet<Tax> Taxes { get; set; }
@@ -32,5 +27,34 @@ namespace YOBA_LibraryData.DAL
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<WareHouse> WareHouses { get; set; }
         public virtual DbSet<UserLog> ClientLogs { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Expence>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Value)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<WareHouse>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ProductOportunity)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+            });
+        }
     }
 }

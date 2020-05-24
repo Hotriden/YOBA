@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,6 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using NETCore.MailKit.Extensions;
+using NETCore.MailKit.Infrastructure.Internal;
+using System;
+using System.Text;
+using System.Threading.Tasks;
 using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF;
 using YOBA_LibraryData.DAL;
@@ -26,23 +34,79 @@ namespace YOBA_Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = Configuration.GetConnectionString("YOBA_DbConnection");
-
             #region Data access layer
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddDbContext<YOBAContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<YOBAContext>(config => config.UseSqlServer(Configuration.GetConnectionString("YOBA_DbConnection"))); 
             #endregion
 
             #region Autentification
             services.AddDbContext<YOBA_IdentityContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString(connectionString)));
-            services.AddDefaultIdentity<IdentityUser>().AddDefaultUI()
-                .AddEntityFrameworkStores<YOBA_IdentityContext>();
+                options.UseSqlServer(Configuration.GetConnectionString("YOBA_IdentityContext")));
+
+            services.AddAuthentication("OAuth")
+                .AddJwtBearer("OAuth", config =>
+                {
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Constants.Secret));
+
+                    config.Events = new JwtBearerEvents()
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            if (context.Request.Query.ContainsKey("access_token"))
+                            {
+                                context.Token = context.Request.Query["access_token"];
+                            }
+
+                            return Task.CompletedTask;
+                        }
+                    };
+
+                    config.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ClockSkew = TimeSpan.Zero,
+                        ValidIssuer = Constants.Issuer,
+                        ValidAudience = Constants.Audiance,
+                        IssuerSigningKey = key,
+                    };
+                });
+
+            services.AddIdentity<IdentityUser, IdentityRole>(config =>
+            {
+                config.Password.RequiredLength = 4;
+                config.Password.RequireDigit = false;
+                config.Password.RequireUppercase = false;
+                config.Password.RequireNonAlphanumeric = false;
+                config.SignIn.RequireConfirmedEmail = true;
+
+                config.Lockout.AllowedForNewUsers = true;
+                config.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
+                config.Lockout.MaxFailedAccessAttempts = 3;
+            })
+                .AddEntityFrameworkStores<YOBA_IdentityContext> ()
+                .AddDefaultTokenProviders();
+
+            //services.ConfigureApplicationCookie(config =>
+            //{
+            //    config.Cookie.Name = "Identity.Cookie";
+            //    config.LoginPath = "/Login/Login";
+            //    config.LogoutPath = "/Api/Logout";
+            //});
+
+            services.AddMailKit(config => config.UseMailKit(Configuration.GetSection("Email").Get<MailKitOptions>()));
             #endregion
 
             services.AddControllers();
             services.AddTokenAuthentication(Configuration);
+
+            #region CORS
+            services.AddCors(config => config.AddPolicy(name: "Web_UI", builder =>
+            {
+                builder.WithOrigins("https://yoba.netlify.app/", "http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+            }));
+            #endregion
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -69,6 +133,10 @@ namespace YOBA_Web
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            #region CORS
+            app.UseCors("Web_UI");
+            #endregion
 
             app.UseAuthentication();
             app.UseAuthorization();
