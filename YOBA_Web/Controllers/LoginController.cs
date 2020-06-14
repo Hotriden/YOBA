@@ -1,15 +1,11 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using YOBA_Web.Areas.Identity.Data;
-using YOBA_Web.Models;
 using YOBA_Web.Models.JwtAuth;
 
 namespace YOBA_Web.Controllers
@@ -21,15 +17,18 @@ namespace YOBA_Web.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IConfiguration _config;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public LoginController(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            IConfiguration config)
+            IConfiguration config,
+            IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _config = config;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public string Index()
@@ -37,11 +36,6 @@ namespace YOBA_Web.Controllers
             return "Home page";
         }
 
-        [Authorize]
-        public string Secret()
-        {
-            return "This is secret just for autorized users";
-        }
 
         [HttpPost("SignIn")]
         public async Task<ActionResult> Login(UserModel userModel)
@@ -68,32 +62,13 @@ namespace YOBA_Web.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet("GetToken")]
-        public IActionResult GetJwt(string email)
+        [Authorize]
+        [HttpGet("GetUser")]
+        public async Task<ActionResult> GetUser()
         {
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, "some_id"),
-                new Claim("granny", "cookie")
-            };
-
-            var secretBytes = Encoding.UTF8.GetBytes(Constants.Secret);
-            var key = new SymmetricSecurityKey(secretBytes);
-            var algorithm = SecurityAlgorithms.HmacSha256;
-
-            var signingCredentials = new SigningCredentials(key, algorithm);
-
-            var token = new JwtSecurityToken(
-                Constants.Issuer,
-                Constants.Audiance,
-                claims,
-                notBefore: DateTime.Now,
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials);
-
-            var tokenJson = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return Ok(new { access_token = tokenJson });
+            string userEmail = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email).Value;
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            return StatusCode(200, user);
         }
     }
 }

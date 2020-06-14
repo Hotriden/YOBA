@@ -23,8 +23,15 @@ namespace YOBA_Web.Models
         public static string VerificationMessage(string userName, string link)
         {
             string url = "https://yoba.netlify.app/";
-            return $"Hello {userName}! There is jus final step to validate your account on <a href=\"{url}\">Your Own Business Application</a>. Click on this " +
+            return $"Hello {userName}! There is just a final step to validate your account on <a href=\"{url}\">Your Own Business Application</a>. Click on this " +
                 $"verify <a href=\"{link}\">link</a> for finish your registration";
+        }
+
+        public static string RecoverMessage(string userName, string link)
+        {
+            string url = "https://yoba.netlify.app/";
+            return $"Hello {userName}! For recover your password on <a href=\"{url}\">Your Own Business Application</a>. Click on this " +
+                $"<a href=\"{link}\">link</a>";
         }
     }
 }
