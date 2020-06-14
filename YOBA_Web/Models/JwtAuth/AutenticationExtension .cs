@@ -20,13 +20,15 @@ namespace YOBA_Web.Models.JwtAuth
             })
             .AddJwtBearer(x =>
             {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     IssuerSigningKey = new SymmetricSecurityKey(key),
+                    //IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config["JwtConfig:secret"])),
+                    ValidateIssuerSigningKey = true,
                     ValidateIssuer = false,
                     ValidateAudience = false,
-                    //ValidIssuer = "localhost",
-                    //ValidAudience = "localhost"
                     };
             });
 
