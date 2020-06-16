@@ -49,11 +49,12 @@ namespace YOBA_Web.Controllers
             var result = await _signInManager.PasswordSignInAsync(user, userModel.Password, false, false);
             if (result.Succeeded)
             {
-                return StatusCode(200, "ok");
+                var jwt = new JwtService(_config);
+                var token = jwt.GenerateSecurityToken(userModel.Email);
+                return StatusCode(200, token);
             }
-            var jwt = new JwtService(_config);
-            var token = jwt.GenerateSecurityToken(userModel.Email);
-            return StatusCode(200, token);
+            return StatusCode(401, "Wrong email or password");
+            
         }
 
         public async Task<IActionResult> LogOut()

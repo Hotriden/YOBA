@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using NETCore.MailKit.Core;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using YOBA_Web.Areas.Identity.Data;
 using YOBA_Web.Models;
+using YOBA_Web.Models.JwtAuth;
 
 namespace YOBA_Web.Controllers
 {
@@ -15,86 +18,65 @@ namespace YOBA_Web.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailService _emailService;
+        private readonly IAntiforgery _antiforgery;
 
         public RecoverController(
             UserManager<IdentityUser> userManager,
-            IEmailService emailService)
+            IEmailService emailService, IAntiforgery antiforgery)
         {
             _userManager = userManager;
             _emailService = emailService;
+            _antiforgery = antiforgery;
         }
 
         [HttpPost("Recover")]
-        public async Task<ActionResult> Recover(UserModel identityUser)
+        public async Task<ActionResult> Recover(ForgotPasswordModel model)
         {
-            if (Verification.VerifyEmail(identityUser.Email) == false)
+            if (Verification.VerifyEmail(model.Email) == false)
             {
                 return StatusCode(409, "Incorrect mail address");
             }
 
-            var findEmail = _userManager.FindByEmailAsync(identityUser.Email).Result;
-
-            var user = new IdentityUser
-            {
-                UserName = identityUser.FirstName,
-                Email = identityUser.Email,
-            };
+            var findEmail = _userManager.FindByEmailAsync(model.Email).Result;
 
             if (findEmail != null)
             {
-                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var encodedToken = Encoding.UTF8.GetBytes(token);
-                var validToken = WebEncoders.Base64UrlEncode(encodedToken);
+                var token = await _userManager.GeneratePasswordResetTokenAsync(findEmail);
 
-                string url = "https://localhost:3000" + $"/Recover{validToken}";
+                string url = "http://localhost:3000" + $"/CreatePassword/'{model.Email}'{token}";
 
-                await _emailService.SendAsync(identityUser.Email, "Recover password", 
-                    Verification.RecoverMessage(identityUser.FirstName, url), true);
-                return StatusCode(200, $"On {identityUser.Email} was send letter for recover your password.");
+                await _emailService.SendAsync(findEmail.Email, "Recover password", 
+                    Verification.RecoverMessage(findEmail.UserName, url), true);
+                return StatusCode(200, $"On {findEmail.Email} was send letter for recover your password.");
             }
 
             return StatusCode(400, "SomeThingGoneWrong");
         }
 
-        [HttpPost("Changepass")]
-        public async Task<ActionResult> ChangePassword(UserModel identityUser)
+        [HttpPost("ResetPassword")]
+        public async Task<ActionResult> ResetPassword(ResetPasswordModel model)
         {
-            if (Verification.VerifyEmail(identityUser.Email) == false)
+            if (Verification.VerifyEmail(model.Email) == false)
             {
                 return StatusCode(409, "Incorrect mail address");
             }
 
-            var findEmail = _userManager.FindByEmailAsync(identityUser.Email).Result;
+            var user = _userManager.FindByEmailAsync(model.Email).Result;
 
-            var user = new IdentityUser
+            if (user != null)
             {
-                UserName = identityUser.FirstName,
-                Email = identityUser.Email,
-            };
-
-            if (findEmail != null)
-            {
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var link = Url.Action(nameof(RecoverPassword), "Recover", new { userId = user.Id, code },
-                    Request.Scheme, Request.Host.ToString());
-                await _emailService.SendAsync(identityUser.Email, "Recover password",
-                    Verification.RecoverMessage(identityUser.FirstName, link), true);
-                return StatusCode(200, $"On {identityUser.Email} was send letter for recover your password.");
+                var verify = _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", model.Token);
+                if (verify.Result)
+                {
+                    var code = await _userManager.ResetPasswordAsync(user, model.Token, model.ConfirmPassword);
+                    if (code.Succeeded)
+                    {
+                        return StatusCode(200, $"On {user.Email} password was successfully changed");
+                    }
+                }
+                return StatusCode(200, "You changed your password by this link. Try again");
             }
-
-            return StatusCode(400, "SomeThingGoneWrong");
-        }
-
-        public async Task<ActionResult> RecoverPassword(string userId, string code)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return StatusCode(400, "User not found");
-            var result = await _userManager.ConfirmEmailAsync(user, code);
-            if (result.Succeeded)
-            {
-                return StatusCode(200, "User successful created");
-            }
-            return StatusCode(400, "SomeThingGoneWrong");
+            return StatusCode(400, "Something gone wrong");
         }
     }
 }
