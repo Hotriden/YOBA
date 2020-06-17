@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,10 +35,11 @@ namespace YOBA_Web
             #region Data access layer
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddDbContext<YOBAContext>(config => config.UseSqlServer(Configuration.GetConnectionString("YOBA_DbConnection"))); 
+            services.AddDbContext<YOBAContext>(config => config.UseSqlServer(Configuration.GetConnectionString("YOBA_DbConnection")));
             #endregion
 
             #region Autentification
+
             services.AddDbContext<YOBA_IdentityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("YOBA_IdentityContext")));
 
@@ -57,12 +60,20 @@ namespace YOBA_Web
                 .AddEntityFrameworkStores<YOBA_IdentityContext> ()
                 .AddDefaultTokenProviders();
 
+            services.AddAntiforgery(o => {
+                o.Cookie.Name = "X-CSRF-TOKEN";
+            });
+
+
+            services.Configure<DataProtectionTokenProviderOptions>(opt =>
+                opt.TokenLifespan = TimeSpan.FromHours(2));
+
             services.AddMailKit(config => config.UseMailKit(Configuration.GetSection("Email").Get<MailKitOptions>()));
             #endregion
 
             services.AddControllers();
             services.AddTokenAuthentication(Configuration);
-
+            services.Configure<DataProtectionTokenProviderOptions>(opt => opt.TokenLifespan = TimeSpan.FromHours(2));
             #region CORS
             services.AddCors(config => config.AddPolicy(name: "Web_UI", builder =>
             {
@@ -73,7 +84,7 @@ namespace YOBA_Web
             #endregion
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IAntiforgery antiforgery)
         {
             if (env.IsDevelopment())
             {
@@ -111,6 +122,8 @@ namespace YOBA_Web
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }
