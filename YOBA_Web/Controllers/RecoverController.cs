@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Configuration;
 using NETCore.MailKit.Core;
-using System.Net;
-using System.Text;
 using System.Threading.Tasks;
-using YOBA_Web.Areas.Identity.Data;
 using YOBA_Web.Models;
 using YOBA_Web.Models.JwtAuth;
 
@@ -18,15 +14,16 @@ namespace YOBA_Web.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailService _emailService;
-        private readonly IAntiforgery _antiforgery;
+        private readonly string _webServerAddres;
 
         public RecoverController(
             UserManager<IdentityUser> userManager,
-            IEmailService emailService, IAntiforgery antiforgery)
+            IEmailService emailService,
+            IConfiguration config)
         {
             _userManager = userManager;
             _emailService = emailService;
-            _antiforgery = antiforgery;
+            _webServerAddres = config.GetSection("Web_UI").GetSection("Server").Value;
         }
 
         [HttpPost("Recover")]
@@ -43,7 +40,7 @@ namespace YOBA_Web.Controllers
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(findEmail);
 
-                string url = "http://localhost:3000" + $"/CreatePassword/'{model.Email}'{token}";
+                string url = _webServerAddres + $"/CreatePassword/'{model.Email}'{token}";
 
                 await _emailService.SendAsync(findEmail.Email, "Recover password", 
                     Verification.RecoverMessage(findEmail.UserName, url), true);
@@ -71,7 +68,7 @@ namespace YOBA_Web.Controllers
                     var code = await _userManager.ResetPasswordAsync(user, model.Token, model.ConfirmPassword);
                     if (code.Succeeded)
                     {
-                        return StatusCode(200, $"On {user.Email} password was successfully changed");
+                        return StatusCode(200, $"{user.UserName} your password was changed. Now you can log in.");
                     }
                 }
                 return StatusCode(200, "You changed your password by this link. Try again");

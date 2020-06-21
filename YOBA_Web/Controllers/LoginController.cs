@@ -42,10 +42,6 @@ namespace YOBA_Web.Controllers
         {
             var user = await _userManager.FindByEmailAsync(userModel.Email);
 
-            if (user == null)
-            {
-                return StatusCode(406, "User not found");
-            }
             var result = await _signInManager.PasswordSignInAsync(user, userModel.Password, false, false);
             if (result.Succeeded)
             {
@@ -54,7 +50,6 @@ namespace YOBA_Web.Controllers
                 return StatusCode(200, token);
             }
             return StatusCode(401, "Wrong email or password");
-            
         }
 
         public async Task<IActionResult> LogOut()
