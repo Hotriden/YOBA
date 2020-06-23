@@ -1,4 +1,4 @@
-![Yoba Logo](http://lurkmore.so/images/5/52/YOBA_PEGI_BATYA.png)
+![Yoba Logo](https://i.ya-webdesign.com/images/blue-letters-png-2.png)
 
 #YOBA_application
 YOBA - Your own business application it's way to make business easy on web. This is simple CRM enviroment to make first steps on business or do deal as small company for accounting and analyst.
