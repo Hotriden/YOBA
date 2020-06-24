@@ -12,7 +12,7 @@ namespace YOBA_Web.Controllers
 {
     [ApiController]
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/")]
     public class WarehouseController : ControllerBase
     {
         private IUnitOfWork _db;
@@ -24,27 +24,27 @@ namespace YOBA_Web.Controllers
             _logger = loggerFactory.CreateLogger<WarehouseController>();
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public ActionResult<List<WareHouse>> Get()
         {
             _logger.LogInformation("Log message in the GetAll() method");
             return _db.WareHouseRepository.GetAll().ToList();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{WareHouse/id}")]
         public ActionResult<WareHouse> Get(int id)
         {
             WareHouse wareHouse = _db.WareHouseRepository.GetById(id);
             if (wareHouse == null)
             {
-                _logger.LogInformation($"INFO: {DateTime.Now} {this.GetType()} Not Found");
+                _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Not Found");
                 return NotFound();
             }
-            _logger.LogInformation($"INFO: {DateTime.Now} {this.GetType()} Success");
+            _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Success");
             return new ObjectResult(wareHouse);
         }
 
-        [HttpPost]
+        [HttpPost("WareHousePost")]
         public async Task<ActionResult<WareHouse>> Post(WareHouse wareHouse)
         {
             if (wareHouse.WareHouseName == null)
@@ -59,7 +59,7 @@ namespace YOBA_Web.Controllers
             return Ok(wareHouse);
         }
 
-        [HttpPut]
+        [HttpPut("WareHousePut")]
         public ActionResult<WareHouse> Put(WareHouse wareHouse)
         {
             if (wareHouse == null)
@@ -75,7 +75,7 @@ namespace YOBA_Web.Controllers
             return Ok(wareHouse);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{Delete/id}")]
         public ActionResult<WareHouse> Delete(int id)
         {
             WareHouse wareHouse = _db.WareHouseRepository.GetById(id);
