@@ -4,9 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YOBA_LibraryData.BLL.Entities.Finance;
 using YOBA_LibraryData.BLL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace YOBA_Web.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class TaxController : Controller
