@@ -16,6 +16,7 @@ using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF;
 using YOBA_LibraryData.DAL;
 using YOBA_Web.Models;
+using YOBA_Web.Models.JwtAuth;
 
 namespace YOBA_Web
 {
@@ -38,11 +39,7 @@ namespace YOBA_Web
 
             #region Autentification
 
-            services.AddDbContext<YOBA_IdentityContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("YOBA_IdentityContext")));
-
-            services.AddHttpContextAccessor();
-
+            services.AddControllers();
             services.AddIdentity<IdentityUser, IdentityRole>(config =>
             {
                 config.Password.RequiredLength = 4;
@@ -55,20 +52,24 @@ namespace YOBA_Web
                 config.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
                 config.Lockout.MaxFailedAccessAttempts = 3;
             })
-                .AddEntityFrameworkStores<YOBA_IdentityContext> ()
+                .AddEntityFrameworkStores<YOBA_IdentityContext>()
                 .AddDefaultTokenProviders();
+            services.AddTokenAuthentication(Configuration);
+
+            services.AddDbContext<YOBA_IdentityContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("YOBA_IdentityContext")));
+
+            services.AddHttpContextAccessor();
+
+
 
             services.AddAntiforgery(o => {
                 o.Cookie.Name = "X-CSRF-TOKEN";
             });
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => Configuration.Bind("JwtSettings", options));
-
             services.AddMailKit(config => config.UseMailKit(Configuration.GetSection("Email").Get<MailKitOptions>()));
             #endregion
 
-            services.AddControllers();
             services.Configure<DataProtectionTokenProviderOptions>(opt => opt.TokenLifespan = TimeSpan.FromHours(1));
             #region CORS
             services.AddCors(config => config.AddPolicy(name: "Web_UI", builder =>
