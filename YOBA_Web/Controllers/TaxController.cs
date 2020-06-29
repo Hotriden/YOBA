@@ -26,7 +26,7 @@ namespace YOBA_Web.Controllers
             return db.TaxRepository.GetAll().ToList();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id?}")]
         public ActionResult<Tax> Get(int id)
         {
             Tax tax = db.TaxRepository.GetById(id);
@@ -64,7 +64,7 @@ namespace YOBA_Web.Controllers
         }
 
         // DELETE api/users/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id?}")]
         public ActionResult<Tax> Delete(int id)
         {
             Tax tax = db.TaxRepository.GetById(id);

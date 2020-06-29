@@ -7,7 +7,7 @@ using YOBA_LibraryData.DAL.Entities;
 
 namespace YOBA_LibraryData.DAL
 {
-    public class YOBAContext:DbContext
+    public class YOBAContext:DbContext, IContext
     { 
         public YOBAContext(DbContextOptions<YOBAContext> options) 
             : base(options) 
