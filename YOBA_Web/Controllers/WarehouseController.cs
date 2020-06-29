@@ -11,8 +11,7 @@ using YOBA_LibraryData.BLL.Interfaces;
 namespace YOBA_Web.Controllers
 {
     [ApiController]
-    [Authorize]
-    [Route("api/")]
+    [Route("api/WareHouse")]
     public class WarehouseController : ControllerBase
     {
         private IUnitOfWork _db;
@@ -24,6 +23,7 @@ namespace YOBA_Web.Controllers
             _logger = loggerFactory.CreateLogger<WarehouseController>();
         }
 
+        [Authorize]
         [HttpGet("GetAll")]
         public ActionResult<List<WareHouse>> Get()
         {
@@ -31,7 +31,7 @@ namespace YOBA_Web.Controllers
             return _db.WareHouseRepository.GetAll().ToList();
         }
 
-        [HttpGet("{WareHouse/id}")]
+        [HttpGet("{id?}")]
         public ActionResult<WareHouse> Get(int id)
         {
             WareHouse wareHouse = _db.WareHouseRepository.GetById(id);
@@ -44,7 +44,7 @@ namespace YOBA_Web.Controllers
             return new ObjectResult(wareHouse);
         }
 
-        [HttpPost("WareHousePost")]
+        [HttpPost("Post")]
         public async Task<ActionResult<WareHouse>> Post(WareHouse wareHouse)
         {
             if (wareHouse.WareHouseName == null)
@@ -59,7 +59,7 @@ namespace YOBA_Web.Controllers
             return Ok(wareHouse);
         }
 
-        [HttpPut("WareHousePut")]
+        [HttpPut("Put")]
         public ActionResult<WareHouse> Put(WareHouse wareHouse)
         {
             if (wareHouse == null)
@@ -75,7 +75,7 @@ namespace YOBA_Web.Controllers
             return Ok(wareHouse);
         }
 
-        [HttpDelete("{Delete/id}")]
+        [HttpDelete("{id?}")]
         public ActionResult<WareHouse> Delete(int id)
         {
             WareHouse wareHouse = _db.WareHouseRepository.GetById(id);

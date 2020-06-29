@@ -10,6 +10,7 @@ using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.BLL.Entities.Sell;
 using YOBA_LibraryData.DAL;
 using System.Threading.Tasks;
+using YOBA_LibraryData.BLL.UOF.Interfaces;
 
 namespace ProductServiceTest
 {
@@ -20,6 +21,8 @@ namespace ProductServiceTest
         {
             var mockDbSet = new Mock<DbSet<Branch>>();
             var mockContext = new Mock<YOBAContext>();
+
+            var testMoq = new Mock<IBranchRepository>();
 
             mockContext.Setup(c => c.Branches).Returns(mockDbSet.Object);
             var res = new BranchRepository(mockContext.Object);

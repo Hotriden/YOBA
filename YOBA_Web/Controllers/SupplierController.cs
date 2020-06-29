@@ -12,7 +12,7 @@ namespace YOBA_Web.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/")]
+    [Route("api/Supplier")]
     public class SupplierController : ControllerBase
     {
         private IUnitOfWork _db;
@@ -31,7 +31,7 @@ namespace YOBA_Web.Controllers
             return _db.SupplierRepository.GetAll().ToList();
         }
 
-        [HttpGet("{Supplier/id}")]
+        [HttpGet("{id?}")]
         public ActionResult<Supplier> Get(int id)
         {
             Supplier supplier = _db.SupplierRepository.GetById(id);
@@ -44,7 +44,7 @@ namespace YOBA_Web.Controllers
             return new ObjectResult(supplier);
         }
 
-        [HttpPost("SupplierPost")]
+        [HttpPost("Post")]
         public async Task<ActionResult<Supplier>> Post(Supplier supplier)
         {
             if (supplier.SupplierName == null)
@@ -59,7 +59,7 @@ namespace YOBA_Web.Controllers
             return Ok(supplier);
         }
 
-        [HttpPut("SupplierPut")]
+        [HttpPut("Put")]
         public ActionResult<Supplier> Put(Supplier supplier)
         {
             if (supplier == null)
@@ -75,7 +75,7 @@ namespace YOBA_Web.Controllers
             return Ok(supplier);
         }
 
-        [HttpDelete("{SupplierDelete/id}")]
+        [HttpDelete("{id?}")]
         public ActionResult<Supplier> Delete(int id)
         {
             Supplier supplier = _db.SupplierRepository.GetById(id);
