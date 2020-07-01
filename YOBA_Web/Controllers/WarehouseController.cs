@@ -10,6 +10,7 @@ using YOBA_LibraryData.BLL.Interfaces;
 
 namespace YOBA_Web.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/WareHouse")]
     public class WarehouseController : ControllerBase
@@ -23,12 +24,13 @@ namespace YOBA_Web.Controllers
             _logger = loggerFactory.CreateLogger<WarehouseController>();
         }
 
-        [Authorize]
         [HttpGet("GetAll")]
         public ActionResult<List<WareHouse>> Get()
         {
             _logger.LogInformation("Log message in the GetAll() method");
-            return _db.WareHouseRepository.GetAll().ToList();
+            var result = _db.WareHouseRepository.GetAll().ToList();
+            //var res2 = result.Select(a => a.Receipts.Sum(b => (decimal)(b.ReceiptValue)));
+            return result;
         }
 
         [HttpGet("{id?}")]

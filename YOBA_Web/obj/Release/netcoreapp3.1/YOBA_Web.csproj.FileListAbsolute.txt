@@ -348,3 +348,12 @@ C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.IdentityMod
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\web.config
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.Web.Razor.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.Web.Http.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.Web.Helpers.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.Web.WebPages.Razor.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.Web.WebPages.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\Newtonsoft.Json.Bson.dll

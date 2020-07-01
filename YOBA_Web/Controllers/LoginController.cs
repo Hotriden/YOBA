@@ -64,7 +64,7 @@ namespace YOBA_Web.Controllers
         {
             string userEmail = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Email).Value;
             var user = await _userManager.FindByEmailAsync(userEmail);
-            return StatusCode(200, user);
+            return StatusCode(200, user.UserName);
         }
     }
 }
