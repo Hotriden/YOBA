@@ -41,8 +41,7 @@ namespace YOBA_Web
 
             services.AddCors(config => config.AddPolicy(name: "Web_UI", builder =>
             {
-                //builder.WithOrigins("http://yoba.netlify.app/")
-                builder.WithOrigins("http://localhost:3000/")
+                builder.WithOrigins("http://yoba.netlify.app/")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
             }));

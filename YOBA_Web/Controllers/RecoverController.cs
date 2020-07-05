@@ -43,10 +43,10 @@ namespace YOBA_Web.Controllers
             if (findEmail != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(findEmail);
-                var encodedToken = Encoding.UTF8.GetBytes(token);
-                var validToken = WebEncoders.Base64UrlEncode(encodedToken);
+                //var encodedToken = Encoding.UTF8.GetBytes(token);
+                //var validToken = WebEncoders.Base64UrlEncode(encodedToken);
 
-                string url = _webSiteAddress + $"/CreatePassword/'{model.Email}'{validToken}";
+                string url = _webSiteAddress + $"/CreatePassword/'{model.Email}'{token}";
 
                 await _emailService.SendAsync(findEmail.Email, "Recover password", 
                     Verification.RecoverMessage(findEmail.UserName, url), true);

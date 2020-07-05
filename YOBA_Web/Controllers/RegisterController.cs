@@ -1,8 +1,6 @@
-﻿using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using NETCore.MailKit.Core;
 using YOBA_Web.Areas.Identity.Data;
@@ -11,7 +9,7 @@ using YOBA_Web.Models;
 namespace YOBA_Web.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/")]
     public class RegisterController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -28,7 +26,7 @@ namespace YOBA_Web.Controllers
             _webServerAddres = config.GetSection("Web_UI").GetSection("Server").Value;
         }
 
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<ActionResult> Post(UserModel identityUser)
         {
             if (Verification.VerifyEmail(identityUser.Email) == false)
@@ -66,9 +64,9 @@ namespace YOBA_Web.Controllers
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
-                return StatusCode(200, "User successful created");
+                return Redirect("https://yoba.netlify.app/Verify");
             }
-            return StatusCode(400, "Some Thing Gone Wrong");
+            return Redirect("https://yoba.netlify.app/VerifyError");
         }
     }
 }

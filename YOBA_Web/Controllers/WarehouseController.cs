@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YOBA_LibraryData.BLL.Entities.Supply;
@@ -25,18 +26,17 @@ namespace YOBA_Web.Controllers
         }
 
         [HttpGet("GetAll")]
-        public ActionResult<List<WareHouse>> Get()
+        public ActionResult<List<WareHouse>> GetAll(IdentityUser user)
         {
             _logger.LogInformation("Log message in the GetAll() method");
             var result = _db.WareHouseRepository.GetAll().ToList();
-            //var res2 = result.Select(a => a.Receipts.Sum(b => (decimal)(b.ReceiptValue)));
             return result;
         }
 
         [HttpGet("{id?}")]
-        public ActionResult<WareHouse> Get(int id)
+        public ActionResult<WareHouse> Get(IdentityUser user, WareHouse wareHouse)
         {
-            WareHouse wareHouse = _db.WareHouseRepository.GetById(id);
+            WareHouse _wareHouse = _db. .WareHouseRepository.GetById(user.Id);
             if (wareHouse == null)
             {
                 _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Not Found");

@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using YOBA_Web.Areas.Identity.Data;
+using YOBA_LibraryData.BLL.Interfaces;
+using YOBA_LibraryData.DAL.Entities.User;
 using YOBA_Web.Models.JwtAuth;
 
 namespace YOBA_Web.Controllers
@@ -38,15 +39,14 @@ namespace YOBA_Web.Controllers
 
 
         [HttpPost("SignIn")]
-        public async Task<ActionResult> Login(UserModel userModel)
+        public async Task<ActionResult> Login(UserModel model)
         {
-            var user = await _userManager.FindByEmailAsync(userModel.Email);
-
-            var result = await _signInManager.PasswordSignInAsync(user, userModel.Password, false, false);
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
             if (result.Succeeded)
             {
                 var jwt = new JwtService(_config);
-                var token = jwt.GenerateSecurityToken(userModel.Email);
+                var token = jwt.GenerateSecurityToken(model.Email);
                 return StatusCode(200, token);
             }
             return StatusCode(401, "Wrong email or password");
