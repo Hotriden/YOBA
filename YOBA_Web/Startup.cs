@@ -37,9 +37,18 @@ namespace YOBA_Web
             services.AddDbContext<YOBAContext>(config => config.UseSqlServer(Configuration.GetConnectionString("YOBA_DbConnection")));
             #endregion
 
-            #region Autentification
+            #region CORS
 
+            services.AddCors(config => config.AddPolicy(name: "Web_UI", builder =>
+            {
+                //builder.WithOrigins("http://yoba.netlify.app/")
+                builder.WithOrigins("http://localhost:3000/")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+            }));
+            #endregion
             services.AddControllers();
+            #region Autentification
             services.AddIdentity<IdentityUser, IdentityRole>(config =>
             {
                 config.Password.RequiredLength = 4;
@@ -55,14 +64,9 @@ namespace YOBA_Web
                 .AddEntityFrameworkStores<YOBA_IdentityContext>()
                 .AddDefaultTokenProviders();
             services.AddTokenAuthentication(Configuration);
-
             services.AddDbContext<YOBA_IdentityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("YOBA_IdentityContext")));
-
             services.AddHttpContextAccessor();
-
-
-
             services.AddAntiforgery(o => {
                 o.Cookie.Name = "X-CSRF-TOKEN";
             });
@@ -71,14 +75,7 @@ namespace YOBA_Web
             #endregion
 
             services.Configure<DataProtectionTokenProviderOptions>(opt => opt.TokenLifespan = TimeSpan.FromHours(1));
-            #region CORS
-            services.AddCors(config => config.AddPolicy(name: "Web_UI", builder =>
-            {
-                builder.WithOrigins("https://yoba.netlify.app/", "http://localhost:3000")
-                .AllowAnyHeader()
-                .AllowAnyMethod();
-            }));
-            #endregion
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IAntiforgery antiforgery)

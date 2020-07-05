@@ -70,37 +70,5 @@ namespace YOBA_Web.Controllers
             }
             return StatusCode(400, "Some Thing Gone Wrong");
         }
-
-        [HttpPost("Recover")]
-        public async Task<ActionResult> Recover(UserModel identityUser)
-        {
-            if (Verification.VerifyEmail(identityUser.Email) == false)
-            {
-                return StatusCode(409, "Incorrect mail address");
-            }
-
-            var user = new IdentityUser
-            {
-                UserName = identityUser.FirstName,
-                Email = identityUser.Email,
-            };
-
-            var findEmail = _userManager.FindByEmailAsync(identityUser.Email).Result;
-
-            if (findEmail != null)
-            {
-                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var encodedToken = Encoding.UTF8.GetBytes(token);
-                var validToken = WebEncoders.Base64UrlEncode(encodedToken);
-
-                string url = _webServerAddres + $"/Recover?email={identityUser.Email}&token={validToken}";
-
-                await _emailService.SendAsync(identityUser.Email, "Recover password",
-                    Verification.RecoverMessage(identityUser.FirstName, url), true);
-                return StatusCode(200, $"On {identityUser.Email} was send email for recover your password.");
-            }
-
-            return StatusCode(400, "Some Thing Gone Wrong");
-        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using NETCore.MailKit.Core;
+using System.Text;
 using System.Threading.Tasks;
 using YOBA_Web.Models;
 using YOBA_Web.Models.JwtAuth;
@@ -14,7 +16,8 @@ namespace YOBA_Web.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailService _emailService;
-        private readonly string _webServerAddres;
+        private readonly string _webServerAddress;
+        private readonly string _webSiteAddress;
 
         public RecoverController(
             UserManager<IdentityUser> userManager,
@@ -23,7 +26,8 @@ namespace YOBA_Web.Controllers
         {
             _userManager = userManager;
             _emailService = emailService;
-            _webServerAddres = config.GetSection("Web_UI").GetSection("Server").Value;
+            _webServerAddress = config.GetSection("Web_UI").GetSection("Server").Value;
+            _webSiteAddress = config.GetSection("WEB_UI").GetSection("WebSite").Value;
         }
 
         [HttpPost("Recover")]
@@ -39,8 +43,10 @@ namespace YOBA_Web.Controllers
             if (findEmail != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(findEmail);
+                var encodedToken = Encoding.UTF8.GetBytes(token);
+                var validToken = WebEncoders.Base64UrlEncode(encodedToken);
 
-                string url = _webServerAddres + $"/CreatePassword/'{model.Email}'{token}";
+                string url = _webSiteAddress + $"/CreatePassword/'{model.Email}'{validToken}";
 
                 await _emailService.SendAsync(findEmail.Email, "Recover password", 
                     Verification.RecoverMessage(findEmail.UserName, url), true);
