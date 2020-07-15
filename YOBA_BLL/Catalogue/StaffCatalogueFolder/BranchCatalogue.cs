@@ -26,12 +26,12 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
             }
             else
             {
-                if (db.BranchRepository.GetById(item.BranchId) == null)
+                if (db.BranchRepository.GetById(UserId, item.BranchId) == null)
                 {
                     var _branch = item;
                     _branch.CreatedBy = UserId;
                     _branch.Created = DateTime.Now;
-                    db.BranchRepository.Add(_branch);
+                    db.BranchRepository.Add(UserId, _branch);
                     db.Save();
 
                     messageService.InfoMessage(this, $"{item} successful created", UserId);
@@ -45,13 +45,13 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 
         public void Delete(Branch item, string UserId)
         {
-            var result = db.BranchRepository.GetById(item.BranchId);
+            var result = db.BranchRepository.GetById(UserId, item.BranchId);
             if (result != null)
             {
                 var _branch = item;
                 _branch.LastModifiedBy = UserId;
                 _branch.LastModified = DateTime.Now;
-                db.BranchRepository.Delete(_branch);
+                db.BranchRepository.Delete(UserId, _branch);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{_branch.BranchName} successful deleted", UserId);
@@ -65,13 +65,13 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 
         public void Update(Branch item, string UserId)
         {
-            var result = db.BranchRepository.GetById(item.BranchId);
+            var result = db.BranchRepository.GetById(UserId, item.BranchId);
             if (result != null)
             {
                 var _branch = item;
                 _branch.LastModifiedBy = UserId;
                 _branch.LastModified = DateTime.Now;
-                db.BranchRepository.Change(_branch);
+                db.BranchRepository.Change(UserId, _branch);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item.BranchName} successful changed", UserId);
@@ -82,9 +82,9 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
             }
         }
 
-        public IEnumerable<Branch> GetAll()
+        public IEnumerable<Branch> GetAll(string UserId)
         {
-            return db.BranchRepository.GetAll();
+            return db.BranchRepository.GetAll(UserId);
         }
     }
 }

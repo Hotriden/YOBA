@@ -28,7 +28,7 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
             }
             else
             {
-                if (db.WareHouseRepository.GetById(wareHouse.Id) == null)
+                if (db.WareHouseRepository.GetById(UserId, wareHouse.Id) == null)
                 {
                     var _wareHouse = wareHouse;
                     _wareHouse.CreatedBy = UserId;
@@ -47,13 +47,13 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
 
         public void Delete(WareHouse wareHouse, string UserId)
         {
-            var result = db.WareHouseRepository.GetById(wareHouse.Id);
+            var result = db.WareHouseRepository.GetById(UserId, wareHouse.Id);
             if (result != null)
             {
                 var _wareHouse = wareHouse;
                 _wareHouse.LastModifiedBy = UserId;
                 _wareHouse.LastModified = DateTime.Now;
-                db.WareHouseRepository.Delete(_wareHouse);
+                db.WareHouseRepository.Delete(UserId, _wareHouse);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{result.WareHouseName} successful deleted", UserId);
@@ -64,20 +64,20 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
             }
         }
 
-        public IEnumerable<WareHouse> GetAll()
+        public IEnumerable<WareHouse> GetAll(string UserId)
         {
-            return db.WareHouseRepository.GetAll();
+            return db.WareHouseRepository.GetAll(UserId);
         }
 
         public void Update(WareHouse wareHouse, string UserId)
         {
-            var result = db.WareHouseRepository.GetById(wareHouse.Id);
+            var result = db.WareHouseRepository.GetById(UserId, wareHouse.Id);
             if (result != null)
             {
                 var _wareHouse = wareHouse;
                 _wareHouse.LastModifiedBy = UserId;
                 _wareHouse.LastModified = DateTime.Now;
-                db.WareHouseRepository.Change(_wareHouse);
+                db.WareHouseRepository.Change(UserId, _wareHouse);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{wareHouse.WareHouseName} successful changed", UserId);

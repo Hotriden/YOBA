@@ -36,9 +36,7 @@ namespace YOBA_Web
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<YOBAContext>(config => config.UseSqlServer(Configuration.GetConnectionString("YOBA_DbConnection")));
             #endregion
-
             #region CORS
-
             services.AddCors(config => config.AddPolicy(name: "Web_UI", builder =>
             {
                 builder.WithOrigins("http://yoba.netlify.app/")
@@ -65,16 +63,18 @@ namespace YOBA_Web
             services.AddTokenAuthentication(Configuration);
             services.AddDbContext<YOBA_IdentityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("YOBA_IdentityContext")));
+            #region Get User from context
+            services.AddDistributedMemoryCache();
             services.AddHttpContextAccessor();
+            services.AddSession();
+            #endregion
             services.AddAntiforgery(o => {
                 o.Cookie.Name = "X-CSRF-TOKEN";
             });
 
             services.AddMailKit(config => config.UseMailKit(Configuration.GetSection("Email").Get<MailKitOptions>()));
             #endregion
-
             services.Configure<DataProtectionTokenProviderOptions>(opt => opt.TokenLifespan = TimeSpan.FromHours(1));
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IAntiforgery antiforgery)
@@ -98,25 +98,20 @@ namespace YOBA_Web
             //loggerFactory.AddFile(Path.Combine(path, $"{DateTime.UtcNow.Date.ToString("yyyy/MM/dd")}_logs.txt"));
             //var logger = loggerFactory.CreateLogger("FileLogger");
             #endregion
-
             app.UseHttpsRedirection();
             app.UseRouting();
-
             #region CORS
             app.UseCors("Web_UI");
             #endregion
-
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
-
-
         }
     }
 }

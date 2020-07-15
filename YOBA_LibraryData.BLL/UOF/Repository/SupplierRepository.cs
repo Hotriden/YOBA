@@ -46,5 +46,30 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             throw new System.NotImplementedException();
         }
+
+        public IEnumerable<Supplier> GetAll(string userId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Add(string userId, Supplier item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Supplier GetById(string userId, int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Delete(string userId, Supplier item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Change(string userId, Supplier item)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

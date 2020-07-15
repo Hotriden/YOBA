@@ -10,6 +10,5 @@ namespace YOBA_BLL.Catalogue
         void Create(T item, string UserId);
         void Update(T item, string UserId);
         void Delete(T item, string UserId);
-        IEnumerable<T> GetAll();
     }
 }

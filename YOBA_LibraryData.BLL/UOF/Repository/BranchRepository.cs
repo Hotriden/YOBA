@@ -46,5 +46,30 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             return _context.Branches.First(branch => branch.BranchName == name);
         }
+
+        public IEnumerable<Branch> GetAll(string userId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Add(string userId, Branch item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Branch GetById(string userId, int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Delete(string userId, Branch item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Change(string userId, Branch item)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -25,12 +25,12 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
             }
             else
             {
-                if (db.TaxRepository.GetById(item.Id) == null)
+                if (db.TaxRepository.GetById(UserId, item.Id) == null)
                 {
                     var _income = item;
                     _income.CreatedBy = UserId;
                     _income.Created = DateTime.Now;
-                    db.IncomeRepository.Add(_income);
+                    db.IncomeRepository.Add(UserId, _income);
                     db.Save();
 
                     messageService.InfoMessage(this, $"{item} successful created", UserId);
@@ -44,13 +44,13 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
 
         public void Delete(Income item, string UserId)
         {
-            var result = db.IncomeRepository.GetById(item.Id);
+            var result = db.IncomeRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _income = item;
                 _income.LastModifiedBy = UserId;
                 _income.LastModified = DateTime.Now;
-                db.IncomeRepository.Delete(_income);
+                db.IncomeRepository.Delete(UserId, _income);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful deleted", UserId);
@@ -61,20 +61,20 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
             }
         }
 
-        public IEnumerable<Income> GetAll()
+        public IEnumerable<Income> GetAll(string UserId)
         {
-            return db.IncomeRepository.GetAll();
+            return db.IncomeRepository.GetAll(UserId);
         }
 
         public void Update(Income item, string UserId)
         {
-            var result = db.IncomeRepository.GetById(item.Id);
+            var result = db.IncomeRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _income = item;
                 _income.LastModifiedBy = UserId;
                 _income.LastModified = DateTime.Now;
-                db.IncomeRepository.Change(_income);
+                db.IncomeRepository.Change(UserId, _income);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful changed", UserId);

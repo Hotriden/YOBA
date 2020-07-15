@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NETCore.MailKit.Core;
-using YOBA_Web.Areas.Identity.Data;
+using YOBA_LibraryData.DAL.Entities.User;
 using YOBA_Web.Models;
 
 namespace YOBA_Web.Controllers

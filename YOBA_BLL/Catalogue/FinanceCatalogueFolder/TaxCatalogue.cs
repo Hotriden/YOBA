@@ -26,12 +26,12 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
             }
             else
             {
-                if (db.TaxRepository.GetById(item.Id) == null)
+                if (db.TaxRepository.GetById(UserId, item.Id) == null)
                 {
                     var _tax = item;
                     _tax.CreatedBy = UserId;
                     _tax.Created = DateTime.Now;
-                    db.TaxRepository.Add(_tax);
+                    db.TaxRepository.Add(UserId, _tax);
                     db.Save();
 
                     messageService.InfoMessage(this, $"{item} successful created", UserId);
@@ -45,13 +45,13 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
 
         public void Delete(Tax item, string UserId)
         {
-            var result = db.TaxRepository.GetById(item.Id);
+            var result = db.TaxRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _tax = item;
                 _tax.LastModifiedBy = UserId;
                 _tax.LastModified = DateTime.Now;
-                db.TaxRepository.Delete(_tax);
+                db.TaxRepository.Delete(UserId, _tax);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful deleted", UserId);
@@ -62,20 +62,20 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
             }
         }
 
-        public IEnumerable<Tax> GetAll()
+        public IEnumerable<Tax> GetAll(string UserId)
         {
-            return db.TaxRepository.GetAll();
+            return db.TaxRepository.GetAll(UserId);
         }
 
         public void Update(Tax item, string UserId)
         {
-            var result = db.TaxRepository.GetById(item.Id);
+            var result = db.TaxRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _tax = item;
                 _tax.LastModifiedBy = UserId;
                 _tax.LastModified = DateTime.Now;
-                db.TaxRepository.Change(_tax);
+                db.TaxRepository.Change(UserId, _tax);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful changed", UserId);

@@ -27,12 +27,12 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
             }
             else
             {
-                if (db.ReceiptRepository.GetById(receipt.ReceiptId) == null)
+                if (db.ReceiptRepository.GetById(UserId, receipt.ReceiptId) == null)
                 {
                     var _receipt = receipt;
                     _receipt.CreatedBy = UserId;
                     _receipt.Created = DateTime.Now;
-                    db.ReceiptRepository.Add(_receipt);
+                    db.ReceiptRepository.Add(UserId, _receipt);
                     db.Save();
 
                     messageService.InfoMessage(this, $"{receipt} successful created", UserId);
@@ -46,13 +46,13 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
 
         public void Delete(Receipt receipt, string UserId)
         {
-            var result = db.ReceiptRepository.GetById(receipt.ReceiptId);
+            var result = db.ReceiptRepository.GetById(UserId, receipt.ReceiptId);
             if (result != null)
             {
                 var _receipt = receipt;
                 _receipt.LastModifiedBy = UserId;
                 _receipt.LastModified = DateTime.Now;
-                db.ReceiptRepository.Delete(_receipt);
+                db.ReceiptRepository.Delete(UserId, _receipt);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{_receipt.ReceiptName} successful deleted", UserId);
@@ -66,13 +66,13 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
 
         public void Update(Receipt receipt, string UserId)
         {
-            var result = db.ReceiptRepository.GetById(receipt.ReceiptId);
+            var result = db.ReceiptRepository.GetById(UserId, receipt.ReceiptId);
             if (result != null)
             {
                 var _receipt = receipt;
                 _receipt.LastModifiedBy = UserId;
                 _receipt.LastModified = DateTime.Now;
-                db.ReceiptRepository.Change(_receipt);
+                db.ReceiptRepository.Change(UserId, _receipt);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{receipt.ReceiptName} successful changed", UserId);
@@ -83,9 +83,9 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
             }
         }
 
-        public IEnumerable<Receipt> GetAll()
+        public IEnumerable<Receipt> GetAll(string UserId)
         {
-            return db.ReceiptRepository.GetAll();
+            return db.ReceiptRepository.GetAll(UserId);
         }
     }
 }

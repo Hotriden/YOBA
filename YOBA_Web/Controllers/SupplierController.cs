@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using YOBA_LibraryData.BLL.Interfaces;
 using Microsoft.Extensions.Logging;
 using YOBA_LibraryData.BLL.Entities.Supply;
+using Microsoft.AspNetCore.Identity;
 
 namespace YOBA_Web.Controllers
 {
@@ -17,24 +18,35 @@ namespace YOBA_Web.Controllers
     {
         private IUnitOfWork _db;
         private readonly ILogger _logger;
-
-        public SupplierController(IUnitOfWork db, ILoggerFactory loggerFactory)
+        private readonly UserManager<IdentityUser> _userManager;
+        
+        public SupplierController(
+            IUnitOfWork db, 
+            ILoggerFactory loggerFactory,
+            UserManager<IdentityUser> userManager)
         {
             _db = db;
+            _userManager = userManager;
             _logger = loggerFactory.CreateLogger<WarehouseController>();
         }
 
+        private Task<IdentityUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
         [HttpGet("GetAll")]
-        public ActionResult<List<Supplier>> Get()
+        public async Task<ActionResult<List<Supplier>>> Get()
         {
+            var user = await GetCurrentUserAsync();
+            var userId = user?.Id;
             _logger.LogInformation("Log message in the GetAll() method");
-            return _db.SupplierRepository.GetAll().ToList();
+            return _db.SupplierRepository.GetAll(userId).ToList();
         }
 
         [HttpGet("{id?}")]
-        public ActionResult<Supplier> Get(int id)
+        public async Task<ActionResult<Supplier>> Get(int id)
         {
-            Supplier supplier = _db.SupplierRepository.GetById(id);
+            var user = await GetCurrentUserAsync();
+            var userId = user?.Id;
+            Supplier supplier = _db.SupplierRepository.GetById(userId, id);
             if (supplier == null)
             {
                 _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Not Found");
@@ -47,6 +59,8 @@ namespace YOBA_Web.Controllers
         [HttpPost("Post")]
         public async Task<ActionResult<Supplier>> Post(Supplier supplier)
         {
+            var user = await GetCurrentUserAsync();
+            var userId = user?.Id;
             if (supplier.SupplierName == null)
             {
                 return BadRequest();
@@ -55,35 +69,39 @@ namespace YOBA_Web.Controllers
             //{
             //    return BadRequest(); // Should change on "User already exist"
             //}
-            await _db.SupplierRepository.Add(supplier);
+            await _db.SupplierRepository.Add(userId, supplier);
             return Ok(supplier);
         }
 
         [HttpPut("Put")]
-        public ActionResult<Supplier> Put(Supplier supplier)
+        public async Task<ActionResult<Supplier>> Put(Supplier supplier)
         {
+            var user = await GetCurrentUserAsync();
+            var userId = user?.Id;
             if (supplier == null)
             {
                 return BadRequest();
             }
-            if (_db.SupplierRepository.GetById(supplier.SupplierId) == null)
+            if (_db.SupplierRepository.GetById(userId, supplier.SupplierId) == null)
             {
                 return NotFound();
             }
 
-            _db.SupplierRepository.Change(supplier);
+            await _db.SupplierRepository.Change(userId, supplier);
             return Ok(supplier);
         }
 
         [HttpDelete("{id?}")]
-        public ActionResult<Supplier> Delete(int id)
+        public async Task<ActionResult<Supplier>> Delete(int id)
         {
-            Supplier supplier = _db.SupplierRepository.GetById(id);
+            var user = await GetCurrentUserAsync();
+            var userId = user?.Id;
+            Supplier supplier = _db.SupplierRepository.GetById(userId, id);
             if (supplier == null)
             {
                 return NotFound();
             }
-            _db.SupplierRepository.Delete(supplier);
+            await _db.SupplierRepository.Delete(userId, supplier);
             return Ok(supplier);
         }
     }

@@ -41,5 +41,30 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             _context.Employees.Update(item);
             await _context.SaveChangesAsync();
         }
+
+        public IEnumerable<Employee> GetAll(string userId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Add(string userId, Employee item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Employee GetById(string userId, int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Delete(string userId, Employee item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Change(string userId, Employee item)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

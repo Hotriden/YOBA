@@ -47,5 +47,30 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             _context.Payments.Update(item);
             await _context.SaveChangesAsync();
         }
+
+        public IEnumerable<Payment> GetAll(string userId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Add(string userId, Payment item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Payment GetById(string userId, int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Delete(string userId, Payment item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Change(string userId, Payment item)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

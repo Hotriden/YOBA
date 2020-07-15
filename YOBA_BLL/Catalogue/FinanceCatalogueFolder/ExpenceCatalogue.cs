@@ -25,12 +25,12 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
             }
             else
             {
-                if (db.ExpenceRepository.GetById(item.Id) == null)
+                if (db.ExpenceRepository.GetById(UserId, item.Id) == null)
                 {
                     var _expence = item;
                     _expence.CreatedBy = UserId;
                     _expence.Created = DateTime.Now;
-                    db.ExpenceRepository.Add(_expence);
+                    db.ExpenceRepository.Add(UserId, _expence);
                     db.Save();
 
                     messageService.InfoMessage(this, $"{item} successful created", UserId);
@@ -44,13 +44,13 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
 
         public void Delete(Expence item, string UserId)
         {
-            var result = db.ExpenceRepository.GetById(item.Id);
+            var result = db.ExpenceRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _expence = item;
                 _expence.LastModifiedBy = UserId;
                 _expence.LastModified = DateTime.Now;
-                db.ExpenceRepository.Delete(_expence);
+                db.ExpenceRepository.Delete(UserId, _expence);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful deleted", UserId);
@@ -61,20 +61,20 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
             }
         }
 
-        public IEnumerable<Expence> GetAll()
+        public IEnumerable<Expence> GetAll(string UserId)
         {
-            return db.ExpenceRepository.GetAll();
+            return db.ExpenceRepository.GetAll(UserId);
         }
 
         public void Update(Expence item, string UserId)
         {
-            var result = db.ExpenceRepository.GetById(item.Id);
+            var result = db.ExpenceRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _expence = item;
                 _expence.LastModifiedBy = UserId;
                 _expence.LastModified = DateTime.Now;
-                db.ExpenceRepository.Change(_expence);
+                db.ExpenceRepository.Change(UserId, _expence);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful changed", UserId);

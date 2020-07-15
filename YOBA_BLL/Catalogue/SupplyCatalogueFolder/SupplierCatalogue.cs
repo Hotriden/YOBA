@@ -27,12 +27,12 @@ namespace YOBA_BLL.SupplyCatalogueFolder
             }
             else 
             { 
-                if (db.SupplierRepository.GetById(supplier.SupplierId) == null)
+                if (db.SupplierRepository.GetById(UserId, supplier.SupplierId) == null)
                 {
                     var _supplier = supplier;
                     _supplier.CreatedBy = UserId;
                     _supplier.Created = DateTime.Now;
-                    db.SupplierRepository.Add(_supplier);
+                    db.SupplierRepository.Add(UserId, _supplier);
                     db.Save();
 
                     messageService.InfoMessage(this, $"{supplier} successful created", UserId);
@@ -46,13 +46,13 @@ namespace YOBA_BLL.SupplyCatalogueFolder
 
         public void Update(Supplier supplier, string UserId)
         {
-            var result = db.SupplierRepository.GetById(supplier.SupplierId);
+            var result = db.SupplierRepository.GetById(UserId, supplier.SupplierId);
             if (result != null)
             {
                 var _supplier = supplier;
                 _supplier.LastModifiedBy = UserId;
                 _supplier.LastModified = DateTime.Now;
-                db.SupplierRepository.Change(_supplier);
+                db.SupplierRepository.Change(UserId, _supplier);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{result.SupplierName} successful changed", UserId);
@@ -65,13 +65,13 @@ namespace YOBA_BLL.SupplyCatalogueFolder
 
         public void Delete(Supplier supplier, string UserId)
         {
-            var result = db.SupplierRepository.GetById(supplier.SupplierId);
+            var result = db.SupplierRepository.GetById(UserId, supplier.SupplierId);
             if (result != null)
             {
                 var _supplier = supplier;
                 _supplier.LastModifiedBy = UserId;
                 _supplier.LastModified = DateTime.Now;
-                db.SupplierRepository.Delete(_supplier);
+                db.SupplierRepository.Delete(UserId, _supplier);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{result.SupplierName} successful deleted", UserId);
@@ -82,9 +82,9 @@ namespace YOBA_BLL.SupplyCatalogueFolder
             }
         }
 
-        public IEnumerable<Supplier> GetAll()
+        public IEnumerable<Supplier> GetAll(string UserId)
         {
-            return db.SupplierRepository.GetAll();
+            return db.SupplierRepository.GetAll(UserId);
         }
     }
 }
