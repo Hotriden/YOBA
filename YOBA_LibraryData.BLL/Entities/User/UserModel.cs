@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace YOBA_Web.Areas.Identity.Data
+﻿namespace YOBA_LibraryData.DAL.Entities.User
 {
     public class UserModel
     {

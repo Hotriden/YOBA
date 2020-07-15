@@ -41,5 +41,30 @@ namespace YOBA_LibraryData.DAL.UOF.Repository
             _context.Receipts.Update(item);
             await _context.SaveChangesAsync();
         }
+
+        public IEnumerable<Receipt> GetAll(string userId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Add(string userId, Receipt item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Receipt GetById(string userId, int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Delete(string userId, Receipt item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task Change(string userId, Receipt item)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -26,12 +26,12 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
             }
             else
             {
-                if (db.OrderRepository.GetById(item.Id) == null)
+                if (db.OrderRepository.GetById(UserId, item.Id) == null)
                 {
                     var _order = item;
                     _order.CreatedBy = UserId;
                     _order.Created = DateTime.Now;
-                    db.OrderRepository.Add(_order);
+                    db.OrderRepository.Add(UserId, _order);
                     db.Save();
 
                     messageService.InfoMessage(this, $"{item} successful created", UserId);
@@ -45,13 +45,13 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
 
         public void Delete(Order item, string UserId)
         {
-            var result = db.OrderRepository.GetById(item.Id);
+            var result = db.OrderRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _order = item;
                 _order.LastModifiedBy = UserId;
                 _order.LastModified = DateTime.Now;
-                db.OrderRepository.Delete(_order);
+                db.OrderRepository.Delete(UserId, _order);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful deleted", UserId);
@@ -62,20 +62,20 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
             }
         }
 
-        public IEnumerable<Order> GetAll()
+        public IEnumerable<Order> GetAll(string UserId)
         {
-            return db.OrderRepository.GetAll();
+            return db.OrderRepository.GetAll(UserId);
         }
 
         public void Update(Order item, string UserId)
         {
-            var result = db.OrderRepository.GetById(item.Id);
+            var result = db.OrderRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _order = item;
                 _order.LastModifiedBy = UserId;
                 _order.LastModified = DateTime.Now;
-                db.OrderRepository.Change(_order);
+                db.OrderRepository.Change(UserId, _order);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful changed", UserId);

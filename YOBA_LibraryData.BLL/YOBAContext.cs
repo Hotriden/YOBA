@@ -4,10 +4,11 @@ using YOBA_LibraryData.BLL.Entities.Sell;
 using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.DAL.Entities;
+using YOBA_LibraryData.DAL.Entities.User;
 
 namespace YOBA_LibraryData.DAL
 {
-    public class YOBAContext:DbContext, IContext
+    public class YOBAContext:DbContext
     { 
         public YOBAContext(DbContextOptions<YOBAContext> options) 
             : base(options) 
@@ -27,6 +28,7 @@ namespace YOBA_LibraryData.DAL
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<WareHouse> WareHouses { get; set; }
         public virtual DbSet<UserLog> ClientLogs { get; set; }
+        public virtual DbSet<UserModel> UserModels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

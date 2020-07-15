@@ -25,12 +25,12 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
             }
             else
             {
-                if (db.PaymentRepository.GetById(item.CustomerId) == null)
+                if (db.PaymentRepository.GetById(UserId, item.CustomerId) == null)
                 {
                     var _customer = item;
                     _customer.CreatedBy = UserId;
                     _customer.Created = DateTime.Now;
-                    db.CustomerRepository.Add(_customer);
+                    db.CustomerRepository.Add(UserId, _customer);
                     db.Save();
 
                     messageService.InfoMessage(this, $"{item} successful created", UserId);
@@ -44,13 +44,13 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
 
         public void Delete(Customer item, string UserId)
         {
-            var result = db.CustomerRepository.GetById(item.CustomerId);
+            var result = db.CustomerRepository.GetById(UserId, item.CustomerId);
             if (result != null)
             {
                 var _customer = item;
                 _customer.LastModifiedBy = UserId;
                 _customer.LastModified = DateTime.Now;
-                db.CustomerRepository.Delete(_customer);
+                db.CustomerRepository.Delete(UserId, _customer);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful deleted", UserId);
@@ -61,20 +61,20 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
             }
         }
 
-        public IEnumerable<Customer> GetAll()
+        public IEnumerable<Customer> GetAll(string UserId)
         {
-            return db.CustomerRepository.GetAll();
+            return db.CustomerRepository.GetAll(UserId);
         }
 
         public void Update(Customer item, string UserId)
         {
-            var result = db.CustomerRepository.GetById(item.CustomerId);
+            var result = db.CustomerRepository.GetById(UserId, item.CustomerId);
             if (result != null)
             {
                 var _customer = item;
                 _customer.LastModifiedBy = UserId;
                 _customer.LastModified = DateTime.Now;
-                db.CustomerRepository.Change(_customer);
+                db.CustomerRepository.Change(UserId, _customer);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful changed", UserId);

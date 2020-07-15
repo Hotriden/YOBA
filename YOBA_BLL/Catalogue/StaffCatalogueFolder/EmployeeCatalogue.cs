@@ -26,12 +26,12 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
             }
             else
             {
-                if (db.EmployeeRepository.GetById(item.EmployeeId) == null)
+                if (db.EmployeeRepository.GetById(UserId, item.EmployeeId) == null)
                 {
                     var _employee = item;
                     _employee.CreatedBy = UserId;
                     _employee.Created = DateTime.Now;
-                    db.EmployeeRepository.Add(_employee);
+                    db.EmployeeRepository.Add(UserId, _employee);
                     db.Save();
 
                     messageService.InfoMessage(this, $"{item} successful created", UserId);
@@ -45,13 +45,13 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 
         public void Delete(Employee item, string UserId)
         {
-            var result = db.EmployeeRepository.GetById(item.EmployeeId);
+            var result = db.EmployeeRepository.GetById(UserId, item.EmployeeId);
             if (result != null)
             {
                 var _employee = item;
                 _employee.LastModifiedBy = UserId;
                 _employee.LastModified = DateTime.Now;
-                db.EmployeeRepository.Delete(_employee);
+                db.EmployeeRepository.Delete(UserId, _employee);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{_employee.Name} successful deleted", UserId);
@@ -64,13 +64,13 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 
         public void Update(Employee item, string UserId)
         {
-            var result = db.EmployeeRepository.GetById(item.EmployeeId);
+            var result = db.EmployeeRepository.GetById(UserId, item.EmployeeId);
             if (result != null)
             {
                 var _employee = item;
                 _employee.LastModifiedBy = UserId;
                 _employee.LastModified = DateTime.Now;
-                db.EmployeeRepository.Change(_employee);
+                db.EmployeeRepository.Change(UserId, _employee);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item.Name} successful changed", UserId);
@@ -80,9 +80,9 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
                 messageService.InfoMessage(this, $"{item.Name} doesn't exist", UserId);
             }
         }
-        public IEnumerable<Employee> GetAll()
+        public IEnumerable<Employee> GetAll(string UserId)
         {
-            return db.EmployeeRepository.GetAll();
+            return db.EmployeeRepository.GetAll(UserId);
         }
     }
 }

@@ -25,12 +25,12 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
             }
             else
             {
-                if (db.PaymentRepository.GetById(item.Id) == null)
+                if (db.PaymentRepository.GetById(UserId, item.Id) == null)
                 {
                     var _payment = item;
                     _payment.CreatedBy = UserId;
                     _payment.Created = DateTime.Now;
-                    db.PaymentRepository.Add(_payment);
+                    db.PaymentRepository.Add(UserId, _payment);
                     db.Save();
 
                     messageService.InfoMessage(this, $"{item} successful created", UserId);
@@ -44,13 +44,13 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
 
         public void Delete(Payment item, string UserId)
         {
-            var result = db.PaymentRepository.GetById(item.Id);
+            var result = db.PaymentRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _payment = item;
                 _payment.LastModifiedBy = UserId;
                 _payment.LastModified = DateTime.Now;
-                db.PaymentRepository.Delete(_payment);
+                db.PaymentRepository.Delete(UserId, _payment);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful deleted", UserId);
@@ -61,20 +61,20 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
             }
         }
 
-        public IEnumerable<Payment> GetAll()
+        public IEnumerable<Payment> GetAll(string UserId)
         {
-            return db.PaymentRepository.GetAll();
+            return db.PaymentRepository.GetAll(UserId);
         }
 
         public void Update(Payment item, string UserId)
         {
-            var result = db.PaymentRepository.GetById(item.Id);
+            var result = db.PaymentRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _payment = item;
                 _payment.LastModifiedBy = UserId;
                 _payment.LastModified = DateTime.Now;
-                db.PaymentRepository.Change(_payment);
+                db.PaymentRepository.Change(UserId, _payment);
                 db.Save();
 
                 messageService.InfoMessage(this, $"{item} successful changed", UserId);
