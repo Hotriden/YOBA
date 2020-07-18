@@ -15,7 +15,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             _context = context;
         }
-        public async Task Add(WareHouse item)
+        public async Task Add(WareHouse item, string userId)
         {
             _context.Add(item);
             await _context.SaveChangesAsync();
@@ -28,9 +28,10 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<WareHouse> GetAll()
+        public IQueryable<WareHouse> GetAll(string userId)
         {
-            return _context.WareHouses;
+            var result = _context.WareHouses.Where(c => c.UserId == userId);
+            return result;
         }
 
         public WareHouse GetById(string id)
@@ -86,11 +87,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         }
 
         public WareHouse GetWareHouseByEmail(string email)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<WareHouse> GetAll(string userId)
         {
             throw new System.NotImplementedException();
         }

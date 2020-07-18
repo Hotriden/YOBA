@@ -26,9 +26,9 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Tax> GetAll()
+        public IQueryable<Tax> GetAll(string userId)
         {
-            return _context.Taxes;
+            return _context.Taxes.Where(c => c.UserId == userId);
         }
 
         public Tax GetById(int id)
@@ -43,11 +43,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         }
 
         public Tax GetByName(string name)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<Tax> GetAll(string userId)
         {
             throw new System.NotImplementedException();
         }

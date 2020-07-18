@@ -26,7 +26,7 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
             }
             else
             {
-                if (db.EmployeeRepository.GetById(UserId, item.EmployeeId) == null)
+                if (db.EmployeeRepository.GetById(UserId, item.Id) == null)
                 {
                     var _employee = item;
                     _employee.CreatedBy = UserId;
@@ -38,14 +38,14 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
                 }
                 else
                 {
-                    messageService.InfoMessage(this, $"{item.EmployeeId} already exist", UserId);
+                    messageService.InfoMessage(this, $"{item.Id} already exist", UserId);
                 }
             }
         }
 
         public void Delete(Employee item, string UserId)
         {
-            var result = db.EmployeeRepository.GetById(UserId, item.EmployeeId);
+            var result = db.EmployeeRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _employee = item;
@@ -64,7 +64,7 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 
         public void Update(Employee item, string UserId)
         {
-            var result = db.EmployeeRepository.GetById(UserId, item.EmployeeId);
+            var result = db.EmployeeRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _employee = item;

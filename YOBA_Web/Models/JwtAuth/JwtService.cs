@@ -19,7 +19,7 @@ namespace YOBA_Web.Models.JwtAuth
             _expDate = config.GetSection("JwtConfig").GetSection("expirationInMinutes").Value;
         }
 
-        public string GenerateSecurityToken(string email)
+        public string GenerateSecurityToken(string email, string id)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_secret);
@@ -27,7 +27,8 @@ namespace YOBA_Web.Models.JwtAuth
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Email, email)
+                    new Claim(ClaimTypes.Email, email),
+                    new Claim(ClaimTypes.NameIdentifier, id)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(double.Parse(_expDate)),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -40,16 +41,11 @@ namespace YOBA_Web.Models.JwtAuth
         public ClaimsPrincipal ValidateToken(string jwtToken)
         {
             IdentityModelEventSource.ShowPII = true;
-
             SecurityToken validatedToken;
             TokenValidationParameters validationParameters = new TokenValidationParameters();
-
             validationParameters.ValidateLifetime = true;
-
             validationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
-
             ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validatedToken);
-
             return principal;
         }
     }

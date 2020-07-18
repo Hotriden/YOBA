@@ -25,7 +25,7 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
             }
             else
             {
-                if (db.PaymentRepository.GetById(UserId, item.CustomerId) == null)
+                if (db.PaymentRepository.GetById(UserId, item.Id) == null)
                 {
                     var _customer = item;
                     _customer.CreatedBy = UserId;
@@ -37,14 +37,14 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
                 }
                 else
                 {
-                    messageService.InfoMessage(this, $"{item.CustomerId} already exist", UserId);
+                    messageService.InfoMessage(this, $"{item.Id} already exist", UserId);
                 }
             }
         }
 
         public void Delete(Customer item, string UserId)
         {
-            var result = db.CustomerRepository.GetById(UserId, item.CustomerId);
+            var result = db.CustomerRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _customer = item;
@@ -57,7 +57,7 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
             }
             else
             {
-                messageService.InfoMessage(this, $"{item.CustomerId} doesn't exist", UserId);
+                messageService.InfoMessage(this, $"{item.Id} doesn't exist", UserId);
             }
         }
 
@@ -68,7 +68,7 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
 
         public void Update(Customer item, string UserId)
         {
-            var result = db.CustomerRepository.GetById(UserId, item.CustomerId);
+            var result = db.CustomerRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _customer = item;
@@ -81,7 +81,7 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
             }
             else
             {
-                messageService.InfoMessage(this, $"{item.CustomerId} doesn't exist", UserId);
+                messageService.InfoMessage(this, $"{item.Id} doesn't exist", UserId);
             }
         }
     }

@@ -26,14 +26,14 @@ namespace YOBA_LibraryData.DAL.UOF.Repository
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Receipt> GetAll()
+        public IQueryable<Receipt> GetAll(string userId)
         {
             return _context.Receipts;
         }
 
         public Receipt GetById(int id)
         {
-            return _context.Receipts.First(receipt => receipt.ReceiptId == id);
+            return _context.Receipts.First(receipt => receipt.Id == id);
         }
 
         public async Task Change(Receipt item)
@@ -42,10 +42,6 @@ namespace YOBA_LibraryData.DAL.UOF.Repository
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Receipt> GetAll(string userId)
-        {
-            throw new System.NotImplementedException();
-        }
 
         public Task Add(string userId, Receipt item)
         {

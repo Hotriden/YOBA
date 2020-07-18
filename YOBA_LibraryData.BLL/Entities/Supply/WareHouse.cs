@@ -9,11 +9,7 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
     public class WareHouse: AuditableEntity
     {
         [Required]
-        public int Id { get; set; }
-        [Required]
         public string WareHouseName { get; set; }
-        [Required]
-        public IdentityUser User { get; set; }
         public string Address { get; set; }
         public Employee StockMan { get; set; }
         public IEnumerable<Receipt> Receipts { get; set; }

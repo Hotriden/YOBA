@@ -26,7 +26,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Expence> GetAll()
+        public IQueryable<Expence> GetAll(string userId)
         {
             return _context.Expences;
         }
@@ -43,11 +43,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         }
 
         public Expence GetByName(string name)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<Expence> GetAll(string userId)
         {
             throw new System.NotImplementedException();
         }

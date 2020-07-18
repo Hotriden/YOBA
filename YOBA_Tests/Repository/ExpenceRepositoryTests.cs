@@ -3,19 +3,18 @@ using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using YOBA_LibraryData.BLL;
 using YOBA_LibraryData.BLL.UOF.Repository;
 using FluentAssertions;
-using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.BLL.Entities.Finance;
 using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace ProductServiceTest
 {
     class ExpenceRepositoryTests
     {
         [Test]
-        public void ExpenceRepo_Add()
+        public async Task ExpenceRepo_Add()
         {
             var mockDbSet = new Mock<DbSet<Expence>>();
             var mockContext = new Mock<YOBAContext>();
@@ -23,8 +22,8 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Expences).Returns(mockDbSet.Object);
             var res = new ExpenceRepository(mockContext.Object);
 
-            res.Add(new Expence() { Id= 1, Name="Transport", Value=200 });
-            res.Add(new Expence() { Id= 2, Name="Rent", Value=50 });
+            await res.Add(new Expence() { Id= 1, Name="Transport", Value=200 });
+            await res.Add(new Expence() { Id= 2, Name="Rent", Value=50 });
 
             mockContext.Verify(s => s.Add(It.IsAny<Expence>()), Times.Exactly(2));
             mockContext.Verify(s => s.SaveChanges(), Times.Exactly(2));
@@ -58,9 +57,9 @@ namespace ProductServiceTest
         public void ExpenceRepo_GetAll()
         {
             var data = new List<Expence>() {
-                new Expence() {Id=1, Name="Transport", Value=200 },
-                new Expence() {Id=2, Name="Rent", Value=50},
-                new Expence() {Id=5, Name="Market Promotion", Value=150},
+                new Expence() {Id=1, Name="Transport", Value=200, UserId="vasya33" },
+                new Expence() {Id=2, Name="Rent", Value=50, UserId="vasya33"},
+                new Expence() {Id=5, Name="Market Promotion", Value=150, UserId="vasya33"},
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Expence>>();
@@ -73,7 +72,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Expences).Returns(mockDbSet.Object);
 
             var repo = new ExpenceRepository(context.Object);
-            var result = repo.GetAll().ToList();
+            var result = repo.GetAll("vasya33").ToList();
 
             result.Should().AllBeOfType(typeof(Expence));
             result.Should().HaveCount(3);
@@ -81,7 +80,7 @@ namespace ProductServiceTest
         }
 
         [Test]
-        public void ExpenceRepo_Delete()
+        public async Task ExpenceRepo_Delete()
         {
             var data = new List<Expence>() {
                 new Expence() {Id=1, Name="Transport", Value=200 },
@@ -100,7 +99,7 @@ namespace ProductServiceTest
 
             var repo = new ExpenceRepository(context.Object);
 
-            repo.Delete(new Expence()
+            await repo.Delete(new Expence()
             {
                 Id = 5,
                 Name = "Market Promotion",
@@ -112,7 +111,7 @@ namespace ProductServiceTest
         }
 
         [Test]
-        public void ExpenceRepo_Update()
+        public async Task ExpenceRepo_Update()
         {
             var data = new List<Expence>() {
                 new Expence() {Id=1, Name="Transport", Value=200 },
@@ -130,7 +129,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Expences).Returns(mockDbSet.Object);
 
             var repo = new ExpenceRepository(context.Object);
-            repo.Change(new Expence() { Id = 5, Name = "Market Promotion", Value = 300 });
+            await repo.Change(new Expence() { Id = 5, Name = "Market Promotion", Value = 300 });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

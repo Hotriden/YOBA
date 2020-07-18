@@ -26,7 +26,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Income> GetAll()
+        public IQueryable<Income> GetAll(string userId)
         {
             return _context.Incomes;
         }
@@ -46,12 +46,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             throw new System.NotImplementedException();
         }
-
-        public IEnumerable<Income> GetAll(string userId)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Task Add(string userId, Income item)
         {
             throw new System.NotImplementedException();

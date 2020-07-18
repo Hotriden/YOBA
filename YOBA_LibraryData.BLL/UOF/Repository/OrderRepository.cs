@@ -26,7 +26,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Order> GetAll()
+        public IQueryable<Order> GetAll(string userId)
         {
             if (_context.Orders != null)
             {
@@ -53,12 +53,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             _context.Orders.Update(item);
             await _context.SaveChangesAsync();
         }
-
-        public IEnumerable<Order> GetAll(string userId)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Task Add(string userId, Order item)
         {
             throw new System.NotImplementedException();

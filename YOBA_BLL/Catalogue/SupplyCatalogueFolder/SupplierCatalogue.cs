@@ -27,7 +27,7 @@ namespace YOBA_BLL.SupplyCatalogueFolder
             }
             else 
             { 
-                if (db.SupplierRepository.GetById(UserId, supplier.SupplierId) == null)
+                if (db.SupplierRepository.GetById(UserId, supplier.Id) == null)
                 {
                     var _supplier = supplier;
                     _supplier.CreatedBy = UserId;
@@ -39,14 +39,14 @@ namespace YOBA_BLL.SupplyCatalogueFolder
                 }
                 else
                 {
-                    messageService.InfoMessage(this, $"{supplier.SupplierId} already exist", UserId);
+                    messageService.InfoMessage(this, $"{supplier.Id} already exist", UserId);
                 }
             }
         }
 
         public void Update(Supplier supplier, string UserId)
         {
-            var result = db.SupplierRepository.GetById(UserId, supplier.SupplierId);
+            var result = db.SupplierRepository.GetById(UserId, supplier.Id);
             if (result != null)
             {
                 var _supplier = supplier;
@@ -59,13 +59,13 @@ namespace YOBA_BLL.SupplyCatalogueFolder
             }
             else
             {
-                messageService.InfoMessage(this, $"{result.SupplierId} doesn't exist", UserId);
+                messageService.InfoMessage(this, $"{result.Id} doesn't exist", UserId);
             }
         }
 
         public void Delete(Supplier supplier, string UserId)
         {
-            var result = db.SupplierRepository.GetById(UserId, supplier.SupplierId);
+            var result = db.SupplierRepository.GetById(UserId, supplier.Id);
             if (result != null)
             {
                 var _supplier = supplier;
@@ -78,7 +78,7 @@ namespace YOBA_BLL.SupplyCatalogueFolder
             }
             else
             {
-                messageService.InfoMessage(this, $"{result.SupplierId} doesn't exist", UserId);
+                messageService.InfoMessage(this, $"{result.Id} doesn't exist", UserId);
             }
         }
 
