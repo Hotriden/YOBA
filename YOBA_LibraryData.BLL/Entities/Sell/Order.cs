@@ -12,8 +12,6 @@ namespace YOBA_LibraryData.BLL.Entities.Sell
     public class Order: AuditableEntity
     {
         [Required]
-        public int Id { get; set; }
-        [Required]
         public Receipt Receipt { get; set; }
         public Customer Customer { get; set; }
         [Required]

@@ -4,6 +4,7 @@ using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_LibraryData.DAL;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -26,14 +27,14 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Supplier> GetAll()
+        public IQueryable<Supplier> GetAll(string userId)
         {
             return _context.Suppliers;
         }
 
         public Supplier GetById(int id)
         {
-            return _context.Suppliers.First(supplier => supplier.SupplierId == id);
+            return _context.Suppliers.First(supplier => supplier.Id == id);
         }
 
         public async Task Change(Supplier item)
@@ -43,11 +44,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         }
 
         public Supplier GetByNumber(string identity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<Supplier> GetAll(string userId)
         {
             throw new System.NotImplementedException();
         }

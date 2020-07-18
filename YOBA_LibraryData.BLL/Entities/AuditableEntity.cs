@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace YOBA_LibraryData.DAL.Entities
 {
     public class AuditableEntity
     {
+        [Required]
+        public int Id { get; set; }
+        [Required]
+        public string UserId { get; set; }
         public string CreatedBy { get; set; }
 
         public DateTime Created { get; set; }

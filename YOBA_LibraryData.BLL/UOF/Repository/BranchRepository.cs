@@ -26,14 +26,14 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Branch> GetAll()
+        public IQueryable<Branch> GetAll(string userId)
         {
             return _context.Branches;
         }
 
         public Branch GetById(int id)
         {
-            return _context.Branches.First(branch => branch.BranchId == id);
+            return _context.Branches.First(branch => branch.Id == id);
         }
 
         public async Task Change(Branch item)
@@ -45,11 +45,6 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         public Branch GetByName(string name)
         {
             return _context.Branches.First(branch => branch.BranchName == name);
-        }
-
-        public IEnumerable<Branch> GetAll(string userId)
-        {
-            throw new System.NotImplementedException();
         }
 
         public Task Add(string userId, Branch item)

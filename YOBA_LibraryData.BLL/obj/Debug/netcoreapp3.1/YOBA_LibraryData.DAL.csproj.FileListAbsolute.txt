@@ -17,3 +17,4 @@ C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\obj\Debug\netcoreapp3.1\YOBA_Lib
 C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\obj\Debug\netcoreapp3.1\YOBA_LibraryData.DAL.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\obj\Debug\netcoreapp3.1\YOBA_LibraryData.DAL.pdb
 C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\obj\Debug\netcoreapp3.1\YOBA_LibraryData.DAL.genruntimeconfig.cache
+C:\Temp\YOBA_App\YOBA_Core\YOBA_LibraryData.BLL\obj\Debug\netcoreapp3.1\YOBA_LibraryData.DAL.csproj.CoreCompileInputs.cache

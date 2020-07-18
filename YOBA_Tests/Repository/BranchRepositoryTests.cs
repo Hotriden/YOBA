@@ -27,7 +27,7 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Branches).Returns(mockDbSet.Object);
             var res = new BranchRepository(mockContext.Object);
 
-            await res.Add(new Branch() { BranchId = 1, BranchName = "Finance" });
+            await res.Add(new Branch() { Id = 1, BranchName = "Finance" });
 
             mockContext.Verify(s => s.Add(It.IsAny<Branch>()), Times.Once());
             mockContext.Verify(s => s.SaveChanges(), Times.Once());
@@ -37,8 +37,8 @@ namespace ProductServiceTest
         public void BranchRepo_GetByID()
         {
             var data = new List<Branch>() {
-                new Branch() { BranchId=1, BranchName="Finance"},
-                new Branch() { BranchId=2, BranchName="Sells" }
+                new Branch() { Id=1, BranchName="Finance"},
+                new Branch() { Id=2, BranchName="Sells" }
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Branch>>();
@@ -60,8 +60,8 @@ namespace ProductServiceTest
         public void BranchRepo_GetAll()
         {
             var data = new List<Branch>() {
-                new Branch() { BranchId=1, BranchName="Finance"},
-                new Branch() { BranchId=2, BranchName="Sells" }
+                new Branch() { Id=1, BranchName="Finance", UserId="hfdshf34"},
+                new Branch() { Id=2, BranchName="Sells", UserId="hfdshf34"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Branch>>();
@@ -74,7 +74,7 @@ namespace ProductServiceTest
             context.Setup(c => c.Branches).Returns(mockDbSet.Object);
 
             var repo = new BranchRepository(context.Object);
-            var result = repo.GetAll().ToList();
+            var result = repo.GetAll("hfdshf34").ToList();
 
             result.Should().AllBeOfType(typeof(Branch));
             result.Should().HaveCount(2);
@@ -85,8 +85,8 @@ namespace ProductServiceTest
         public async Task BranchRepo_Delete()
         {
             var data = new List<Branch>() {
-                new Branch() { BranchId=1, BranchName="Finance"},
-                new Branch() { BranchId=2, BranchName="Sells" }
+                new Branch() { Id=1, BranchName="Finance", UserId="hfdshf34"},
+                new Branch() { Id=2, BranchName="Sells", UserId="hfdshf34"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Branch>>();
@@ -98,7 +98,7 @@ namespace ProductServiceTest
             var context = new Mock<YOBAContext>();
             context.Setup(c => c.Branches).Returns(mockDbSet.Object);
             var repo = new BranchRepository(context.Object);
-            await repo.Delete(new Branch() { BranchId = 2, BranchName = "Sells" });
+            await repo.Delete(new Branch() { Id = 2, BranchName = "Sells" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());
@@ -108,8 +108,8 @@ namespace ProductServiceTest
         public async Task BranchRepo_Update()
         {
             var data = new List<Branch>() {
-                new Branch() { BranchId=1, BranchName="Finance"},
-                new Branch() { BranchId=2, BranchName="Sells" }
+                new Branch() { Id=1, BranchName="Finance"},
+                new Branch() { Id=2, BranchName="Sells" }
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Branch>>();
@@ -121,7 +121,7 @@ namespace ProductServiceTest
             var context = new Mock<YOBAContext>();
             context.Setup(c => c.Branches).Returns(mockDbSet.Object);
             var repo = new BranchRepository(context.Object);
-            await repo.Change(new Branch() { BranchId = 2, BranchName = "Sells" });
+            await repo.Change(new Branch() { Id = 2, BranchName = "Sells" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

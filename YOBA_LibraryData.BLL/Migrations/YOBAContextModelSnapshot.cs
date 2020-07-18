@@ -44,6 +44,10 @@ namespace YOBA_LibraryData.DAL.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(18,2)")
                         .HasMaxLength(10)
@@ -74,6 +78,10 @@ namespace YOBA_LibraryData.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -111,6 +119,10 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.Property<double>("Percent")
                         .HasColumnType("float");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Taxes");
@@ -118,7 +130,7 @@ namespace YOBA_LibraryData.DAL.Migrations
 
             modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Sell.Customer", b =>
                 {
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -153,7 +165,11 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.Property<string>("TelephoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CustomerId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Customers");
                 });
@@ -180,7 +196,7 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ManagerEmployeeId")
+                    b.Property<int>("ManagerId")
                         .HasColumnType("int");
 
                     b.Property<string>("OrderIdentity")
@@ -201,11 +217,15 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.Property<bool>("Shipped")
                         .HasColumnType("bit");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("ManagerEmployeeId");
+                    b.HasIndex("ManagerId");
 
                     b.HasIndex("ReceiptId");
 
@@ -225,7 +245,7 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CusmoterCustomerId")
+                    b.Property<int?>("CusmoterId")
                         .HasColumnType("int");
 
                     b.Property<string>("IdentialPayNumber")
@@ -247,12 +267,16 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CusmoterCustomerId");
+                    b.HasIndex("CusmoterId");
 
                     b.HasIndex("OrderId");
 
@@ -263,7 +287,7 @@ namespace YOBA_LibraryData.DAL.Migrations
 
             modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Staff.Branch", b =>
                 {
-                    b.Property<int>("BranchId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -284,14 +308,18 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BranchId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Branches");
                 });
 
             modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Staff.Employee", b =>
                 {
-                    b.Property<int>("EmployeeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -323,14 +351,18 @@ namespace YOBA_LibraryData.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Sallery")
+                    b.Property<decimal>("Salary")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TelephoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("EmployeeId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("BranchId");
 
@@ -339,7 +371,7 @@ namespace YOBA_LibraryData.DAL.Migrations
 
             modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Supply.Receipt", b =>
                 {
-                    b.Property<int>("ReceiptId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -382,10 +414,14 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("WareHouseId")
                         .HasColumnType("int");
 
-                    b.HasKey("ReceiptId");
+                    b.HasKey("Id");
 
                     b.HasIndex("SupplierId");
 
@@ -396,7 +432,7 @@ namespace YOBA_LibraryData.DAL.Migrations
 
             modelBuilder.Entity("YOBA_LibraryData.BLL.Entities.Supply.Supplier", b =>
                 {
-                    b.Property<int>("SupplierId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -424,7 +460,11 @@ namespace YOBA_LibraryData.DAL.Migrations
                     b.Property<string>("TelephoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SupplierId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Suppliers");
                 });
@@ -437,7 +477,6 @@ namespace YOBA_LibraryData.DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("varchar(50)")
                         .HasMaxLength(50)
                         .IsUnicode(false);
@@ -459,8 +498,12 @@ namespace YOBA_LibraryData.DAL.Migrations
                         .HasMaxLength(5)
                         .IsUnicode(false);
 
-                    b.Property<int?>("StockManEmployeeId")
+                    b.Property<int?>("StockManId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WareHouseName")
                         .IsRequired()
@@ -468,44 +511,31 @@ namespace YOBA_LibraryData.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StockManEmployeeId");
+                    b.HasIndex("StockManId");
 
                     b.ToTable("WareHouses");
                 });
 
-            modelBuilder.Entity("YOBA_LibraryData.DAL.Entities.User", b =>
+            modelBuilder.Entity("YOBA_LibraryData.DAL.Entities.User.UserModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ConfirmPassword")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
+                    b.Property<string>("Jwt")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("UserModels");
                 });
 
             modelBuilder.Entity("YOBA_LibraryData.DAL.Entities.UserLog", b =>
@@ -540,7 +570,7 @@ namespace YOBA_LibraryData.DAL.Migrations
 
                     b.HasOne("YOBA_LibraryData.BLL.Entities.Staff.Employee", "Manager")
                         .WithMany()
-                        .HasForeignKey("ManagerEmployeeId")
+                        .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -555,7 +585,7 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.HasOne("YOBA_LibraryData.BLL.Entities.Sell.Customer", "Cusmoter")
                         .WithMany("Payments")
-                        .HasForeignKey("CusmoterCustomerId");
+                        .HasForeignKey("CusmoterId");
 
                     b.HasOne("YOBA_LibraryData.BLL.Entities.Sell.Order", "Order")
                         .WithMany()
@@ -590,7 +620,7 @@ namespace YOBA_LibraryData.DAL.Migrations
                 {
                     b.HasOne("YOBA_LibraryData.BLL.Entities.Staff.Employee", "StockMan")
                         .WithMany()
-                        .HasForeignKey("StockManEmployeeId");
+                        .HasForeignKey("StockManId");
                 });
 #pragma warning restore 612, 618
         }

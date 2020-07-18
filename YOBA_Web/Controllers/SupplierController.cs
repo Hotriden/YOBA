@@ -82,7 +82,7 @@ namespace YOBA_Web.Controllers
             {
                 return BadRequest();
             }
-            if (_db.SupplierRepository.GetById(userId, supplier.SupplierId) == null)
+            if (_db.SupplierRepository.GetById(userId, supplier.Id) == null)
             {
                 return NotFound();
             }

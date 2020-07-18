@@ -9,13 +9,14 @@ using FluentAssertions;
 using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.BLL.Entities.Finance;
 using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace ProductServiceTest
 {
     class IncomeRepositoryTests
     {
         [Test]
-        public void IncomeRepo_Add()
+        public async Task IncomeRepo_Add()
         {
             var mockDbSet = new Mock<DbSet<Income>>();
             var mockContext = new Mock<YOBAContext>();
@@ -23,7 +24,7 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Incomes).Returns(mockDbSet.Object);
             var res = new IncomeRepository(mockContext.Object);
 
-            res.Add(new Income() { Id= 1, Name="Net income", Value=3000});
+            await res.Add(new Income() { Id= 1, Name="Net income", Value=3000});
 
             mockContext.Verify(s => s.Add(It.IsAny<Income>()), Times.Once());
             mockContext.Verify(s => s.SaveChanges(), Times.Once());
@@ -56,8 +57,8 @@ namespace ProductServiceTest
         public void IncomeRepo_GetAll()
         {
             var data = new List<Income>() {
-                new Income() { Id=1, Name="Net income", Value=3000 },
-                new Income() { Id=2, Name="Another income", Value=200}
+                new Income() { Id=1, Name="Net income", Value=3000, UserId="lolly022"},
+                new Income() { Id=2, Name="Another income", Value=200, UserId="lolly022"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Income>>();
@@ -70,7 +71,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Incomes).Returns(mockDbSet.Object);
 
             var repo = new IncomeRepository(context.Object);
-            var result = repo.GetAll().ToList();
+            var result = repo.GetAll("lolly022").ToList();
 
             result.Should().AllBeOfType(typeof(Income));
             result.Should().HaveCount(2);
@@ -78,7 +79,7 @@ namespace ProductServiceTest
         }
 
         [Test]
-        public void IncomeRepo_Delete()
+        public async Task IncomeRepo_Delete()
         {
             var data = new List<Income>() {
                 new Income() { Id=1, Name="Net income", Value=3000 },
@@ -96,7 +97,7 @@ namespace ProductServiceTest
 
             var repo = new IncomeRepository(context.Object);
 
-            repo.Delete(new Income()
+            await repo.Delete(new Income()
             {
                 Id = 1,
                 Name = "Net income",
@@ -108,7 +109,7 @@ namespace ProductServiceTest
         }
 
         [Test]
-        public void IncomeRepo_Update()
+        public async Task IncomeRepo_Update()
         {
             var data = new List<Income>() {
                 new Income() { Id=1, Name="Net income", Value=3000 },
@@ -125,7 +126,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Incomes).Returns(mockDbSet.Object);
 
             var repo = new IncomeRepository(context.Object);
-            repo.Change(new Income() { Id= 2, Name = "Sales income" });
+            await repo.Change(new Income() { Id= 2, Name = "Sales income" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

@@ -10,8 +10,6 @@ namespace YOBA_LibraryData.BLL.Entities.Supply
     public class Receipt: AuditableEntity
     {
         [Required]
-        public int ReceiptId { get; set; }
-        [Required]
         public string ReceiptName { get; set; }
         [Required]
         public decimal Cost { get; set; }

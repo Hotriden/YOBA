@@ -542,3 +542,4 @@ C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\System.Web.WebPages.
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Debug\netcoreapp3.1\YOBA_Web.csproj.CoreCompileInputs.cache

@@ -20,27 +20,26 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
             db = _repo;
         }
 
-        public void Create(WareHouse wareHouse, string UserId)
+        public void Create(WareHouse wareHouse, string userId)
         {
             if (wareHouse.WareHouseName == null || wareHouse.Address == null)
             {
-                messageService.InfoMessage(this, "Warehouse name or warehouse address spelled wrong", UserId);
+                messageService.InfoMessage(this, "Warehouse name or warehouse address spelled wrong", userId);
             }
             else
             {
-                if (db.WareHouseRepository.GetById(UserId, wareHouse.Id) == null)
+                if (db.WareHouseRepository.GetById(userId, wareHouse.Id) == null)
                 {
                     var _wareHouse = wareHouse;
-                    _wareHouse.CreatedBy = UserId;
+                    _wareHouse.CreatedBy = userId;
                     _wareHouse.Created = DateTime.Now;
-                    db.WareHouseRepository.Add(_wareHouse);
+                    db.WareHouseRepository.Add(userId, _wareHouse);
                     db.Save();
-
-                    messageService.InfoMessage(this, $"{wareHouse} successful created", UserId);
+                    messageService.InfoMessage(this, $"{wareHouse} successful created", userId);
                 }
                 else
                 {
-                    messageService.InfoMessage(this, $"{wareHouse.Id} already exist", UserId);
+                    messageService.InfoMessage(this, $"{wareHouse.Id} already exist", userId);
                 }
             }
         }

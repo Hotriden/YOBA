@@ -18,7 +18,7 @@ namespace YOBA_BLL.Supply
             if (wareHouse !=null & wareHouse.ProductOportunity == true)
             {
                     var presence = (from q in wareHouse.Receipts
-                                    where q.ReceiptId == receipt.ReceiptId
+                                    where q.Id == receipt.Id
                                     select q.ReceiptValue).First();
                     if (presence >= receipt.ReceiptValue) { }
                     else { result += $"Not anought {receipt.ReceiptName} on {wareHouse.WareHouseName}"; }

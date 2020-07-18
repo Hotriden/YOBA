@@ -9,7 +9,6 @@ namespace YOBA_LibraryData.BLL.Entities.Sell
 {
     public class Payment: AuditableEntity
     {
-        public int Id { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal Value { get; set; }
         public Order Order { get; set; }

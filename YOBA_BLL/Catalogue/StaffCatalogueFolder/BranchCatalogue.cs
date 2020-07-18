@@ -26,7 +26,7 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
             }
             else
             {
-                if (db.BranchRepository.GetById(UserId, item.BranchId) == null)
+                if (db.BranchRepository.GetById(UserId, item.Id) == null)
                 {
                     var _branch = item;
                     _branch.CreatedBy = UserId;
@@ -38,14 +38,14 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
                 }
                 else
                 {
-                    messageService.InfoMessage(this, $"{item.BranchId} already exist", UserId);
+                    messageService.InfoMessage(this, $"{item.Id} already exist", UserId);
                 }
             }
         }
 
         public void Delete(Branch item, string UserId)
         {
-            var result = db.BranchRepository.GetById(UserId, item.BranchId);
+            var result = db.BranchRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _branch = item;
@@ -65,7 +65,7 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 
         public void Update(Branch item, string UserId)
         {
-            var result = db.BranchRepository.GetById(UserId, item.BranchId);
+            var result = db.BranchRepository.GetById(UserId, item.Id);
             if (result != null)
             {
                 var _branch = item;

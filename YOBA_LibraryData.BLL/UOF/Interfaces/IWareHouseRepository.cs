@@ -16,6 +16,5 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
         WareHouse GetWareHouseByProductOportunitu(bool productOportunity);
         WareHouse GetWareHouseByReceipt(Receipt receipt);
         WareHouse GetWareHouseByEmail(string email);
-        Task Add(WareHouse wareHouse);
     }
 }

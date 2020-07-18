@@ -278,3 +278,4 @@ C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\obj\Debug\netcoreapp3.1\YOBA_Tests.csproj.
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\obj\Debug\netcoreapp3.1\YOBA_Tests.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\obj\Debug\netcoreapp3.1\YOBA_Tests.pdb
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\obj\Debug\netcoreapp3.1\YOBA_Tests.genruntimeconfig.cache
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Tests\obj\Debug\netcoreapp3.1\YOBA_Tests.csproj.CoreCompileInputs.cache

@@ -8,13 +8,14 @@ using YOBA_LibraryData.BLL.UOF.Repository;
 using FluentAssertions;
 using YOBA_LibraryData.BLL.Entities.Sell;
 using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace ProductServiceTest
 {
     class OrderRepositoryTests
     {
         [Test]
-        public void OrderRepo_Add()
+        public async Task OrderRepo_Add()
         {
             var mockDbSet = new Mock<DbSet<Order>>();
             var mockContext = new Mock<YOBAContext>();
@@ -22,8 +23,8 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Orders).Returns(mockDbSet.Object);
             var res = new OrderRepository(mockContext.Object);
 
-            res.Add(new Order() { Id= 1, Paid=true, Shipped=true, OrderSum=100});
-            res.Add(new Order() { Id= 3, Paid = false, Shipped = false, OrderSum = 300 });
+            await res.Add(new Order() { Id= 1, Paid=true, Shipped=true, OrderSum=100});
+            await res.Add(new Order() { Id= 3, Paid = false, Shipped = false, OrderSum = 300 });
 
             mockContext.Verify(s => s.Add(It.IsAny<Order>()), Times.AtLeast(2));
             mockContext.Verify(s => s.SaveChanges(), Times.AtLeast(2));
@@ -59,9 +60,9 @@ namespace ProductServiceTest
         {
             var data = new List<Order>()
             {
-                new Order { Id=1, Paid=true, Shipped=true, OrderSum=100, OrderIdentity="T5-19-00001" },
-                new Order { Id=3, Paid=false, Shipped=true, OrderSum=600, OrderIdentity="T8-18-04234"},
-                new Order { Id=5, Paid=true, Shipped=false, OrderSum=1100, OrderIdentity="T12-19-00021"}
+                new Order { Id=1, Paid=true, Shipped=true, OrderSum=100, OrderIdentity="T5-19-00001",UserId="gfdgd34" },
+                new Order { Id=3, Paid=false, Shipped=true, OrderSum=600, OrderIdentity="T8-18-04234", UserId="gfdgd34"},
+                new Order { Id=5, Paid=true, Shipped=false, OrderSum=1100, OrderIdentity="T12-19-00021", UserId="gfdgd34"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Order>>();
@@ -99,7 +100,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Orders).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
-            var result = repo.GetAll().ToList();
+            var result = repo.GetAll("gfdgd34").ToList();
 
             result.Should().AllBeOfType(typeof(Order));
             result.Should().HaveCount(3);
@@ -107,13 +108,13 @@ namespace ProductServiceTest
         }
 
         [Test]
-        public void PaymentRepo_Delete()
+        public async Task PaymentRepo_Delete()
         {
             var data = new List<Order>()
             {
-                new Order { Id=1, Paid=true, Shipped=true, OrderSum=100 },
-                new Order { Id=3, Paid=false, Shipped=true, OrderSum=600 },
-                new Order { Id=5, Paid=true, Shipped=false, OrderSum=1100}
+                new Order { Id=1, Paid=true, Shipped=true, OrderSum=100, UserId="gfdgd34"},
+                new Order { Id=3, Paid=false, Shipped=true, OrderSum=600, UserId="gfdgd34" },
+                new Order { Id=5, Paid=true, Shipped=false, OrderSum=1100, UserId="gfdgd34"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Order>>();
@@ -126,14 +127,14 @@ namespace ProductServiceTest
             context.Setup(s => s.Orders).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
-            repo.Delete(new Order() { Id = 5, Paid = true, Shipped = false, OrderSum = 1100 });
+            await repo.Delete(new Order() { Id = 5, Paid = true, Shipped = false, OrderSum = 1100 });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());
         }
 
         [Test]
-        public void PaymentRepo_Update()
+        public async Task PaymentRepo_Update()
         {
             var data = new List<Order>()
             {
@@ -152,7 +153,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Orders).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
-            repo.Change(new Order() { Id = 5, Paid = true, Shipped = false, OrderSum = 1100 });
+            await repo.Change(new Order() { Id = 5, Paid = true, Shipped = false, OrderSum = 1100 });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

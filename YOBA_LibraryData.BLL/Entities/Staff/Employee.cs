@@ -10,8 +10,6 @@ namespace YOBA_LibraryData.BLL.Entities.Staff
     public class Employee: AuditableEntity
     {
         [Required]
-        public int EmployeeId { get; set; }
-        [Required]
         public string Name { get; set; }
         [Required]
         public string LastName { get; set; }
@@ -21,8 +19,7 @@ namespace YOBA_LibraryData.BLL.Entities.Staff
         public string Position { get; set; }
         [Required]
         public string TelephoneNumber { get; set; }
-        [Required]
         [Column(TypeName = "decimal(18,2)")]
-        public decimal Sallery { get; set; }
+        public decimal Salary { get; set; }
     }
 }

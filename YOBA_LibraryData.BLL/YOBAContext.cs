@@ -13,7 +13,7 @@ namespace YOBA_LibraryData.DAL
         public YOBAContext(DbContextOptions<YOBAContext> options) 
             : base(options) 
         {
-            Database.EnsureCreated(); 
+            //Database.EnsureCreated(); 
         }
 
         public virtual DbSet<Expence> Expences { get; set; }

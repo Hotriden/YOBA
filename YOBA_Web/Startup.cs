@@ -24,7 +24,7 @@ namespace YOBA_Web
     {
         public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration, IHostEnvironment hostEnvironment)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -45,6 +45,11 @@ namespace YOBA_Web
             }));
             #endregion
             services.AddControllers();
+            #region Get User from context
+            services.AddDistributedMemoryCache();
+            services.AddHttpContextAccessor();
+            services.AddSession();
+            #endregion
             #region Autentification
             services.AddIdentity<IdentityUser, IdentityRole>(config =>
             {
@@ -63,11 +68,6 @@ namespace YOBA_Web
             services.AddTokenAuthentication(Configuration);
             services.AddDbContext<YOBA_IdentityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("YOBA_IdentityContext")));
-            #region Get User from context
-            services.AddDistributedMemoryCache();
-            services.AddHttpContextAccessor();
-            services.AddSession();
-            #endregion
             services.AddAntiforgery(o => {
                 o.Cookie.Name = "X-CSRF-TOKEN";
             });

@@ -26,25 +26,20 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Employee> GetAll()
+        public IQueryable<Employee> GetAll(string userId)
         {
             return _context.Employees;
         }
 
         public Employee GetById(int id)
         {
-            return _context.Employees.First(emp => emp.EmployeeId == id);
+            return _context.Employees.First(emp => emp.Id == id);
         }
 
         public async Task Change(Employee item)
         {
             _context.Employees.Update(item);
             await _context.SaveChangesAsync();
-        }
-
-        public IEnumerable<Employee> GetAll(string userId)
-        {
-            throw new System.NotImplementedException();
         }
 
         public Task Add(string userId, Employee item)

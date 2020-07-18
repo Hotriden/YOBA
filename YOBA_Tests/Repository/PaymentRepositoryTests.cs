@@ -3,18 +3,18 @@ using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using YOBA_LibraryData.BLL;
 using YOBA_LibraryData.BLL.UOF.Repository;
 using FluentAssertions;
 using YOBA_LibraryData.BLL.Entities.Sell;
 using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace ProductServiceTest
 {
     class PaymentRepositoryTests
     {
         [Test]
-        public void PaymentRepo_Add()
+        public async Task PaymentRepo_Add()
         {
             var mockDbSet = new Mock<DbSet<Payment>>();
             var mockContext = new Mock<YOBAContext>();
@@ -22,8 +22,8 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Payments).Returns(mockDbSet.Object);
             var res = new PaymentRepository(mockContext.Object);
 
-            res.Add(new Payment() { Id= 1, Value=200, IdentialPayNumber="H0234200502020" });
-            res.Add(new Payment() { Id = 2, Value = 12200, IdentialPayNumber = "K0134506502111" });
+            await res.Add(new Payment() { Id= 1, Value=200, IdentialPayNumber="H0234200502020" });
+            await res.Add(new Payment() { Id = 2, Value = 12200, IdentialPayNumber = "K0134506502111" });
 
             mockContext.Verify(s => s.Add(It.IsAny<Payment>()), Times.AtLeast(2));
             mockContext.Verify(s => s.SaveChanges(), Times.AtLeast(2));
@@ -84,9 +84,9 @@ namespace ProductServiceTest
         {
             var data = new List<Payment>()
             {
-                new Payment { Id=1, Value=200, IdentialPayNumber="H0234200502020" },
-                new Payment { Id=2, Value = 12200, IdentialPayNumber = "K0134506502111" },
-                new Payment { Id=4, Value = 1001, IdentialPayNumber = "L01545265011517"}
+                new Payment { Id=1, Value=200, IdentialPayNumber="H0234200502020", UserId="gfdgd34" },
+                new Payment { Id=2, Value = 12200, IdentialPayNumber = "K0134506502111",UserId="gfdgd34" },
+                new Payment { Id=4, Value = 1001, IdentialPayNumber = "L01545265011517",UserId="gfdgd34"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Payment>>();
@@ -99,7 +99,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Payments).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
-            var result = repo.GetAll().ToList();
+            var result = repo.GetAll("gfdgd34").ToList();
 
             result.Should().AllBeOfType(typeof(Payment));
             result.Should().HaveCount(3);
@@ -107,7 +107,7 @@ namespace ProductServiceTest
         }
 
         [Test]
-        public void PaymentRepo_Delete()
+        public async Task PaymentRepo_Delete()
         {
             var data = new List<Payment>()
             {
@@ -126,14 +126,14 @@ namespace ProductServiceTest
             context.Setup(s => s.Payments).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
-            repo.Delete(new Payment() { Id = 4, Value = 1001, IdentialPayNumber = "L01545265011517" });
+            await repo.Delete(new Payment() { Id = 4, Value = 1001, IdentialPayNumber = "L01545265011517" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());
         }
 
         [Test]
-        public void PaymentRepo_Update()
+        public async Task PaymentRepo_Update()
         {
             var data = new List<Payment>()
             {
@@ -152,7 +152,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Payments).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
-            repo.Change(new Payment() { Id = 2, Value = 13400, IdentialPayNumber = "K0134506502111" });
+            await repo.Change(new Payment() { Id = 2, Value = 13400, IdentialPayNumber = "K0134506502111" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

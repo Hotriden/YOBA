@@ -8,13 +8,14 @@ using YOBA_LibraryData.BLL.UOF.Repository;
 using FluentAssertions;
 using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.DAL;
+using System.Threading.Tasks;
 
 namespace ProductServiceTest
 {
     class EmployeeRepositoryTests
     {
         [Test]
-        public void EmployeeRepo_Add()
+        public async Task EmployeeRepo_Add()
         {
             var mockDbSet = new Mock<DbSet<Employee>>();
             var mockContext = new Mock<YOBAContext>();
@@ -22,8 +23,8 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Employees).Returns(mockDbSet.Object);
             var res = new EmployeeRepository(mockContext.Object);
 
-            res.Add(new Employee() { EmployeeId= 1, Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123"  });
-            res.Add(new Employee() { EmployeeId= 2, Name="Khal", LastName="Drogo", Sallery=20 });
+            await res.Add(new Employee() { Id= 1, Name="Nikola", LastName="Landao", Salary=1200, TelephoneNumber="88000123", UserId = "asdasd123" });
+            await res.Add(new Employee() { Id= 2, Name="Khal", LastName="Drogo", Salary=20, UserId="asdasd123" });
 
             mockContext.Verify(s => s.Add(It.IsAny<Employee>()), Times.Exactly(2));
             mockContext.Verify(s => s.SaveChanges(), Times.Exactly(2));
@@ -33,8 +34,8 @@ namespace ProductServiceTest
         public void EmployeeRepo_GetByID()
         {
             var data = new List<Employee>() {
-                new Employee() { EmployeeId=1, Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
-                new Employee() { EmployeeId=2, Name="Khal", LastName="Drogo", Sallery=20}
+                new Employee() { Id=1, Name="Nikola", LastName="Landao", Salary=1200, TelephoneNumber="88000123", UserId="sdasd123"},
+                new Employee() { Id=2, Name="Khal", LastName="Drogo", Salary=20, UserId="sdasd123"}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Employee>>();
@@ -56,9 +57,9 @@ namespace ProductServiceTest
         public void EmployeeRepo_GetAll()
         {
             var data = new List<Employee>() {
-                new Employee() {EmployeeId=1, Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
-                new Employee() {EmployeeId=2, Name="Khal", LastName="Drogo", Sallery=20},
-                new Employee() {EmployeeId=5, Name="John", LastName="Snow", Sallery=500},
+                new Employee() {Id=1, Name="Nikola", LastName="Landao", Salary=1200, TelephoneNumber="88000123", UserId="sdasd123" },
+                new Employee() {Id=2, Name="Khal", LastName="Drogo", Salary=20, UserId="sdasd123"},
+                new Employee() {Id=5, Name="John", LastName="Snow", Salary=500, UserId="sdasd123"},
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Employee>>();
@@ -71,7 +72,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Employees).Returns(mockDbSet.Object);
 
             var repo = new EmployeeRepository(context.Object);
-            var result = repo.GetAll().ToList();
+            var result = repo.GetAll("sdasd123").ToList();
 
             result.Should().AllBeOfType(typeof(Employee));
             result.Should().HaveCount(3);
@@ -79,12 +80,12 @@ namespace ProductServiceTest
         }
 
         [Test]
-        public void EmployeeRepo_Delete()
+        public async Task EmployeeRepo_Delete()
         {
             var data = new List<Employee>() {
-                new Employee() {EmployeeId=1, Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
-                new Employee() {EmployeeId=2, Name="Khal", LastName="Drogo", Sallery=20},
-                new Employee() {EmployeeId=5, Name="John", LastName="Snow", Sallery=500}
+                new Employee() {Id=1, Name="Nikola", LastName="Landao", Salary=1200, TelephoneNumber="88000123" },
+                new Employee() {Id=2, Name="Khal", LastName="Drogo", Salary=20},
+                new Employee() {Id=5, Name="John", LastName="Snow", Salary=500}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Employee>>();
@@ -98,12 +99,12 @@ namespace ProductServiceTest
 
             var repo = new EmployeeRepository(context.Object);
 
-            repo.Delete(new Employee()
+            await repo.Delete(new Employee()
             {
-                EmployeeId = 5,
+                Id = 5,
                 Name = "John",
                 LastName = "Snow",
-                Sallery = 500
+                Salary = 500
             });
 
             repo.Should().NotBeSameAs(data);
@@ -111,12 +112,12 @@ namespace ProductServiceTest
         }
 
         [Test]
-        public void EmployeeRepo_Update()
+        public async Task EmployeeRepo_Update()
         { 
             var data = new List<Employee>() {
-                new Employee() {EmployeeId=1, Name="Nikola", LastName="Landao", Sallery=1200, TelephoneNumber="88000123" },
-                new Employee() {EmployeeId=2, Name="Khal", LastName="Drogo", Sallery=20},
-                new Employee() {EmployeeId=5, Name="John", LastName="Snow", Sallery=500}
+                new Employee() {Id=1, Name="Nikola", LastName="Landao", Salary=1200, TelephoneNumber="88000123" },
+                new Employee() {Id=2, Name="Khal", LastName="Drogo", Salary=20},
+                new Employee() {Id=5, Name="John", LastName="Snow", Salary=500}
             }.AsQueryable();
 
             var mockDbSet = new Mock<DbSet<Employee>>();
@@ -129,7 +130,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Employees).Returns(mockDbSet.Object);
 
             var repo = new EmployeeRepository(context.Object);
-            repo.Change(new Employee() { EmployeeId = 5, Name = "John", LastName = "Snow", Sallery = 500 });
+            await repo.Change(new Employee() { Id = 5, Name = "John", LastName = "Snow", Salary = 500 });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

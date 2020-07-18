@@ -46,7 +46,7 @@ namespace YOBA_Web.Controllers
             if (result.Succeeded)
             {
                 var jwt = new JwtService(_config);
-                var token = jwt.GenerateSecurityToken(model.Email);
+                var token = jwt.GenerateSecurityToken(user.Email, user.Id);
                 return StatusCode(200, token);
             }
             return StatusCode(401, "Wrong email or password");

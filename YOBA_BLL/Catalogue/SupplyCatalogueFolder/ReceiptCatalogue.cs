@@ -27,7 +27,7 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
             }
             else
             {
-                if (db.ReceiptRepository.GetById(UserId, receipt.ReceiptId) == null)
+                if (db.ReceiptRepository.GetById(UserId, receipt.Id) == null)
                 {
                     var _receipt = receipt;
                     _receipt.CreatedBy = UserId;
@@ -39,14 +39,14 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
                 }
                 else
                 {
-                    messageService.InfoMessage(this, $"{receipt.ReceiptId} already exist", UserId);
+                    messageService.InfoMessage(this, $"{receipt.Id} already exist", UserId);
                 }
             }
         }
 
         public void Delete(Receipt receipt, string UserId)
         {
-            var result = db.ReceiptRepository.GetById(UserId, receipt.ReceiptId);
+            var result = db.ReceiptRepository.GetById(UserId, receipt.Id);
             if (result != null)
             {
                 var _receipt = receipt;
@@ -66,7 +66,7 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
 
         public void Update(Receipt receipt, string UserId)
         {
-            var result = db.ReceiptRepository.GetById(UserId, receipt.ReceiptId);
+            var result = db.ReceiptRepository.GetById(UserId, receipt.Id);
             if (result != null)
             {
                 var _receipt = receipt;
