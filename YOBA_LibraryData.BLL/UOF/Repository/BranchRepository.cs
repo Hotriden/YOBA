@@ -14,13 +14,13 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             _context = context;
         }
-        public async Task Add(Branch item)
+        public async Task Add(string userId, Branch item)
         {
             _context.Add(item);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Branch item)
+        public async Task Delete(string userId, Branch item)
         {
             _context.Remove(item);
             await _context.SaveChangesAsync();
@@ -31,38 +31,18 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             return _context.Branches;
         }
 
-        public Branch GetById(int id)
+        public Branch GetById(string userId, int id)
         {
             return _context.Branches.First(branch => branch.Id == id);
         }
 
-        public async Task Change(Branch item)
+        public async Task Change(string userId, Branch item)
         {
             _context.Branches.Update(item);
             await _context.SaveChangesAsync();
         }
 
-        public Branch GetByName(string name)
-        {
-            return _context.Branches.First(branch => branch.BranchName == name);
-        }
-
-        public Task Add(string userId, Branch item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Branch GetById(string userId, int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Delete(string userId, Branch item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Change(string userId, Branch item)
+        public Branch Get(string userId, Branch item)
         {
             throw new System.NotImplementedException();
         }

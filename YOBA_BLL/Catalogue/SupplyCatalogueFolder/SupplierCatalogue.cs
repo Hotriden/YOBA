@@ -27,7 +27,7 @@ namespace YOBA_BLL.SupplyCatalogueFolder
             }
             else 
             { 
-                if (db.SupplierRepository.GetById(UserId, supplier.Id) == null)
+                if (db.SupplierRepository.Get(UserId, supplier) == null)
                 {
                     var _supplier = supplier;
                     _supplier.CreatedBy = UserId;
@@ -46,7 +46,7 @@ namespace YOBA_BLL.SupplyCatalogueFolder
 
         public void Update(Supplier supplier, string UserId)
         {
-            var result = db.SupplierRepository.GetById(UserId, supplier.Id);
+            var result = db.SupplierRepository.Get(UserId, supplier);
             if (result != null)
             {
                 var _supplier = supplier;
@@ -65,7 +65,7 @@ namespace YOBA_BLL.SupplyCatalogueFolder
 
         public void Delete(Supplier supplier, string UserId)
         {
-            var result = db.SupplierRepository.GetById(UserId, supplier.Id);
+            var result = db.SupplierRepository.Get(UserId, supplier);
             if (result != null)
             {
                 var _supplier = supplier;

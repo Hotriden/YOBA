@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_LibraryData.DAL;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+using YOBA_LibraryData.DAL.UOF;
+using System;
+using YOBA_LibraryData.DAL.Exceptions;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -15,17 +16,23 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             _context = context;
         }
-        public async Task Add(WareHouse item, string userId)
+        public async Task Add(string userId, WareHouse wareHouse)
         {
-            _context.Add(item);
-            await _context.SaveChangesAsync();
-            _context.WareHouses.All(c => c.LastModifiedBy == "");
+            if (wareHouse != null)
+            {
+                wareHouse.OnAdd(userId);
+                _context.Add(wareHouse);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public async Task Delete(WareHouse item)
+        public async Task Delete(string userId, WareHouse item)
         {
-            _context.Remove(item);
-            await _context.SaveChangesAsync();
+            if (_context.WareHouses.Where(user => user.UserId == userId).Where(wh => wh.Id == item.Id) != null)
+            {
+                _context.Remove(item);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public IQueryable<WareHouse> GetAll(string userId)
@@ -34,81 +41,49 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             return result;
         }
 
-        public WareHouse GetById(string id)
+        public async Task Change(string userId, WareHouse wareHouse)
         {
-            var result = _context.WareHouses.Find(id); ;
-            return result;
+            if (wareHouse != null)
+            {
+                wareHouse.OnChange(userId);
+                _context.WareHouses.Update(wareHouse);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public WareHouse GetByEmail(string name)
+        public WareHouse Get(string userId, WareHouse item)
         {
-            return _context.WareHouses.First(warehouse => warehouse.WareHouseName == name);
+            WareHouse wareHouse = item;
+            if (string.IsNullOrEmpty(wareHouse.WareHouseName))
+            {
+                throw new UserException("Incorrect user id");
+            }
+            if (wareHouse.Id > 1)
+            {
+                wareHouse = _context.WareHouses.First(c => c.Id == wareHouse.Id);
+                return wareHouse;
+            }
+            if (!string.IsNullOrEmpty(wareHouse.WareHouseName))
+            {
+                wareHouse = _context.WareHouses.First(c => c.WareHouseName == wareHouse.WareHouseName);
+                return wareHouse;
+            }
+            if (!string.IsNullOrEmpty(wareHouse.Address))
+            {
+                wareHouse = _context.WareHouses.First(c => c.Address == wareHouse.Address);
+                return wareHouse;
+            }
+            throw new EntityException("Ware house not found");
         }
 
-        public async Task Change(WareHouse item)
+        public WareHouse GetByReceipt(string userId, Receipt receipt)
         {
-            _context.WareHouses.Update(item);
-            await _context.SaveChangesAsync();
+            throw new NotImplementedException();
         }
 
-        public WareHouse GetWareHouse(WareHouse wareHouse)
+        public WareHouse GetByProductOportunity(string userId, bool oportunity)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public WareHouse GetWareHouseByUser(IdentityUser user)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public WareHouse GetWareHouseByName(string name)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public WareHouse GetWareHouseByAddress(string address)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public WareHouse GetWareHouseByStockMan(int stockManId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public WareHouse GetWareHouseByProductOportunitu(bool productOportunity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public WareHouse GetWareHouseByReceipt(Receipt receipt)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public WareHouse GetWareHouseByEmail(string email)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Add(string userId, WareHouse item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public WareHouse GetById(string userId, int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Delete(string userId, WareHouse item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Change(string userId, WareHouse item)
-        {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

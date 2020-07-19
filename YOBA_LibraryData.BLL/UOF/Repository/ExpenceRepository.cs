@@ -14,13 +14,13 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             _context = context;
         }
-        public async Task Add(Expence item)
+        public async Task Add(string userId, Expence item)
         {
             _context.Add(item);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Expence item)
+        public async Task Delete(string userId, Expence item)
         {
             _context.Remove(item);
             await _context.SaveChangesAsync();
@@ -31,38 +31,18 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             return _context.Expences;
         }
 
-        public Expence GetById(int id)
+        public Expence GetById(string userId, int id)
         {
             return _context.Expences.First(expence => expence.Id == id);
         }
 
-        public async Task Change(Expence item)
+        public async Task Change(string userId, Expence item)
         {
             _context.Update(item);
             await _context.SaveChangesAsync();
         }
 
-        public Expence GetByName(string name)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Add(string userId, Expence item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Expence GetById(string userId, int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Delete(string userId, Expence item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Change(string userId, Expence item)
+        public Expence Get(string userId, Expence item)
         {
             throw new System.NotImplementedException();
         }

@@ -8,13 +8,7 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
 {
     public interface IWareHouseRepository:IBaseRepository<WareHouse>
     {
-        WareHouse GetWareHouse(WareHouse wareHouse);
-        WareHouse GetWareHouseByUser(IdentityUser user);
-        WareHouse GetWareHouseByName(string name);
-        WareHouse GetWareHouseByAddress(string address);
-        WareHouse GetWareHouseByStockMan(int stockManId);
-        WareHouse GetWareHouseByProductOportunitu(bool productOportunity);
-        WareHouse GetWareHouseByReceipt(Receipt receipt);
-        WareHouse GetWareHouseByEmail(string email);
+        WareHouse GetByReceipt(string userId, Receipt receipt);
+        WareHouse GetByProductOportunity(string userId, bool oportunity);
     }
 }

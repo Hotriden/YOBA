@@ -14,13 +14,13 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             _context = context;
         }
-        public async Task Add(Order item)
+        public async Task Add(string userId, Order item)
         {
             _context.Add(item);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Order item)
+        public async Task Delete(string userId, Order item)
         {
             _context.Remove(item);
             await _context.SaveChangesAsync();
@@ -38,37 +38,23 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             }
         }
 
-        public Order GetById(int id)
+        public Order GetById(string userId, int id)
         {
             return _context.Orders.First(order => order.Id == id);
         }
 
-        public Order GetByIdentity(string identity)
+        public Order GetByIdentity(string userId, string identity)
         {
             return _context.Orders.First(order => order.OrderIdentity == identity); ;
         }
 
-        public async Task Change(Order item)
+        public async Task Change(string userId, Order item)
         {
             _context.Orders.Update(item);
             await _context.SaveChangesAsync();
         }
-        public Task Add(string userId, Order item)
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public Order GetById(string userId, int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Delete(string userId, Order item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Change(string userId, Order item)
+        public Order Get(string userId, Order item)
         {
             throw new System.NotImplementedException();
         }

@@ -15,13 +15,13 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             _context = context;
         }
-        public async Task Add(Supplier item)
+        public async Task Add(string userId, Supplier item)
         {
             _context.Add(item);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Supplier item)
+        public async Task Delete(string userId, Supplier item)
         {
             _context.Remove(item);
             await _context.SaveChangesAsync();
@@ -32,38 +32,23 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             return _context.Suppliers;
         }
 
-        public Supplier GetById(int id)
+        public Supplier GetById(string userId, int id)
         {
             return _context.Suppliers.First(supplier => supplier.Id == id);
         }
 
-        public async Task Change(Supplier item)
+        public async Task Change(string userId, Supplier item)
         {
             _context.Suppliers.Update(item);
             await _context.SaveChangesAsync();
         }
 
-        public Supplier GetByNumber(string identity)
+        public Supplier GetByNumber(string userId, string identity)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task Add(string userId, Supplier item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Supplier GetById(string userId, int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Delete(string userId, Supplier item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Change(string userId, Supplier item)
+        public Supplier Get(string userId, Supplier item)
         {
             throw new System.NotImplementedException();
         }

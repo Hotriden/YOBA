@@ -15,13 +15,13 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             _context = context;
         }
 
-        public async Task Add(Payment item)
+        public async Task Add(string userId, Payment item)
         {
             _context.Add(item);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Payment item)
+        public async Task Delete(string userId, Payment item)
         {
             _context.Remove(item);
             await _context.SaveChangesAsync();
@@ -32,38 +32,22 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             return _context.Payments;
         }
 
-        public Payment GetById(int id)
+        public Payment GetById(string userId, int id)
         {
             return _context.Payments.First(payment => payment.Id == id);
         }
 
-        public Payment GetByIdentity(string id)
+        public Payment GetByIdentity(string userId, string id)
         {
             return _context.Payments.First(payment => payment.IdentialPayNumber == id);
         }
 
-        public async Task Change(Payment item)
+        public async Task Change(string userId, Payment item)
         {
             _context.Payments.Update(item);
             await _context.SaveChangesAsync();
         }
-
-        public Task Add(string userId, Payment item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Payment GetById(string userId, int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Delete(string userId, Payment item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Change(string userId, Payment item)
+        public Payment Get(string userId, Payment item)
         {
             throw new System.NotImplementedException();
         }

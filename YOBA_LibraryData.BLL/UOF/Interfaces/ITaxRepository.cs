@@ -5,6 +5,5 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
 {
     public interface ITaxRepository:IBaseRepository<Tax>
     {
-        Tax GetByName(string name);
     }
 }

@@ -25,7 +25,7 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
             }
             else
             {
-                if (db.TaxRepository.GetById(UserId, item.Id) == null)
+                if (db.IncomeRepository.Get(UserId, item) == null)
                 {
                     var _income = item;
                     _income.CreatedBy = UserId;
@@ -44,7 +44,7 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
 
         public void Delete(Income item, string UserId)
         {
-            var result = db.IncomeRepository.GetById(UserId, item.Id);
+            var result = db.IncomeRepository.Get(UserId, item);
             if (result != null)
             {
                 var _income = item;
@@ -68,7 +68,7 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
 
         public void Update(Income item, string UserId)
         {
-            var result = db.IncomeRepository.GetById(UserId, item.Id);
+            var result = db.IncomeRepository.Get(UserId, item);
             if (result != null)
             {
                 var _income = item;

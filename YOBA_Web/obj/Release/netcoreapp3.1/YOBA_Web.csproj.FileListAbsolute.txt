@@ -357,3 +357,4 @@ C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.Web.WebPage
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\System.Web.WebPages.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\obj\Release\netcoreapp3.1\YOBA_Web.csproj.CoreCompileInputs.cache

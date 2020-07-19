@@ -57,12 +57,12 @@ namespace YOBA_Web.Controllers
             else
             {
                 _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Success");
-                var result = _db.WareHouseRepository.GetById(userId, wareHouse.Id);
+                var result = _db.WareHouseRepository.Get(userId, wareHouse);
                 return result;
             }
         }
 
-        [HttpPost("Post")]
+        [HttpPost("Create")]
         public async Task<ActionResult<WareHouse>> Post(WareHouse wareHouse)
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -73,21 +73,22 @@ namespace YOBA_Web.Controllers
             }
             if (userId != null)
             {
+                wareHouse.UserId = userId;
                 await _db.WareHouseRepository.Add(userId, wareHouse);
             }
             return Ok(wareHouse);
         }
 
 
-        [HttpPut("Put")]
-        public async Task<ActionResult<WareHouse>> Put(WareHouse wareHouse)
+        [HttpPut("Change")]
+        public async Task<ActionResult<WareHouse>> Change(WareHouse wareHouse)
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (wareHouse == null)
             {
                 return BadRequest();
             }
-            if (_db.WareHouseRepository.GetById(userId, wareHouse.Id)==null)
+            if (_db.WareHouseRepository.Get(userId, wareHouse)==null)
             {
                 return NotFound();
             }
@@ -96,16 +97,16 @@ namespace YOBA_Web.Controllers
         }
 
         [HttpDelete("{id?}")]
-        public async Task<ActionResult<WareHouse>> Delete(int id)
+        public async Task<ActionResult<WareHouse>> Delete(WareHouse wareHouse)
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            WareHouse wareHouse = _db.WareHouseRepository.GetById(userId, id);
-            if (wareHouse == null)
+            WareHouse wH = _db.WareHouseRepository.Get(userId, wareHouse);
+            if (wH == null)
             {
                 return NotFound();
             }
-            await _db.WareHouseRepository.Delete(userId, wareHouse);
-            return Ok(wareHouse);
+            await _db.WareHouseRepository.Delete(userId, wH);
+            return Ok(wH);
         }
     }
 }

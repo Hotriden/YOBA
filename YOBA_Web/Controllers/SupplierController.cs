@@ -42,11 +42,11 @@ namespace YOBA_Web.Controllers
         }
 
         [HttpGet("{id?}")]
-        public async Task<ActionResult<Supplier>> Get(int id)
+        public async Task<ActionResult<Supplier>> Get(Supplier _supplier)
         {
             var user = await GetCurrentUserAsync();
             var userId = user?.Id;
-            Supplier supplier = _db.SupplierRepository.GetById(userId, id);
+            Supplier supplier = _db.SupplierRepository.Get(userId, _supplier);
             if (supplier == null)
             {
                 _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Not Found");
@@ -82,7 +82,7 @@ namespace YOBA_Web.Controllers
             {
                 return BadRequest();
             }
-            if (_db.SupplierRepository.GetById(userId, supplier.Id) == null)
+            if (_db.SupplierRepository.Get(userId, supplier) == null)
             {
                 return NotFound();
             }
@@ -92,11 +92,11 @@ namespace YOBA_Web.Controllers
         }
 
         [HttpDelete("{id?}")]
-        public async Task<ActionResult<Supplier>> Delete(int id)
+        public async Task<ActionResult<Supplier>> Delete(Supplier _supplier)
         {
             var user = await GetCurrentUserAsync();
             var userId = user?.Id;
-            Supplier supplier = _db.SupplierRepository.GetById(userId, id);
+            Supplier supplier = _db.SupplierRepository.Get(userId, _supplier);
             if (supplier == null)
             {
                 return NotFound();

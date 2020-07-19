@@ -5,6 +5,5 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
 {
     public interface IBranchRepository:IBaseRepository<Branch>
     {
-        Branch GetByName(string name);
     }
 }

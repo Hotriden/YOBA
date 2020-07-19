@@ -5,6 +5,5 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
 {
     public interface IPaymentRepository : IBaseRepository<Payment>
     {
-        Payment GetByIdentity(string identity);
     }
 }

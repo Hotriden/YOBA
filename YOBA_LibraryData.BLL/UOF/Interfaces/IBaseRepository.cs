@@ -8,7 +8,7 @@ namespace YOBA_LibraryData.BLL.Interfaces
     {
         IQueryable<T> GetAll(string userId);
         Task Add(string userId, T item);
-        T GetById(string userId, int id);
+        T Get(string userId, T item);
         Task Delete(string userId, T item);
         Task Change(string userId, T item);
     }
