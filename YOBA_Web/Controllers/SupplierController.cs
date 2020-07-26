@@ -27,7 +27,7 @@ namespace YOBA_Web.Controllers
         {
             _db = db;
             _userManager = userManager;
-            _logger = loggerFactory.CreateLogger<WarehouseController>();
+            _logger = loggerFactory.CreateLogger<SupplierController>();
         }
 
         private Task<IdentityUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);

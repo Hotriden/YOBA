@@ -22,8 +22,8 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Payments).Returns(mockDbSet.Object);
             var res = new PaymentRepository(mockContext.Object);
 
-            await res.Add(new Payment() { Id= 1, Value=200, IdentialPayNumber="H0234200502020" });
-            await res.Add(new Payment() { Id = 2, Value = 12200, IdentialPayNumber = "K0134506502111" });
+            await res.Add("Vasyan11", new Payment() { Id= 1, Value=200, IdentialPayNumber="H0234200502020" });
+            await res.Add("Vasyan11", new Payment() { Id = 2, Value = 12200, IdentialPayNumber = "K0134506502111" });
 
             mockContext.Verify(s => s.Add(It.IsAny<Payment>()), Times.AtLeast(2));
             mockContext.Verify(s => s.SaveChanges(), Times.AtLeast(2));
@@ -49,7 +49,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Payments).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
-            var result = repo.GetById(4);
+            var result = repo.GetById("Vasyan11", 4);
 
             Assert.IsTrue(result.IdentialPayNumber == "L01545265011517");
         }
@@ -74,7 +74,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Payments).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
-            var result = repo.GetByIdentity("K0134506502111");
+            var result = repo.GetByIdentity("Vasyan11", "K0134506502111");
 
             Assert.IsTrue(result.Id == 2);
         }
@@ -126,7 +126,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Payments).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
-            await repo.Delete(new Payment() { Id = 4, Value = 1001, IdentialPayNumber = "L01545265011517" });
+            await repo.Delete("Vasyan11", new Payment() { Id = 4, Value = 1001, IdentialPayNumber = "L01545265011517" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());
@@ -152,7 +152,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Payments).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
-            await repo.Change(new Payment() { Id = 2, Value = 13400, IdentialPayNumber = "K0134506502111" });
+            await repo.Change("Vasyan11", new Payment() { Id = 2, Value = 13400, IdentialPayNumber = "K0134506502111" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

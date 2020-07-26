@@ -54,11 +54,12 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         public WareHouse Get(string userId, WareHouse item)
         {
             WareHouse wareHouse = item;
-            if (string.IsNullOrEmpty(wareHouse.WareHouseName))
-            {
-                throw new UserException("Incorrect user id");
-            }
-            if (wareHouse.Id > 1)
+            //if (string.IsNullOrEmpty(wareHouse.WareHouseName))
+            //{
+            //    throw new UserException("Incorrect user id");
+            //}
+            bool exist = _context.WareHouses.Any(c => c.Id == wareHouse.Id);
+            if (exist)
             {
                 wareHouse = _context.WareHouses.First(c => c.Id == wareHouse.Id);
                 return wareHouse;

@@ -22,8 +22,8 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Expences).Returns(mockDbSet.Object);
             var res = new ExpenceRepository(mockContext.Object);
 
-            await res.Add(new Expence() { Id= 1, Name="Transport", Value=200 });
-            await res.Add(new Expence() { Id= 2, Name="Rent", Value=50 });
+            await res.Add("Vasyan11", new Expence() { Id= 1, Name="Transport", Value=200 });
+            await res.Add("Vasyan11", new Expence() { Id= 2, Name="Rent", Value=50 });
 
             mockContext.Verify(s => s.Add(It.IsAny<Expence>()), Times.Exactly(2));
             mockContext.Verify(s => s.SaveChanges(), Times.Exactly(2));
@@ -48,7 +48,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Expences).Returns(mockDbSet.Object);
 
             var repo = new ExpenceRepository(context.Object);
-            var result = repo.GetById(2);
+            var result = repo.GetById("Vasyan11", 2);
 
             Assert.IsTrue(result.Name == "Rent");
         }
@@ -99,7 +99,7 @@ namespace ProductServiceTest
 
             var repo = new ExpenceRepository(context.Object);
 
-            await repo.Delete(new Expence()
+            await repo.Delete("Vasyan11", new Expence()
             {
                 Id = 5,
                 Name = "Market Promotion",
@@ -129,7 +129,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Expences).Returns(mockDbSet.Object);
 
             var repo = new ExpenceRepository(context.Object);
-            await repo.Change(new Expence() { Id = 5, Name = "Market Promotion", Value = 300 });
+            await repo.Change("Vasyan11", new Expence() { Id = 5, Name = "Market Promotion", Value = 300 });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

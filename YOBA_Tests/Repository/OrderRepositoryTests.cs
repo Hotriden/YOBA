@@ -23,8 +23,8 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Orders).Returns(mockDbSet.Object);
             var res = new OrderRepository(mockContext.Object);
 
-            await res.Add(new Order() { Id= 1, Paid=true, Shipped=true, OrderSum=100});
-            await res.Add(new Order() { Id= 3, Paid = false, Shipped = false, OrderSum = 300 });
+            await res.Add("Vasyan11", new Order() { Id= 1, Paid=true, Shipped=true, OrderSum=100});
+            await res.Add("Vasyan11", new Order() { Id= 3, Paid = false, Shipped = false, OrderSum = 300 });
 
             mockContext.Verify(s => s.Add(It.IsAny<Order>()), Times.AtLeast(2));
             mockContext.Verify(s => s.SaveChanges(), Times.AtLeast(2));
@@ -50,7 +50,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Orders).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
-            var result = repo.GetById(5);
+            var result = repo.GetById("Vasyan11", 5);
 
             Assert.IsTrue(result.Paid == true);
         }
@@ -75,7 +75,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Orders).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
-            var result = repo.GetByIdentity("T12-19-00021");
+            var result = repo.GetByIdentity("Vasyan11", "T12-19-00021");
 
             Assert.IsTrue(result.Paid == true);
         }
@@ -127,7 +127,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Orders).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
-            await repo.Delete(new Order() { Id = 5, Paid = true, Shipped = false, OrderSum = 1100 });
+            await repo.Delete("Vasyan11", new Order() { Id = 5, Paid = true, Shipped = false, OrderSum = 1100 });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());
@@ -153,7 +153,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Orders).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
-            await repo.Change(new Order() { Id = 5, Paid = true, Shipped = false, OrderSum = 1100 });
+            await repo.Change("Vasyan11", new Order() { Id = 5, Paid = true, Shipped = false, OrderSum = 1100 });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

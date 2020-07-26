@@ -24,7 +24,7 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Incomes).Returns(mockDbSet.Object);
             var res = new IncomeRepository(mockContext.Object);
 
-            await res.Add(new Income() { Id= 1, Name="Net income", Value=3000});
+            await res.Add("Vasyan11", new Income() { Id= 1, Name="Net income", Value=3000});
 
             mockContext.Verify(s => s.Add(It.IsAny<Income>()), Times.Once());
             mockContext.Verify(s => s.SaveChanges(), Times.Once());
@@ -48,7 +48,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Incomes).Returns(mockDbSet.Object);
 
             var repo = new IncomeRepository(context.Object);
-            var result = repo.GetById(1);
+            var result = repo.GetById("Vasyan11", 1);
 
             Assert.IsTrue(result.Name == "Net income");
         }
@@ -97,7 +97,7 @@ namespace ProductServiceTest
 
             var repo = new IncomeRepository(context.Object);
 
-            await repo.Delete(new Income()
+            await repo.Delete("Vasyan11", new Income()
             {
                 Id = 1,
                 Name = "Net income",
@@ -126,7 +126,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Incomes).Returns(mockDbSet.Object);
 
             var repo = new IncomeRepository(context.Object);
-            await repo.Change(new Income() { Id= 2, Name = "Sales income" });
+            await repo.Change("Vasyan11", new Income() { Id= 2, Name = "Sales income" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

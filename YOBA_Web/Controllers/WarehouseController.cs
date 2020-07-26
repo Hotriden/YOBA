@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.Interfaces;
+using YOBA_Web.Filters;
 
 namespace YOBA_Web.Controllers
 {
@@ -45,20 +46,19 @@ namespace YOBA_Web.Controllers
             return result;
         }
 
-        [HttpGet("{id?}")]
-        public ActionResult<WareHouse> Get(WareHouse wareHouse)
+        [HttpGet("Get/{id}")]
+        public ActionResult<WareHouse> Get(int id)
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (wareHouse == null)
+            var result = _db.WareHouseRepository.Get(userId, new WareHouse() { Id = id });
+            if (result != null)
             {
-                _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Not Found");
-                return NotFound();
+                _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Success");
+                return result;
             }
             else
             {
-                _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Success");
-                var result = _db.WareHouseRepository.Get(userId, wareHouse);
-                return result;
+                return StatusCode(404, "WareHouse not founded");
             }
         }
 
@@ -96,7 +96,7 @@ namespace YOBA_Web.Controllers
             return Ok(wareHouse);
         }
 
-        [HttpDelete("{id?}")]
+        [HttpDelete("Delete")]
         public async Task<ActionResult<WareHouse>> Delete(WareHouse wareHouse)
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;

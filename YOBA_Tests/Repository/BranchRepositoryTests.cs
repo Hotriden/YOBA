@@ -27,7 +27,7 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Branches).Returns(mockDbSet.Object);
             var res = new BranchRepository(mockContext.Object);
 
-            await res.Add(new Branch() { Id = 1, BranchName = "Finance" });
+            await res.Add("Vasyan11", new Branch() { Id = 1, BranchName = "Finance" });
 
             mockContext.Verify(s => s.Add(It.IsAny<Branch>()), Times.Once());
             mockContext.Verify(s => s.SaveChanges(), Times.Once());
@@ -51,7 +51,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Branches).Returns(mockDbSet.Object);
 
             var repo = new BranchRepository(context.Object);
-            var result = repo.GetById(2);
+            var result = repo.Get("Vasyan11", new Branch() { BranchName="Sells" }) ;
 
             Assert.IsTrue(result.BranchName == "Sells");
         }
@@ -98,7 +98,7 @@ namespace ProductServiceTest
             var context = new Mock<YOBAContext>();
             context.Setup(c => c.Branches).Returns(mockDbSet.Object);
             var repo = new BranchRepository(context.Object);
-            await repo.Delete(new Branch() { Id = 2, BranchName = "Sells" });
+            await repo.Delete("Vasyan11", new Branch() { Id = 2, BranchName = "Sells" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());
@@ -121,7 +121,7 @@ namespace ProductServiceTest
             var context = new Mock<YOBAContext>();
             context.Setup(c => c.Branches).Returns(mockDbSet.Object);
             var repo = new BranchRepository(context.Object);
-            await repo.Change(new Branch() { Id = 2, BranchName = "Sells" });
+            await repo.Change("Vasyan11", new Branch() { Id = 2, BranchName = "Sells" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

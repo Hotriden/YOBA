@@ -23,8 +23,8 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Employees).Returns(mockDbSet.Object);
             var res = new EmployeeRepository(mockContext.Object);
 
-            await res.Add(new Employee() { Id= 1, Name="Nikola", LastName="Landao", Salary=1200, TelephoneNumber="88000123", UserId = "asdasd123" });
-            await res.Add(new Employee() { Id= 2, Name="Khal", LastName="Drogo", Salary=20, UserId="asdasd123" });
+            await res.Add("Vasyan11", new Employee() { Id= 1, Name="Nikola", LastName="Landao", Salary=1200, TelephoneNumber="88000123", UserId = "asdasd123" });
+            await res.Add("Vasyan11", new Employee() { Id= 2, Name="Khal", LastName="Drogo", Salary=20, UserId="asdasd123" });
 
             mockContext.Verify(s => s.Add(It.IsAny<Employee>()), Times.Exactly(2));
             mockContext.Verify(s => s.SaveChanges(), Times.Exactly(2));
@@ -48,7 +48,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Employees).Returns(mockDbSet.Object);
 
             var repo = new EmployeeRepository(context.Object);
-            var result = repo.GetById(2);
+            var result = repo.Get("Vasyan11", new Employee() { Name="Nikola" });
 
             Assert.IsTrue(result.Name == "Khal");
         }
@@ -99,7 +99,7 @@ namespace ProductServiceTest
 
             var repo = new EmployeeRepository(context.Object);
 
-            await repo.Delete(new Employee()
+            await repo.Delete("Vasyan11", new Employee()
             {
                 Id = 5,
                 Name = "John",
@@ -130,7 +130,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Employees).Returns(mockDbSet.Object);
 
             var repo = new EmployeeRepository(context.Object);
-            await repo.Change(new Employee() { Id = 5, Name = "John", LastName = "Snow", Salary = 500 });
+            await repo.Change("Vasyan11", new Employee() { Id = 5, Name = "John", LastName = "Snow", Salary = 500 });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace YOBA_LibraryData.DAL.Exceptions
 {
-    class EntityException:Exception
+    public class EntityException:Exception
     {
         public EntityException()
         {
