@@ -53,7 +53,7 @@ namespace YOBA_Web.Controllers
             var result = _db.WareHouseRepository.Get(userId, new WareHouse() { Id = id });
             if (result != null)
             {
-                _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Success");
+                _logger.LogInformation($"UserId: {userId}, INFO: {DateTime.Now} {GetType()} Success");
                 return result;
             }
             else

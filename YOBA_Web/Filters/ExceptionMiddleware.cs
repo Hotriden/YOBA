@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Http.Filters;
 using YOBA_LibraryData.DAL.Exceptions;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace YOBA_Web.Filters
 {
@@ -28,7 +29,8 @@ namespace YOBA_Web.Filters
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Something went wrong: {ex}");
+                var userId = httpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                _logger.LogError($"{DateTime.Now} \nERROR. UserId: {userId}. \nErrorMessage: {ex}");
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
@@ -41,7 +43,7 @@ namespace YOBA_Web.Filters
             return context.Response.WriteAsync(new ErrorDetails()
             {
                 StatusCode = context.Response.StatusCode,
-                Message = "Internal Server Error from the custom middleware."
+                Message = $"Middleware Exception: {exception.Message}"
             }.ToString());
         }
     }

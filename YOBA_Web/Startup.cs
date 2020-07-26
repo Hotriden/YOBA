@@ -79,16 +79,11 @@ namespace YOBA_Web
             services.Configure<DataProtectionTokenProviderOptions>(opt => opt.TokenLifespan = TimeSpan.FromHours(1));
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IAntiforgery antiforgery)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
+                app.UseExceptionHandler("/error-local-development");
             }
             #region Logging
             if (Directory.GetCurrentDirectory() + "/Logs" != null)
@@ -98,6 +93,7 @@ namespace YOBA_Web
             string path = Directory.GetCurrentDirectory() + "/Logs";
             loggerFactory.AddFile(Path.Combine(path, $"{DateTime.UtcNow.Date.ToString("yyyy/MM/dd")}_logs.txt"));
             var logger = loggerFactory.CreateLogger("FileLogger");
+            app.ConfigureCustomExceptionMiddleware();
             #endregion
             app.UseHttpsRedirection();
             app.UseRouting();
@@ -107,7 +103,6 @@ namespace YOBA_Web
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSession();
-            app.UseMiddleware<ExceptionMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
