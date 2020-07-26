@@ -7,7 +7,6 @@ namespace YOBA_LibraryData.DAL.Entities
     {
         [Required]
         public int Id { get; set; }
-        [Required]
         public string UserId { get; set; }
         public string CreatedBy { get; set; }
 

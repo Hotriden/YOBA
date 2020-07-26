@@ -26,7 +26,7 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
             }
             else
             {
-                if (db.OrderRepository.GetById(UserId, item.Id) == null)
+                if (db.OrderRepository.Get(UserId, item) == null)
                 {
                     var _order = item;
                     _order.CreatedBy = UserId;
@@ -45,7 +45,7 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
 
         public void Delete(Order item, string UserId)
         {
-            var result = db.OrderRepository.GetById(UserId, item.Id);
+            var result = db.OrderRepository.Get(UserId, item);
             if (result != null)
             {
                 var _order = item;
@@ -69,7 +69,7 @@ namespace YOBA_BLL.Catalogue.SellCatalogueFolder
 
         public void Update(Order item, string UserId)
         {
-            var result = db.OrderRepository.GetById(UserId, item.Id);
+            var result = db.OrderRepository.Get(UserId, item);
             if (result != null)
             {
                 var _order = item;

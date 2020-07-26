@@ -26,7 +26,7 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
             }
             else
             {
-                if (db.EmployeeRepository.GetById(UserId, item.Id) == null)
+                if (db.EmployeeRepository.Get(UserId, item) == null)
                 {
                     var _employee = item;
                     _employee.CreatedBy = UserId;
@@ -45,7 +45,7 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 
         public void Delete(Employee item, string UserId)
         {
-            var result = db.EmployeeRepository.GetById(UserId, item.Id);
+            var result = db.EmployeeRepository.Get(UserId, item);
             if (result != null)
             {
                 var _employee = item;
@@ -64,7 +64,7 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 
         public void Update(Employee item, string UserId)
         {
-            var result = db.EmployeeRepository.GetById(UserId, item.Id);
+            var result = db.EmployeeRepository.Get(UserId, item);
             if (result != null)
             {
                 var _employee = item;

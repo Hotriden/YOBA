@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.Interfaces;
+using YOBA_Web.Filters;
 
 namespace YOBA_Web.Controllers
 {
@@ -45,24 +46,23 @@ namespace YOBA_Web.Controllers
             return result;
         }
 
-        [HttpGet("{id?}")]
-        public ActionResult<WareHouse> Get(WareHouse wareHouse)
+        [HttpGet("Get/{id}")]
+        public ActionResult<WareHouse> Get(int id)
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (wareHouse == null)
+            var result = _db.WareHouseRepository.Get(userId, new WareHouse() { Id = id });
+            if (result != null)
             {
-                _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Not Found");
-                return NotFound();
+                _logger.LogInformation($"UserId: {userId}, INFO: {DateTime.Now} {GetType()} Success");
+                return result;
             }
             else
             {
-                _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Success");
-                var result = _db.WareHouseRepository.GetById(userId, wareHouse.Id);
-                return result;
+                return StatusCode(404, "WareHouse not founded");
             }
         }
 
-        [HttpPost("Post")]
+        [HttpPost("Create")]
         public async Task<ActionResult<WareHouse>> Post(WareHouse wareHouse)
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -73,21 +73,22 @@ namespace YOBA_Web.Controllers
             }
             if (userId != null)
             {
+                wareHouse.UserId = userId;
                 await _db.WareHouseRepository.Add(userId, wareHouse);
             }
             return Ok(wareHouse);
         }
 
 
-        [HttpPut("Put")]
-        public async Task<ActionResult<WareHouse>> Put(WareHouse wareHouse)
+        [HttpPut("Change")]
+        public async Task<ActionResult<WareHouse>> Change(WareHouse wareHouse)
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (wareHouse == null)
             {
                 return BadRequest();
             }
-            if (_db.WareHouseRepository.GetById(userId, wareHouse.Id)==null)
+            if (_db.WareHouseRepository.Get(userId, wareHouse)==null)
             {
                 return NotFound();
             }
@@ -95,17 +96,17 @@ namespace YOBA_Web.Controllers
             return Ok(wareHouse);
         }
 
-        [HttpDelete("{id?}")]
-        public async Task<ActionResult<WareHouse>> Delete(int id)
+        [HttpDelete("Delete")]
+        public async Task<ActionResult<WareHouse>> Delete(WareHouse wareHouse)
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            WareHouse wareHouse = _db.WareHouseRepository.GetById(userId, id);
-            if (wareHouse == null)
+            WareHouse wH = _db.WareHouseRepository.Get(userId, wareHouse);
+            if (wH == null)
             {
                 return NotFound();
             }
-            await _db.WareHouseRepository.Delete(userId, wareHouse);
-            return Ok(wareHouse);
+            await _db.WareHouseRepository.Delete(userId, wH);
+            return Ok(wH);
         }
     }
 }

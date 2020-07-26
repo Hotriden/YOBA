@@ -5,6 +5,5 @@ namespace YOBA_LibraryData.BLL.UOF.Interfaces
 {
     public interface IIncomeRepository:IBaseRepository<Income>
     {
-        Income GetByName(string name);
     }
 }

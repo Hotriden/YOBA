@@ -27,7 +27,7 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
             }
             else
             {
-                if (db.ReceiptRepository.GetById(UserId, receipt.Id) == null)
+                if (db.ReceiptRepository.Get(UserId, receipt) == null)
                 {
                     var _receipt = receipt;
                     _receipt.CreatedBy = UserId;
@@ -46,7 +46,7 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
 
         public void Delete(Receipt receipt, string UserId)
         {
-            var result = db.ReceiptRepository.GetById(UserId, receipt.Id);
+            var result = db.ReceiptRepository.Get(UserId, receipt);
             if (result != null)
             {
                 var _receipt = receipt;
@@ -66,7 +66,7 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
 
         public void Update(Receipt receipt, string UserId)
         {
-            var result = db.ReceiptRepository.GetById(UserId, receipt.Id);
+            var result = db.ReceiptRepository.Get(UserId, receipt);
             if (result != null)
             {
                 var _receipt = receipt;

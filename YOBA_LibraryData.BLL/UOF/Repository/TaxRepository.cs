@@ -14,13 +14,13 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             _context = context;
         }
-        public async Task Add(Tax item)
+        public async Task Add(string userId, Tax item)
         {
             _context.Add(item);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Tax item)
+        public async Task Delete(string userId, Tax item)
         {
             _context.Remove(item);
             await _context.SaveChangesAsync();
@@ -31,38 +31,17 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
             return _context.Taxes.Where(c => c.UserId == userId);
         }
 
-        public Tax GetById(int id)
+        public Tax GetById(string userId, int id)
         {
             return _context.Taxes.First(tax => tax.Id == id);
         }
 
-        public async Task Change(Tax item)
+        public async Task Change(string userId, Tax item)
         {
             _context.Taxes.Update(item);
             await _context.SaveChangesAsync();
         }
-
-        public Tax GetByName(string name)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Add(string userId, Tax item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Tax GetById(string userId, int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Delete(string userId, Tax item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Change(string userId, Tax item)
+        public Tax Get(string userId, Tax item)
         {
             throw new System.NotImplementedException();
         }

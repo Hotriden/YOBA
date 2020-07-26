@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,11 +11,14 @@ using Microsoft.Extensions.Logging;
 using NETCore.MailKit.Extensions;
 using NETCore.MailKit.Infrastructure.Internal;
 using System;
+using System.IO;
 using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF;
 using YOBA_LibraryData.DAL;
+using YOBA_Web.Filters;
 using YOBA_Web.Models;
 using YOBA_Web.Models.JwtAuth;
+using YOBA_Web.Models.Logger;
 
 namespace YOBA_Web
 {
@@ -77,26 +79,21 @@ namespace YOBA_Web
             services.Configure<DataProtectionTokenProviderOptions>(opt => opt.TokenLifespan = TimeSpan.FromHours(1));
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, IAntiforgery antiforgery)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
+                app.UseExceptionHandler("/error-local-development");
             }
             #region Logging
-            ////////////////////// LOGGER DON'T WORK ON SmarterASP.NET Hosting  ////////////
-            //if (Directory.GetCurrentDirectory() + "/Logs" != null)
-            //{
-            //    Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/Logs");
-            //}
-            //string path = Directory.GetCurrentDirectory() + "/Logs";
-            //loggerFactory.AddFile(Path.Combine(path, $"{DateTime.UtcNow.Date.ToString("yyyy/MM/dd")}_logs.txt"));
-            //var logger = loggerFactory.CreateLogger("FileLogger");
+            if (Directory.GetCurrentDirectory() + "/Logs" != null)
+            {
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/Logs");
+            }
+            string path = Directory.GetCurrentDirectory() + "/Logs";
+            loggerFactory.AddFile(Path.Combine(path, $"{DateTime.UtcNow.Date.ToString("yyyy/MM/dd")}_logs.txt"));
+            var logger = loggerFactory.CreateLogger("FileLogger");
+            app.ConfigureCustomExceptionMiddleware();
             #endregion
             app.UseHttpsRedirection();
             app.UseRouting();

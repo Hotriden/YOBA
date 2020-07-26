@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using YOBA_BLL.Services.MessageService;
-using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.Interfaces;
-using YOBA_LibraryData.BLL.UOF.Interfaces;
 
 namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
 {
@@ -28,7 +26,7 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
             }
             else
             {
-                if (db.WareHouseRepository.GetById(userId, wareHouse.Id) == null)
+                if (db.WareHouseRepository.Get(userId, wareHouse) == null)
                 {
                     var _wareHouse = wareHouse;
                     _wareHouse.CreatedBy = userId;
@@ -46,7 +44,7 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
 
         public void Delete(WareHouse wareHouse, string UserId)
         {
-            var result = db.WareHouseRepository.GetById(UserId, wareHouse.Id);
+            var result = db.WareHouseRepository.Get(UserId, wareHouse);
             if (result != null)
             {
                 var _wareHouse = wareHouse;
@@ -70,7 +68,7 @@ namespace YOBA_BLL.Catalogue.SupplyCatalogueFolder
 
         public void Update(WareHouse wareHouse, string UserId)
         {
-            var result = db.WareHouseRepository.GetById(UserId, wareHouse.Id);
+            var result = db.WareHouseRepository.Get(UserId, wareHouse);
             if (result != null)
             {
                 var _wareHouse = wareHouse;

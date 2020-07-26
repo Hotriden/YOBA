@@ -26,7 +26,7 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
             }
             else
             {
-                if (db.BranchRepository.GetById(UserId, item.Id) == null)
+                if (db.BranchRepository.Get(UserId, item) == null)
                 {
                     var _branch = item;
                     _branch.CreatedBy = UserId;
@@ -45,7 +45,7 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 
         public void Delete(Branch item, string UserId)
         {
-            var result = db.BranchRepository.GetById(UserId, item.Id);
+            var result = db.BranchRepository.Get(UserId, item);
             if (result != null)
             {
                 var _branch = item;
@@ -65,7 +65,7 @@ namespace YOBA_BLL.Catalogue.StaffCatalogueFolder
 
         public void Update(Branch item, string UserId)
         {
-            var result = db.BranchRepository.GetById(UserId, item.Id);
+            var result = db.BranchRepository.Get(UserId, item);
             if (result != null)
             {
                 var _branch = item;

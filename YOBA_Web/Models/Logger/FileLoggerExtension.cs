@@ -6,7 +6,7 @@ namespace YOBA_Web.Models.Logger
     /// Extencion method for ILoggerFactory
     /// to add LoggerFactory as text file
     /// </summary>
-    public static class FileLoggerExtencion
+    public static class FileLoggerExtension
     {
         public static ILoggerFactory AddFile(this ILoggerFactory factory, string filePath)
         {

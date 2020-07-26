@@ -25,7 +25,7 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
             }
             else
             {
-                if (db.ExpenceRepository.GetById(UserId, item.Id) == null)
+                if (db.ExpenceRepository.Get(UserId, item) == null)
                 {
                     var _expence = item;
                     _expence.CreatedBy = UserId;
@@ -44,7 +44,7 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
 
         public void Delete(Expence item, string UserId)
         {
-            var result = db.ExpenceRepository.GetById(UserId, item.Id);
+            var result = db.ExpenceRepository.Get(UserId, item);
             if (result != null)
             {
                 var _expence = item;
@@ -68,7 +68,7 @@ namespace YOBA_BLL.Catalogue.FinanceCatalogueFolder
 
         public void Update(Expence item, string UserId)
         {
-            var result = db.ExpenceRepository.GetById(UserId, item.Id);
+            var result = db.ExpenceRepository.Get(UserId, item);
             if (result != null)
             {
                 var _expence = item;

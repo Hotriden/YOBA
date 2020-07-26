@@ -14,13 +14,13 @@ namespace YOBA_LibraryData.DAL.UOF.Repository
             _context = context;
         }
 
-        public async Task Add(Receipt item)
+        public async Task Add(string userId, Receipt item)
         {
             _context.Add(item);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(Receipt item)
+        public async Task Delete(string userId, Receipt item)
         {
             _context.Remove(item);
             await _context.SaveChangesAsync();
@@ -31,34 +31,18 @@ namespace YOBA_LibraryData.DAL.UOF.Repository
             return _context.Receipts;
         }
 
-        public Receipt GetById(int id)
+        public Receipt GetById(string userId, int id)
         {
             return _context.Receipts.First(receipt => receipt.Id == id);
         }
 
-        public async Task Change(Receipt item)
+        public async Task Change(string userId, Receipt item)
         {
             _context.Receipts.Update(item);
             await _context.SaveChangesAsync();
         }
 
-
-        public Task Add(string userId, Receipt item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Receipt GetById(string userId, int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Delete(string userId, Receipt item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Change(string userId, Receipt item)
+        public Receipt Get(string userId, Receipt item)
         {
             throw new System.NotImplementedException();
         }

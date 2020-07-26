@@ -20,3 +20,4 @@ C:\Temp\YOBA_App\YOBA_Core\YOBA_BLL\obj\Release\netcoreapp3.1\YOBA_BLL.AssemblyI
 C:\Temp\YOBA_App\YOBA_Core\YOBA_BLL\obj\Release\netcoreapp3.1\YOBA_BLL.csproj.CopyComplete
 C:\Temp\YOBA_App\YOBA_Core\YOBA_BLL\obj\Release\netcoreapp3.1\YOBA_BLL.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_BLL\obj\Release\netcoreapp3.1\YOBA_BLL.pdb
+C:\Temp\YOBA_App\YOBA_Core\YOBA_BLL\obj\Release\netcoreapp3.1\YOBA_BLL.csproj.CoreCompileInputs.cache

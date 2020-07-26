@@ -23,7 +23,7 @@ namespace ProductServiceTest
             mockContext.Setup(c => c.Suppliers).Returns(mockDbSet.Object);
             var res = new SupplierRepository(mockContext.Object);
 
-            await res.Add(new Supplier() { Address="Washington st 12", Id= 1, SupplierName="Bington LTD" });
+            await res.Add("Vasyan11", new Supplier() { Address="Washington st 12", Id= 1, SupplierName="Bington LTD" });
 
             mockContext.Verify(s => s.Add(It.IsAny<Supplier>()), Times.Once());
             mockContext.Verify(s => s.SaveChanges(), Times.Once());
@@ -48,7 +48,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Suppliers).Returns(mockDbSet.Object);
 
             var repo = new SupplierRepository(context.Object);
-            var result = repo.GetById(11);
+            var result = repo.Get("Vasyan11", new Supplier() { SupplierName = "DCH LTD" });
 
             Assert.IsTrue(result.SupplierName == "DCH LTD");
         }
@@ -98,7 +98,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Suppliers).Returns(mockDbSet.Object);
 
             var repo = new SupplierRepository(context.Object);
-            await repo.Delete(new Supplier()
+            await repo.Delete("Vasyan11", new Supplier()
             {
                 Id= 11,
                 Address = "Gabboni st 144",
@@ -128,7 +128,7 @@ namespace ProductServiceTest
             context.Setup(s => s.Suppliers).Returns(mockDbSet.Object);
 
             var repo = new SupplierRepository(context.Object);
-            await repo.Change(new Supplier() { Address = "Gabboni st 144", Id = 11, SupplierName = "DCH LTD" });
+            await repo.Change("Vasyan11", new Supplier() { Address = "Gabboni st 144", Id = 11, SupplierName = "DCH LTD" });
 
             repo.Should().NotBeSameAs(data);
             context.Verify(s => s.SaveChanges(), Times.Once());

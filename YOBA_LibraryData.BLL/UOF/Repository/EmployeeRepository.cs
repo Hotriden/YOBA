@@ -4,6 +4,7 @@ using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
 using YOBA_LibraryData.DAL;
 using System.Threading.Tasks;
+using YOBA_LibraryData.DAL.UOF;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -14,52 +15,37 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         {
             _context = context;
         }
-        public async Task Add(Employee item)
-        {
-            _context.Add(item);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task Delete(Employee item)
-        {
-            _context.Remove(item);
-            await _context.SaveChangesAsync();
-        }
 
         public IQueryable<Employee> GetAll(string userId)
         {
             return _context.Employees;
         }
 
-        public Employee GetById(int id)
+        public async Task Add(string userId, Employee item)
         {
-            return _context.Employees.First(emp => emp.Id == id);
+            if (item != null)
+            {
+                item.OnAdd(userId);
+                _context.Add(item);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public async Task Change(Employee item)
+        public Employee Get(string userId, Employee item)
         {
-            _context.Employees.Update(item);
+            throw new System.NotImplementedException();
+        }
+
+        public async Task Delete(string userId, Employee item)
+        {
+            _context.Remove(item);
             await _context.SaveChangesAsync();
         }
 
-        public Task Add(string userId, Employee item)
+        public async Task Change(string userId, Employee item)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Employee GetById(string userId, int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Delete(string userId, Employee item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Change(string userId, Employee item)
-        {
-            throw new System.NotImplementedException();
+            _context.Employees.Update(item);
+            await _context.SaveChangesAsync();
         }
     }
 }
