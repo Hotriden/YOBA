@@ -97,6 +97,10 @@ namespace YOBA_Web.Controllers
         [HttpPut("Put/{id}")]
         public async Task<ActionResult<WareHouse>> Put(int id, [FromBody] WareHouse wh)
         {
+            if (id != wh.Id)
+            {
+                return BadRequest();
+            }
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (wh == null)
             {

@@ -20,7 +20,7 @@ namespace ProductServiceTest
             var mockDbSet = new Mock<DbSet<Employee>>();
             var mockContext = new Mock<YOBAContext>();
 
-            mockContext.Setup(c => c.Employees).Returns(mockDbSet.Object);
+            mockContext.Setup(c => c.Employee).Returns(mockDbSet.Object);
             var res = new EmployeeRepository(mockContext.Object);
 
             await res.Add("Vasyan11", new Employee() { Id= 1, Name="Nikola", LastName="Landao", Salary=1200, TelephoneNumber="88000123", UserId = "asdasd123" });
@@ -45,7 +45,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Employee>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Employees).Returns(mockDbSet.Object);
+            context.Setup(s => s.Employee).Returns(mockDbSet.Object);
 
             var repo = new EmployeeRepository(context.Object);
             var result = repo.Get("Vasyan11", new Employee() { Name="Nikola" });
@@ -69,7 +69,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Employee>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Employees).Returns(mockDbSet.Object);
+            context.Setup(s => s.Employee).Returns(mockDbSet.Object);
 
             var repo = new EmployeeRepository(context.Object);
             var result = repo.GetAll("sdasd123").ToList();
@@ -95,7 +95,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Employee>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Employees).Returns(mockDbSet.Object);
+            context.Setup(s => s.Employee).Returns(mockDbSet.Object);
 
             var repo = new EmployeeRepository(context.Object);
 
@@ -127,7 +127,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Employee>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Employees).Returns(mockDbSet.Object);
+            context.Setup(s => s.Employee).Returns(mockDbSet.Object);
 
             var repo = new EmployeeRepository(context.Object);
             await repo.Change("Vasyan11", new Employee() { Id = 5, Name = "John", LastName = "Snow", Salary = 500 });

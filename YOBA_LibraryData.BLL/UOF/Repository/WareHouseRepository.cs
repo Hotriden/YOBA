@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using YOBA_LibraryData.DAL.UOF;
 using System;
 using YOBA_LibraryData.DAL.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -32,7 +33,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public async Task Delete(string userId, WareHouse wareHouse)
         {
-            if (_context.WareHouses.Where(user => user.UserId == userId).Where(wh => wh.Id == wareHouse.Id) != null)
+            if (_context.WareHouse.Where(user => user.UserId == userId).First(wh => wh.Id == wareHouse.Id) != null)
             {
                 _context.Remove(wareHouse);
                 await _context.SaveChangesAsync();
@@ -45,23 +46,21 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public IQueryable<WareHouse> GetAll(string userId)
         {
-            var result = _context.WareHouses.Where(c => c.UserId == userId);
+            var result = _context.WareHouse.Where(c => c.UserId == userId);
             return result;
         }
 
         public async Task Change(string userId, WareHouse wareHouse)
         {
+            var wh = _context.WareHouse.Where(user => user.UserId == userId).First(wh => wh.Id == wareHouse.Id);
             if (wareHouse != null)
             {
-                wareHouse.OnChange(userId);
-                _context.WareHouses.Update(wareHouse);
-                await _context.SaveChangesAsync();
+                _context.Entry(wh).CurrentValues.SetValues(wareHouse);
             }
-            else
-            {
-                throw new EntityException("Warehouse not found");
-            }
+            await _context.SaveChangesAsync();
+            //throw new EntityException("Warehouse not found");
         }
+
         /// <summary>
         /// Can include any of warehouse
         /// parameters to find entity
@@ -73,20 +72,20 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         public WareHouse Get(string userId, WareHouse item)
         {
             WareHouse wareHouse = item;
-            bool isExist = _context.WareHouses.Any(c => c.Id == wareHouse.Id);
+            bool isExist = _context.WareHouse.Any(c => c.Id == wareHouse.Id);
             if (isExist)
             {
-                wareHouse = _context.WareHouses.First(c => c.Id == wareHouse.Id);
+                wareHouse = _context.WareHouse.First(c => c.Id == wareHouse.Id);
                 return wareHouse;
             }
             if (!string.IsNullOrEmpty(wareHouse.WareHouseName))
             {
-                wareHouse = _context.WareHouses.First(c => c.WareHouseName == wareHouse.WareHouseName);
+                wareHouse = _context.WareHouse.First(c => c.WareHouseName == wareHouse.WareHouseName);
                 return wareHouse;
             }
             if (!string.IsNullOrEmpty(wareHouse.Address))
             {
-                wareHouse = _context.WareHouses.First(c => c.Address == wareHouse.Address);
+                wareHouse = _context.WareHouse.First(c => c.Address == wareHouse.Address);
                 return wareHouse;
             }
             throw new EntityException("Warehouse not found");

@@ -20,7 +20,7 @@ namespace ProductServiceTest
             var mockDbSet = new Mock<DbSet<Order>>();
             var mockContext = new Mock<YOBAContext>();
 
-            mockContext.Setup(c => c.Orders).Returns(mockDbSet.Object);
+            mockContext.Setup(c => c.Order).Returns(mockDbSet.Object);
             var res = new OrderRepository(mockContext.Object);
 
             await res.Add("Vasyan11", new Order() { Id= 1, Paid=true, Shipped=true, OrderSum=100});
@@ -47,7 +47,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Order>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Orders).Returns(mockDbSet.Object);
+            context.Setup(s => s.Order).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
             var result = repo.GetById("Vasyan11", 5);
@@ -72,7 +72,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Order>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Orders).Returns(mockDbSet.Object);
+            context.Setup(s => s.Order).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
             var result = repo.GetByIdentity("Vasyan11", "T12-19-00021");
@@ -97,7 +97,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Order>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Orders).Returns(mockDbSet.Object);
+            context.Setup(s => s.Order).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
             var result = repo.GetAll("gfdgd34").ToList();
@@ -124,7 +124,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Order>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Orders).Returns(mockDbSet.Object);
+            context.Setup(s => s.Order).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
             await repo.Delete("Vasyan11", new Order() { Id = 5, Paid = true, Shipped = false, OrderSum = 1100 });
@@ -150,7 +150,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Order>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Orders).Returns(mockDbSet.Object);
+            context.Setup(s => s.Order).Returns(mockDbSet.Object);
 
             var repo = new OrderRepository(context.Object);
             await repo.Change("Vasyan11", new Order() { Id = 5, Paid = true, Shipped = false, OrderSum = 1100 });

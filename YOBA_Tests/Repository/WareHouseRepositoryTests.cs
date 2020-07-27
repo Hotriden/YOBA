@@ -23,7 +23,7 @@ namespace ProductServiceTest
             var mockDbSet = new Mock<DbSet<WareHouse>>();
             var mockContext = new Mock<YOBAContext>();
 
-            mockContext.Setup(c => c.WareHouses).Returns(mockDbSet.Object);
+            mockContext.Setup(c => c.WareHouse).Returns(mockDbSet.Object);
             var res = new WareHouseRepository(mockContext.Object);
 
             await res.Add("asdqqwe15", new WareHouse() { Id = 1, Address = "Lincoln St. 12", WareHouseName = "WareHouse#1" });
@@ -66,7 +66,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<WareHouse>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.WareHouses).Returns(mockDbSet.Object);
+            context.Setup(s => s.WareHouse).Returns(mockDbSet.Object);
 
             var repo = new WareHouseRepository(context.Object);
             var result = repo.GetAll("asdqqwe15").ToList();
@@ -92,7 +92,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<WareHouse>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.WareHouses).Returns(mockDbSet.Object);
+            context.Setup(s => s.WareHouse).Returns(mockDbSet.Object);
 
             var repo = new WareHouseRepository(context.Object);
             await repo.Delete("someid1211", new WareHouse()
@@ -122,7 +122,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<WareHouse>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.WareHouses).Returns(mockDbSet.Object);
+            context.Setup(s => s.WareHouse).Returns(mockDbSet.Object);
 
             var repo = new WareHouseRepository(context.Object);
             await repo.Change("someid1211", new WareHouse() { Id = 201, Address = "Morrison ave. 2", WareHouseName = "WareHouse#201" });

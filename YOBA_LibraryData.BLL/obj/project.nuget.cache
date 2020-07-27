@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QMPpyNvTBigzGGSw0YHsLMSoUvRsHzF8UZRshrCBAaLCXGRZI8i0L11Qbu1me1gJPrNq+gvpB4SBrF/IFaRECw==",
+  "dgSpecHash": "yx6XenqimkBEFLYD7XPyzAYxJeOy/nPNvpLP9Tab9B6qDMkPcO3eysRP95vyNpOA7RDbga0tRvyzKaDKaLxBJQ==",
   "success": true,
   "projectFilePath": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_LibraryData.BLL\\YOBA_LibraryData.DAL.csproj",
   "expectedPackageFiles": [
@@ -53,9 +53,6 @@
     "C:\\Users\\Rifter\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\Rifter\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\Rifter\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
-    "C:\\Users\\Rifter\\.nuget\\packages\\nlog\\4.6.8\\nlog.4.6.8.nupkg.sha512",
-    "C:\\Users\\Rifter\\.nuget\\packages\\nlog.extensions.logging\\1.6.2\\nlog.extensions.logging.1.6.2.nupkg.sha512",
-    "C:\\Users\\Rifter\\.nuget\\packages\\nlog.web.aspnetcore\\4.9.2\\nlog.web.aspnetcore.4.9.2.nupkg.sha512",
     "C:\\Users\\Rifter\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\Rifter\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Rifter\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

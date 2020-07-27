@@ -16,22 +16,24 @@ namespace YOBA_LibraryData.DAL
             //Database.EnsureCreated(); 
         }
 
-        public virtual DbSet<Expence> Expences { get; set; }
-        public virtual DbSet<Income> Incomes { get; set; }
-        public virtual DbSet<Tax> Taxes { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Payment> Payments { get; set; }
-        public virtual DbSet<Branch> Branches { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<Receipt> Receipts { get; set; }
-        public virtual DbSet<Supplier> Suppliers { get; set; }
-        public virtual DbSet<WareHouse> WareHouses { get; set; }
-        public virtual DbSet<UserLog> ClientLogs { get; set; }
-        public virtual DbSet<UserModel> UserModels { get; set; }
+        public virtual DbSet<Expence> Expence { get; set; }
+        public virtual DbSet<Income> Income { get; set; }
+        public virtual DbSet<Tax> Tax { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<Payment> Payment { get; set; }
+        public virtual DbSet<Branch> Branch { get; set; }
+        public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<Receipt> Receipt { get; set; }
+        public virtual DbSet<Supplier> Supplier { get; set; }
+        public virtual DbSet<WareHouse> WareHouse { get; set; }
+        public virtual DbSet<UserLog> ClientLog { get; set; }
+        public virtual DbSet<UserModel> UserModel { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.RemovePluralizingTableNameConvention();
+
             modelBuilder.Entity<Expence>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();

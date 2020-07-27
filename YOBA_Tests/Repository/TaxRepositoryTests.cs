@@ -19,7 +19,7 @@ namespace ProductServiceTest
             var mockDbSet = new Mock<DbSet<Tax>>();
             var mockContext = new Mock<YOBAContext>();
 
-            mockContext.Setup(c => c.Taxes).Returns(mockDbSet.Object);
+            mockContext.Setup(c => c.Tax).Returns(mockDbSet.Object);
             var res = new TaxRepository(mockContext.Object);
 
             await res.Add("Vasyan11", new Tax() { Id = 1, Name = "Freight", Percent = 20 });
@@ -43,7 +43,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Tax>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Taxes).Returns(mockDbSet.Object);
+            context.Setup(s => s.Tax).Returns(mockDbSet.Object);
 
             var repo = new TaxRepository(context.Object);
             var result = repo.Get("Vasyan11", new Tax() { Name = "VAT" });
@@ -67,7 +67,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Tax>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Taxes).Returns(mockDbSet.Object);
+            context.Setup(s => s.Tax).Returns(mockDbSet.Object);
 
             var repo = new TaxRepository(context.Object);
             var result = repo.GetAll("bibka228").ToList();
@@ -93,7 +93,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Tax>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Taxes).Returns(mockDbSet.Object);
+            context.Setup(s => s.Tax).Returns(mockDbSet.Object);
 
             var repo = new TaxRepository(context.Object);
             await repo.Delete("Vasyan11", new Tax() {
@@ -121,7 +121,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Tax>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Taxes).Returns(mockDbSet.Object);
+            context.Setup(s => s.Tax).Returns(mockDbSet.Object);
 
             var repo = new TaxRepository(context.Object);
             await repo.Change("Vasyan11", new Tax() { Id = 3, Name = "Medicine", Percent = 3 });

@@ -21,7 +21,7 @@ namespace ProductServiceTest
             var mockDbSet = new Mock<DbSet<Income>>();
             var mockContext = new Mock<YOBAContext>();
 
-            mockContext.Setup(c => c.Incomes).Returns(mockDbSet.Object);
+            mockContext.Setup(c => c.Income).Returns(mockDbSet.Object);
             var res = new IncomeRepository(mockContext.Object);
 
             await res.Add("Vasyan11", new Income() { Id= 1, Name="Net income", Value=3000});
@@ -45,7 +45,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Income>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Incomes).Returns(mockDbSet.Object);
+            context.Setup(s => s.Income).Returns(mockDbSet.Object);
 
             var repo = new IncomeRepository(context.Object);
             var result = repo.GetById("Vasyan11", 1);
@@ -68,7 +68,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Income>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Incomes).Returns(mockDbSet.Object);
+            context.Setup(s => s.Income).Returns(mockDbSet.Object);
 
             var repo = new IncomeRepository(context.Object);
             var result = repo.GetAll("lolly022").ToList();
@@ -93,7 +93,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Income>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Incomes).Returns(mockDbSet.Object);
+            context.Setup(s => s.Income).Returns(mockDbSet.Object);
 
             var repo = new IncomeRepository(context.Object);
 
@@ -123,7 +123,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Income>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Incomes).Returns(mockDbSet.Object);
+            context.Setup(s => s.Income).Returns(mockDbSet.Object);
 
             var repo = new IncomeRepository(context.Object);
             await repo.Change("Vasyan11", new Income() { Id= 2, Name = "Sales income" });

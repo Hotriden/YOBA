@@ -29,22 +29,22 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public IQueryable<Payment> GetAll(string userId)
         {
-            return _context.Payments;
+            return _context.Payment;
         }
 
         public Payment GetById(string userId, int id)
         {
-            return _context.Payments.First(payment => payment.Id == id);
+            return _context.Payment.First(payment => payment.Id == id);
         }
 
         public Payment GetByIdentity(string userId, string id)
         {
-            return _context.Payments.First(payment => payment.IdentialPayNumber == id);
+            return _context.Payment.First(payment => payment.IdentialPayNumber == id);
         }
 
         public async Task Change(string userId, Payment item)
         {
-            _context.Payments.Update(item);
+            _context.Payment.Update(item);
             await _context.SaveChangesAsync();
         }
         public Payment Get(string userId, Payment item)

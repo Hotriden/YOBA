@@ -28,17 +28,17 @@ namespace YOBA_LibraryData.DAL.UOF.Repository
 
         public IQueryable<Receipt> GetAll(string userId)
         {
-            return _context.Receipts;
+            return _context.Receipt;
         }
 
         public Receipt GetById(string userId, int id)
         {
-            return _context.Receipts.First(receipt => receipt.Id == id);
+            return _context.Receipt.First(receipt => receipt.Id == id);
         }
 
         public async Task Change(string userId, Receipt item)
         {
-            _context.Receipts.Update(item);
+            _context.Receipt.Update(item);
             await _context.SaveChangesAsync();
         }
 

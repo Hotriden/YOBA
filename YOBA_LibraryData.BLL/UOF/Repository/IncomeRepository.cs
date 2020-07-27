@@ -28,12 +28,12 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public IQueryable<Income> GetAll(string userId)
         {
-            return _context.Incomes;
+            return _context.Income;
         }
 
         public Income GetById(string userId, int id)
         {
-            return _context.Incomes.First(income => income.Id == id);
+            return _context.Income.First(income => income.Id == id);
         }
 
         public async Task Change(string userId, Income item)

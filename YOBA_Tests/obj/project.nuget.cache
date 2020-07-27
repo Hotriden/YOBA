@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "T52tmsS3ua8EW0UMbXV9IQuNZ6DP3UeF+qtGxJXX44IxdzPz+6omDjrNxAkEapX8puYQVZZExqkhlriO0G38Bg==",
+  "dgSpecHash": "QR3yvwo7AcqhQQJdU3O927wrwS3GhAMIVAMcr2rF8icjRgBd0PMQU7DPrlL7Hgd/Q75fexrOOZAHnQF48jBlBw==",
   "success": true,
   "projectFilePath": "C:\\Temp\\YOBA_App\\YOBA_Core\\YOBA_Tests\\YOBA_Tests.csproj",
   "expectedPackageFiles": [
@@ -62,9 +62,6 @@
     "C:\\Users\\Rifter\\.nuget\\packages\\moq\\4.13.1\\moq.4.13.1.nupkg.sha512",
     "C:\\Users\\Rifter\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
     "C:\\Users\\Rifter\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
-    "C:\\Users\\Rifter\\.nuget\\packages\\nlog\\4.6.8\\nlog.4.6.8.nupkg.sha512",
-    "C:\\Users\\Rifter\\.nuget\\packages\\nlog.extensions.logging\\1.6.2\\nlog.extensions.logging.1.6.2.nupkg.sha512",
-    "C:\\Users\\Rifter\\.nuget\\packages\\nlog.web.aspnetcore\\4.9.2\\nlog.web.aspnetcore.4.9.2.nupkg.sha512",
     "C:\\Users\\Rifter\\.nuget\\packages\\nuget.frameworks\\5.0.0\\nuget.frameworks.5.0.0.nupkg.sha512",
     "C:\\Users\\Rifter\\.nuget\\packages\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512",
     "C:\\Users\\Rifter\\.nuget\\packages\\nunit3testadapter\\3.16.1\\nunit3testadapter.3.16.1.nupkg.sha512",

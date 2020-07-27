@@ -28,12 +28,12 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public IQueryable<Expence> GetAll(string userId)
         {
-            return _context.Expences;
+            return _context.Expence;
         }
 
         public Expence GetById(string userId, int id)
         {
-            return _context.Expences.First(expence => expence.Id == id);
+            return _context.Expence.First(expence => expence.Id == id);
         }
 
         public async Task Change(string userId, Expence item)

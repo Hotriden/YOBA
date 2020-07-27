@@ -20,7 +20,7 @@ namespace ProductServiceTest
             var mockDbSet = new Mock<DbSet<Supplier>>();
             var mockContext = new Mock<YOBAContext>();
 
-            mockContext.Setup(c => c.Suppliers).Returns(mockDbSet.Object);
+            mockContext.Setup(c => c.Supplier).Returns(mockDbSet.Object);
             var res = new SupplierRepository(mockContext.Object);
 
             await res.Add("Vasyan11", new Supplier() { Address="Washington st 12", Id= 1, SupplierName="Bington LTD" });
@@ -45,7 +45,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Supplier>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Suppliers).Returns(mockDbSet.Object);
+            context.Setup(s => s.Supplier).Returns(mockDbSet.Object);
 
             var repo = new SupplierRepository(context.Object);
             var result = repo.Get("Vasyan11", new Supplier() { SupplierName = "DCH LTD" });
@@ -69,7 +69,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Supplier>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Suppliers).Returns(mockDbSet.Object);
+            context.Setup(s => s.Supplier).Returns(mockDbSet.Object);
 
             var repo = new SupplierRepository(context.Object);
             var result = repo.GetAll("gfdg34").ToList();
@@ -95,7 +95,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Supplier>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Suppliers).Returns(mockDbSet.Object);
+            context.Setup(s => s.Supplier).Returns(mockDbSet.Object);
 
             var repo = new SupplierRepository(context.Object);
             await repo.Delete("Vasyan11", new Supplier()
@@ -125,7 +125,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Supplier>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Suppliers).Returns(mockDbSet.Object);
+            context.Setup(s => s.Supplier).Returns(mockDbSet.Object);
 
             var repo = new SupplierRepository(context.Object);
             await repo.Change("Vasyan11", new Supplier() { Address = "Gabboni st 144", Id = 11, SupplierName = "DCH LTD" });
