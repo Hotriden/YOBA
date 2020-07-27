@@ -2,6 +2,11 @@
 
 namespace YOBA_Web.Models.JwtAuth
 {
+    /// <summary>
+    /// Same as recover model
+    /// this one for change password
+    /// by email
+    /// </summary>
     public class ResetPasswordModel
     {
         [Required]

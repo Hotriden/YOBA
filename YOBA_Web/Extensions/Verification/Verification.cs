@@ -2,6 +2,10 @@
 
 namespace YOBA_Web.Models
 {
+    /// <summary>
+    /// As web UI on core layer should be checks
+    /// on validation date
+    /// </summary>
     public static class Verification
     {
         static string pattern = @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +

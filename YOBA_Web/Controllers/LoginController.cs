@@ -5,12 +5,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using YOBA_LibraryData.BLL.Interfaces;
+using Microsoft.Extensions.Logging;
 using YOBA_LibraryData.DAL.Entities.User;
 using YOBA_Web.Models.JwtAuth;
 
 namespace YOBA_Web.Controllers
 {
+    /// <summary>
+    /// Authentication controller
+    /// for give JWT token in sign in
+    /// method 
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class LoginController : ControllerBase
@@ -19,24 +24,21 @@ namespace YOBA_Web.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IConfiguration _config;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ILogger _logger;
 
         public LoginController(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             IConfiguration config,
-            IHttpContextAccessor httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor,
+            ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _config = config;
             _httpContextAccessor = httpContextAccessor;
+            _logger = loggerFactory.CreateLogger<LoginController>();
         }
-
-        public string Index()
-        {
-            return "Home page";
-        }
-
 
         [HttpPost("SignIn")]
         public async Task<ActionResult> Login(UserModel model)
@@ -52,12 +54,18 @@ namespace YOBA_Web.Controllers
             return StatusCode(401, "Wrong email or password");
         }
 
+        [HttpPost("SignOut")]
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("SignIn");
         }
 
+        /// <summary>
+        /// WebUi method for identify user
+        /// by taken JWT token
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpGet("GetUser")]
         public async Task<ActionResult> GetUser()

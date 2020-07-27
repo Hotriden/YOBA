@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace YOBA_Web.Filters
 {
+    /// <summary>
+    /// Error model handling on
+    /// global exception middleware
+    /// </summary>
     public class ErrorDetails
     {
         public int StatusCode { get; set; }

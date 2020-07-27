@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using NETCore.MailKit.Core;
 using YOBA_LibraryData.DAL.Entities.User;
 using YOBA_Web.Models;
@@ -15,15 +16,18 @@ namespace YOBA_Web.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailService _emailService;
         private readonly string _webServerAddres;
+        private readonly ILogger _logger;
 
         public RegisterController(
             UserManager<IdentityUser> userManager,
             IEmailService emailService,
-            IConfiguration config)
+            IConfiguration config,
+            ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _emailService = emailService;
             _webServerAddres = config.GetSection("Web_UI").GetSection("Server").Value;
+            _logger = loggerFactory.CreateLogger<RegisterController>();
         }
 
         [HttpPost("Register")]

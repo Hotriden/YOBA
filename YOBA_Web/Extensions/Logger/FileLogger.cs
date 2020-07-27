@@ -4,9 +4,16 @@ using Microsoft.Extensions.Logging;
 
 namespace YOBA_Web.Models.Logger
 {
+    /// <summary>
+    /// Main implementation of logger
+    /// instance
+    /// </summary>
     public class FileLogger : ILogger
     {
         private string filePath;
+        /// <summary>
+        /// log file locker
+        /// </summary>
         private static object _lock = new object();
 
         public FileLogger(string path)

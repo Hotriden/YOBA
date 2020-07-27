@@ -2,6 +2,10 @@
 
 namespace YOBA_Web.Models.Logger
 {
+    /// <summary>
+    /// Logger provider create filelogger
+    /// on cunstructor instance
+    /// </summary>
     public class FileLoggerProvider : ILoggerProvider
     {
         private string path;
@@ -16,6 +20,7 @@ namespace YOBA_Web.Models.Logger
 
         public void Dispose()
         {
+            this.Dispose();
         }
     }
 }

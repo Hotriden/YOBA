@@ -79,12 +79,8 @@ namespace YOBA_Web
             services.Configure<DataProtectionTokenProviderOptions>(opt => opt.TokenLifespan = TimeSpan.FromHours(1));
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseExceptionHandler("/error-local-development");
-            }
             #region Logging
             if (Directory.GetCurrentDirectory() + "/Logs" != null)
             {
@@ -93,7 +89,9 @@ namespace YOBA_Web
             string path = Directory.GetCurrentDirectory() + "/Logs";
             loggerFactory.AddFile(Path.Combine(path, $"{DateTime.UtcNow.Date.ToString("yyyy/MM/dd")}_logs.txt"));
             var logger = loggerFactory.CreateLogger("FileLogger");
-            app.ConfigureCustomExceptionMiddleware();
+            #endregion
+            #region Global Exception Handler
+            app.UseMiddleware<ExceptionMiddleware>();
             #endregion
             app.UseHttpsRedirection();
             app.UseRouting();

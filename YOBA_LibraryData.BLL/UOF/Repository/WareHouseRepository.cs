@@ -24,14 +24,22 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
                 _context.Add(wareHouse);
                 await _context.SaveChangesAsync();
             }
+            else
+            {
+                throw new EntityException("Warehouse data error");
+            }
         }
 
-        public async Task Delete(string userId, WareHouse item)
+        public async Task Delete(string userId, WareHouse wareHouse)
         {
-            if (_context.WareHouses.Where(user => user.UserId == userId).Where(wh => wh.Id == item.Id) != null)
+            if (_context.WareHouses.Where(user => user.UserId == userId).Where(wh => wh.Id == wareHouse.Id) != null)
             {
-                _context.Remove(item);
+                _context.Remove(wareHouse);
                 await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new EntityException("Warehouse not found");
             }
         }
 
@@ -49,13 +57,24 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
                 _context.WareHouses.Update(wareHouse);
                 await _context.SaveChangesAsync();
             }
+            else
+            {
+                throw new EntityException("Warehouse not found");
+            }
         }
-
+        /// <summary>
+        /// Can include any of warehouse
+        /// parameters to find entity
+        /// on database for exceptional user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public WareHouse Get(string userId, WareHouse item)
         {
             WareHouse wareHouse = item;
-            bool exist = _context.WareHouses.Any(c => c.Id == wareHouse.Id);
-            if (exist)
+            bool isExist = _context.WareHouses.Any(c => c.Id == wareHouse.Id);
+            if (isExist)
             {
                 wareHouse = _context.WareHouses.First(c => c.Id == wareHouse.Id);
                 return wareHouse;
@@ -70,7 +89,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
                 wareHouse = _context.WareHouses.First(c => c.Address == wareHouse.Address);
                 return wareHouse;
             }
-            throw new EntityException("Ware house not found");
+            throw new EntityException("Warehouse not found");
         }
 
         public WareHouse GetByReceipt(string userId, Receipt receipt)

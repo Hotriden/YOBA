@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -43,7 +44,16 @@ namespace YOBA_Web.Controllers
 
             _logger.LogInformation("Log message in the GetAll() method");
             var result = _db.WareHouseRepository.GetAll(userId).ToList();
-            return result;
+            if (result.Count > 0)
+            {
+                return result;
+            }
+            else
+            {
+                _logger.LogError($"{DateTime.Now} ERROR. UserId: {userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Warehouses array is emtpy");
+                return StatusCode(404, "WareHouses array is empty");
+            }
         }
 
         [HttpGet("Get/{id}")]
@@ -58,6 +68,8 @@ namespace YOBA_Web.Controllers
             }
             else
             {
+                _logger.LogError($"{DateTime.Now} ERROR. UserId: {userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Warehouse {id} not found");
                 return StatusCode(404, "WareHouse not founded");
             }
         }
@@ -69,6 +81,8 @@ namespace YOBA_Web.Controllers
 
             if (wareHouse.WareHouseName == null)
             {
+                _logger.LogError($"{DateTime.Now} ERROR. UserId: {userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Warehouse {wareHouse.Id} not found");
                 return BadRequest();
             }
             if (userId != null)
@@ -80,33 +94,46 @@ namespace YOBA_Web.Controllers
         }
 
 
-        [HttpPut("Change")]
-        public async Task<ActionResult<WareHouse>> Change(WareHouse wareHouse)
+        [HttpPut("Put/{id}")]
+        public async Task<ActionResult<WareHouse>> Put(int id, [FromBody] WareHouse wh)
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (wh == null)
+            {
+                _logger.LogError($"{DateTime.Now} ERROR. UserId: {userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Warehouse {id} not found");
+                return BadRequest("Warehouse is empty");
+            }
+            WareHouse wareHouse = _db.WareHouseRepository.Get(userId, new WareHouse() { Id = id });
             if (wareHouse == null)
             {
-                return BadRequest();
+                _logger.LogError($"{DateTime.Now} ERROR. UserId: {userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Warehouse {id} not found");
+                return BadRequest("Warehouse doesn't exist");
             }
-            if (_db.WareHouseRepository.Get(userId, wareHouse)==null)
+            else
             {
-                return NotFound();
+                await _db.WareHouseRepository.Change(userId, wh);
+                return Ok(wareHouse);
             }
-            await _db.WareHouseRepository.Change(userId, wareHouse);
-            return Ok(wareHouse);
         }
 
-        [HttpDelete("Delete")]
-        public async Task<ActionResult<WareHouse>> Delete(WareHouse wareHouse)
+        [HttpDelete("Delete/{id}")]
+        public async Task<ActionResult<WareHouse>> Delete(int id)
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            WareHouse wH = _db.WareHouseRepository.Get(userId, wareHouse);
-            if (wH == null)
+            WareHouse wareHouse = _db.WareHouseRepository.Get(userId, new WareHouse() { Id = id });
+            if (wareHouse == null)
             {
+                _logger.LogError($"{DateTime.Now} ERROR. UserId: {userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Warehouse {id} not found");
                 return NotFound();
             }
-            await _db.WareHouseRepository.Delete(userId, wH);
-            return Ok(wH);
+            else
+            {
+                await _db.WareHouseRepository.Delete(userId, wareHouse);
+                return Ok(wareHouse);
+            }
         }
     }
 }

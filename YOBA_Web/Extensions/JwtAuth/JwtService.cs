@@ -8,6 +8,10 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace YOBA_Web.Models.JwtAuth
 {
+    /// <summary>
+    /// Generator and validator JWT
+    /// user access tokens
+    /// </summary>
     public class JwtService
     {
         private readonly string _secret;
@@ -19,6 +23,16 @@ namespace YOBA_Web.Models.JwtAuth
             _expDate = config.GetSection("JwtConfig").GetSection("expirationInMinutes").Value;
         }
 
+        /// <summary>
+        /// Token generator using HS256 algoritm
+        /// including user email and id claims and
+        /// secret identified on appsettings.json.
+        /// Should be extended for domain roles of
+        /// applcation model
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string GenerateSecurityToken(string email, string id)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -38,6 +52,14 @@ namespace YOBA_Web.Models.JwtAuth
             return tokenHandler.WriteToken(token);
         }
 
+        /// <summary>
+        /// Token security validator.
+        /// Based on appsettings.json params as
+        /// token lifetime and claims from
+        /// authenticationExtension
+        /// </summary>
+        /// <param name="jwtToken"></param>
+        /// <returns></returns>
         public ClaimsPrincipal ValidateToken(string jwtToken)
         {
             IdentityModelEventSource.ShowPII = true;

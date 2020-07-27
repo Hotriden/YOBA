@@ -11,6 +11,12 @@ using System.Security.Claims;
 
 namespace YOBA_Web.Filters
 {
+    /// <summary>
+    /// Global exception handler.
+    /// Through pipeline exceptions from
+    /// assemblies filtering on this
+    /// middleware
+    /// </summary>
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
@@ -20,7 +26,17 @@ namespace YOBA_Web.Filters
             _logger = loggerFactory.CreateLogger<ExceptionMiddleware>();
             _next = next;
         }
-
+        
+        /// <summary>
+        /// Every httpcontext moving
+        /// throught this method and in
+        /// case of exception triggering
+        /// HandleException method for
+        /// create response about exception
+        /// and logging into txt file
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
@@ -30,7 +46,7 @@ namespace YOBA_Web.Filters
             catch (Exception ex)
             {
                 var userId = httpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                _logger.LogError($"{DateTime.Now} \nERROR. UserId: {userId}. \nErrorMessage: {ex}");
+                _logger.LogError($"{DateTime.Now} EXCEPTION. UserId: {userId}. \nErrorMessage: {ex}");
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
