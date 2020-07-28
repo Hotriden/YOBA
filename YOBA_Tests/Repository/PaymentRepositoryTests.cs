@@ -19,7 +19,7 @@ namespace ProductServiceTest
             var mockDbSet = new Mock<DbSet<Payment>>();
             var mockContext = new Mock<YOBAContext>();
 
-            mockContext.Setup(c => c.Payments).Returns(mockDbSet.Object);
+            mockContext.Setup(c => c.Payment).Returns(mockDbSet.Object);
             var res = new PaymentRepository(mockContext.Object);
 
             await res.Add("Vasyan11", new Payment() { Id= 1, Value=200, IdentialPayNumber="H0234200502020" });
@@ -46,7 +46,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Payment>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Payments).Returns(mockDbSet.Object);
+            context.Setup(s => s.Payment).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
             var result = repo.GetById("Vasyan11", 4);
@@ -71,7 +71,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Payment>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Payments).Returns(mockDbSet.Object);
+            context.Setup(s => s.Payment).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
             var result = repo.GetByIdentity("Vasyan11", "K0134506502111");
@@ -96,7 +96,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Payment>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Payments).Returns(mockDbSet.Object);
+            context.Setup(s => s.Payment).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
             var result = repo.GetAll("gfdgd34").ToList();
@@ -123,7 +123,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Payment>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Payments).Returns(mockDbSet.Object);
+            context.Setup(s => s.Payment).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
             await repo.Delete("Vasyan11", new Payment() { Id = 4, Value = 1001, IdentialPayNumber = "L01545265011517" });
@@ -149,7 +149,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Payment>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Payments).Returns(mockDbSet.Object);
+            context.Setup(s => s.Payment).Returns(mockDbSet.Object);
 
             var repo = new PaymentRepository(context.Object);
             await repo.Change("Vasyan11", new Payment() { Id = 2, Value = 13400, IdentialPayNumber = "K0134506502111" });

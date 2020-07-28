@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using YOBA_LibraryData.BLL.Entities.Staff;
 using YOBA_LibraryData.DAL;
 using YOBA_LibraryData.BLL.UOF.Interfaces;
@@ -28,17 +27,17 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public IQueryable<Branch> GetAll(string userId)
         {
-            return _context.Branches;
+            return _context.Branch;
         }
 
         public Branch GetById(string userId, int id)
         {
-            return _context.Branches.First(branch => branch.Id == id);
+            return _context.Branch.First(branch => branch.Id == id);
         }
 
         public async Task Change(string userId, Branch item)
         {
-            _context.Branches.Update(item);
+            _context.Branch.Update(item);
             await _context.SaveChangesAsync();
         }
 

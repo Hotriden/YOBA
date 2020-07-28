@@ -440,9 +440,6 @@ C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\Microsoft.VisualStud
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\MimeKit.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\NETCore.MailKit.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\NLog.dll
-C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
-C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\NLog.Web.AspNetCore.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll

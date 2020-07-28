@@ -1,0 +1,11 @@
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\publish
+User 1e3f9852-7e60-4c7a-98b1-4fdd22d036b2 validation failed: DuplicateUserName.
+Invalid password for user fe844af5-e44e-4f65-b406-98b97d622247.
+User fe844af5-e44e-4f65-b406-98b97d622247 failed to provide the correct password.
+Application is shutting down...
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web\bin\Release\netcoreapp3.1\publish
+Application is shutting down...

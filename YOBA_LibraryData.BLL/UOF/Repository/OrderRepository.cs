@@ -28,9 +28,9 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public IQueryable<Order> GetAll(string userId)
         {
-            if (_context.Orders != null)
+            if (_context.Order != null)
             {
-                return _context.Orders;
+                return _context.Order;
             }
             else
             {
@@ -40,17 +40,17 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public Order GetById(string userId, int id)
         {
-            return _context.Orders.First(order => order.Id == id);
+            return _context.Order.First(order => order.Id == id);
         }
 
         public Order GetByIdentity(string userId, string identity)
         {
-            return _context.Orders.First(order => order.OrderIdentity == identity); ;
+            return _context.Order.First(order => order.OrderIdentity == identity); ;
         }
 
         public async Task Change(string userId, Order item)
         {
-            _context.Orders.Update(item);
+            _context.Order.Update(item);
             await _context.SaveChangesAsync();
         }
 

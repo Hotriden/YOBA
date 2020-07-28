@@ -24,7 +24,7 @@ namespace ProductServiceTest
 
             var testMoq = new Mock<IBranchRepository>();
 
-            mockContext.Setup(c => c.Branches).Returns(mockDbSet.Object);
+            mockContext.Setup(c => c.Branch).Returns(mockDbSet.Object);
             var res = new BranchRepository(mockContext.Object);
 
             await res.Add("Vasyan11", new Branch() { Id = 1, BranchName = "Finance" });
@@ -48,7 +48,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Branch>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(s => s.Branches).Returns(mockDbSet.Object);
+            context.Setup(s => s.Branch).Returns(mockDbSet.Object);
 
             var repo = new BranchRepository(context.Object);
             var result = repo.Get("Vasyan11", new Branch() { BranchName="Sells" }) ;
@@ -71,7 +71,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Branch>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(c => c.Branches).Returns(mockDbSet.Object);
+            context.Setup(c => c.Branch).Returns(mockDbSet.Object);
 
             var repo = new BranchRepository(context.Object);
             var result = repo.GetAll("hfdshf34").ToList();
@@ -96,7 +96,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Branch>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(c => c.Branches).Returns(mockDbSet.Object);
+            context.Setup(c => c.Branch).Returns(mockDbSet.Object);
             var repo = new BranchRepository(context.Object);
             await repo.Delete("Vasyan11", new Branch() { Id = 2, BranchName = "Sells" });
 
@@ -119,7 +119,7 @@ namespace ProductServiceTest
             mockDbSet.As<IQueryable<Branch>>().Setup(x => x.GetEnumerator()).Returns(data.GetEnumerator);
 
             var context = new Mock<YOBAContext>();
-            context.Setup(c => c.Branches).Returns(mockDbSet.Object);
+            context.Setup(c => c.Branch).Returns(mockDbSet.Object);
             var repo = new BranchRepository(context.Object);
             await repo.Change("Vasyan11", new Branch() { Id = 2, BranchName = "Sells" });
 

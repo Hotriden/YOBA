@@ -18,7 +18,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public IQueryable<Employee> GetAll(string userId)
         {
-            return _context.Employees;
+            return _context.Employee;
         }
 
         public async Task Add(string userId, Employee item)
@@ -44,7 +44,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public async Task Change(string userId, Employee item)
         {
-            _context.Employees.Update(item);
+            _context.Employee.Update(item);
             await _context.SaveChangesAsync();
         }
     }

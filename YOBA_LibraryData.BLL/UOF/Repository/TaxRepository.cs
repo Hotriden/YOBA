@@ -28,17 +28,17 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public IQueryable<Tax> GetAll(string userId)
         {
-            return _context.Taxes.Where(c => c.UserId == userId);
+            return _context.Tax.Where(c => c.UserId == userId);
         }
 
         public Tax GetById(string userId, int id)
         {
-            return _context.Taxes.First(tax => tax.Id == id);
+            return _context.Tax.First(tax => tax.Id == id);
         }
 
         public async Task Change(string userId, Tax item)
         {
-            _context.Taxes.Update(item);
+            _context.Tax.Update(item);
             await _context.SaveChangesAsync();
         }
         public Tax Get(string userId, Tax item)

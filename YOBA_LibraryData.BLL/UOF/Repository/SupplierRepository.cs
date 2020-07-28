@@ -29,17 +29,17 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
 
         public IQueryable<Supplier> GetAll(string userId)
         {
-            return _context.Suppliers;
+            return _context.Supplier;
         }
 
         public Supplier GetById(string userId, int id)
         {
-            return _context.Suppliers.First(supplier => supplier.Id == id);
+            return _context.Supplier.First(supplier => supplier.Id == id);
         }
 
         public async Task Change(string userId, Supplier item)
         {
-            _context.Suppliers.Update(item);
+            _context.Supplier.Update(item);
             await _context.SaveChangesAsync();
         }
 
