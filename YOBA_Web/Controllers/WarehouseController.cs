@@ -41,7 +41,6 @@ namespace YOBA_Web.Controllers
         public ActionResult<List<WareHouse>> GetAll()
         {
             string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
             _logger.LogInformation("Log message in the GetAll() method");
             var result = _db.WareHouseRepository.GetAll(userId).ToList();
             if (result.Count > 0)

@@ -62,8 +62,8 @@ namespace YOBA_Web
                 config.SignIn.RequireConfirmedEmail = true;
 
                 config.Lockout.AllowedForNewUsers = true;
-                config.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
-                config.Lockout.MaxFailedAccessAttempts = 3;
+                //config.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
+                //config.Lockout.MaxFailedAccessAttempts = 3;
             })
                 .AddEntityFrameworkStores<YOBA_IdentityContext>()
                 .AddDefaultTokenProviders();

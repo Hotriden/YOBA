@@ -7,6 +7,7 @@ using YOBA_LibraryData.DAL.UOF;
 using System;
 using YOBA_LibraryData.DAL.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using YOBA_LibraryData.DAL.Mapper;
 
 namespace YOBA_LibraryData.BLL.UOF.Repository
 {
@@ -47,18 +48,39 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         public IQueryable<WareHouse> GetAll(string userId)
         {
             var result = _context.WareHouse.Where(c => c.UserId == userId);
-            return result;
+            if (result.Count() > 0)
+            {
+                return result;
+            }
+            else
+            {
+                throw new EntityException("There is no warehouses");
+            }
         }
 
+        /// <summary>
+        /// Used 2 extension methods for
+        /// switch property values on changed
+        /// fields and second one for save
+        /// information about changing by
+        /// user and change time
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="wareHouse"></param>
+        /// <returns></returns>
         public async Task Change(string userId, WareHouse wareHouse)
         {
-            var wh = _context.WareHouse.Where(user => user.UserId == userId).First(wh => wh.Id == wareHouse.Id);
-            if (wareHouse != null)
+            var wareHouseDb = _context.WareHouse.Where(user => user.UserId == userId).First(wh => wh.Id == wareHouse.Id);
+            if (wareHouseDb != null)
             {
-                _context.Entry(wh).CurrentValues.SetValues(wareHouse);
+                wareHouseDb.ChangeWareHouse(wareHouse);
+                wareHouseDb.OnChange(userId);
+                await _context.SaveChangesAsync();
             }
-            await _context.SaveChangesAsync();
-            //throw new EntityException("Warehouse not found");
+            else
+            {
+                throw new EntityException("Warehouse not found");
+            }
         }
 
         /// <summary>
@@ -72,7 +94,7 @@ namespace YOBA_LibraryData.BLL.UOF.Repository
         public WareHouse Get(string userId, WareHouse item)
         {
             WareHouse wareHouse = item;
-            bool isExist = _context.WareHouse.Any(c => c.Id == wareHouse.Id);
+            bool isExist = _context.WareHouse.Where(user => user.UserId == userId).Any(i => i.Id == item.Id);
             if (isExist)
             {
                 wareHouse = _context.WareHouse.First(c => c.Id == wareHouse.Id);

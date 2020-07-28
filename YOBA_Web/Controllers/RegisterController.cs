@@ -53,6 +53,7 @@ namespace YOBA_Web.Controllers
             var result = await _userManager.CreateAsync(user);
             if (result.Succeeded)
             {
+                await _userManager.AddPasswordAsync(user, identityUser.Password);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var link = Url.Action(nameof(VerifyEmail), "Register", new { userId = user.Id, code }, Request.Scheme, Request.Host.ToString());
                 await _emailService.SendAsync(identityUser.Email, "Account Confirmation", Verification.VerificationMessage(identityUser.FirstName, link), true);
