@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using YOBA_LibraryData.BLL.Interfaces;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using YOBA_LibraryData.BLL.Entities.Finance;
 using YOBA_LibraryData.BLL.Entities.Supply;
-using Microsoft.AspNetCore.Identity;
+using YOBA_LibraryData.BLL.Interfaces;
 
 namespace YOBA_Web.Controllers
 {
@@ -18,91 +21,113 @@ namespace YOBA_Web.Controllers
     {
         private IUnitOfWork _db;
         private readonly ILogger _logger;
-        private readonly UserManager<IdentityUser> _userManager;
-        
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly string _userId;
+
         public SupplierController(
-            IUnitOfWork db, 
+            IUnitOfWork db,
             ILoggerFactory loggerFactory,
-            UserManager<IdentityUser> userManager)
+            IHttpContextAccessor httpContextAccessor)
         {
             _db = db;
-            _userManager = userManager;
             _logger = loggerFactory.CreateLogger<SupplierController>();
+            _httpContextAccessor = httpContextAccessor;
+            _userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
-
-        private Task<IdentityUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         [HttpGet("GetAll")]
-        public async Task<ActionResult<List<Supplier>>> Get()
+        public ActionResult<List<Supplier>> GetAll()
         {
-            var user = await GetCurrentUserAsync();
-            var userId = user?.Id;
-            _logger.LogInformation("Log message in the GetAll() method");
-            return _db.SupplierRepository.GetAll(userId).ToList();
-        }
-
-        [HttpGet("{id?}")]
-        public async Task<ActionResult<Supplier>> Get(Supplier _supplier)
-        {
-            var user = await GetCurrentUserAsync();
-            var userId = user?.Id;
-            Supplier supplier = _db.SupplierRepository.Get(userId, _supplier);
-            if (supplier == null)
+            var result = _db.SupplierRepository.GetAll(_userId).ToList();
+            if (result.Count > 0)
             {
-                _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Not Found");
-                return NotFound();
+                return result;
             }
-            _logger.LogInformation($"INFO: {DateTime.Now} {GetType()} Success");
-            return new ObjectResult(supplier);
+            else
+            {
+                _logger.LogError($"{DateTime.Now} ERROR. UserId: {_userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Supplier array is emtpy");
+                return StatusCode(404, "Supplier array is empty");
+            }
         }
 
-        [HttpPost("Post")]
+        [HttpGet("Get/{id}")]
+        public ActionResult<Supplier> Get(int id)
+        {
+            var result = _db.SupplierRepository.Get(_userId, new Supplier() { Id = id });
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                _logger.LogError($"{DateTime.Now} - ERROR. UserId: {_userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Supplier {id} not found");
+                return StatusCode(404, "Supplier not founded");
+            }
+        }
+
+        [HttpPost("Create")]
         public async Task<ActionResult<Supplier>> Post(Supplier supplier)
         {
-            var user = await GetCurrentUserAsync();
-            var userId = user?.Id;
             if (supplier.SupplierName == null)
             {
+                _logger.LogError($"{DateTime.Now} - ERROR. UserId: {_userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Supplier {supplier.Id} not found");
                 return BadRequest();
             }
-            //else if (_db.WareHouseRepository.GetByName(wareHouse.WareHouseName) != null)
-            //{
-            //    return BadRequest(); // Should change on "User already exist"
-            //}
-            await _db.SupplierRepository.Add(userId, supplier);
+            if (_userId != null)
+            {
+                supplier.UserId = _userId;
+                await _db.SupplierRepository.Add(_userId, supplier);
+            }
             return Ok(supplier);
         }
 
-        [HttpPut("Put")]
-        public async Task<ActionResult<Supplier>> Put(Supplier supplier)
+
+        [HttpPut("Put/{id}")]
+        public async Task<ActionResult<Supplier>> Put(int id, [FromBody] Supplier supplierBody)
         {
-            var user = await GetCurrentUserAsync();
-            var userId = user?.Id;
-            if (supplier == null)
+
+            if (supplierBody == null)
+            {
+                _logger.LogError($"{DateTime.Now} - ERROR. UserId: {_userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Supplier {id} not found");
+                return BadRequest("Supplier is empty");
+            }
+            if (id != supplierBody.Id)
             {
                 return BadRequest();
             }
-            if (_db.SupplierRepository.Get(userId, supplier) == null)
-            {
-                return NotFound();
-            }
-
-            await _db.SupplierRepository.Change(userId, supplier);
-            return Ok(supplier);
-        }
-
-        [HttpDelete("{id?}")]
-        public async Task<ActionResult<Supplier>> Delete(Supplier _supplier)
-        {
-            var user = await GetCurrentUserAsync();
-            var userId = user?.Id;
-            Supplier supplier = _db.SupplierRepository.Get(userId, _supplier);
+            Supplier supplier = _db.SupplierRepository.Get(_userId, new Supplier() { Id = id });
             if (supplier == null)
             {
+                _logger.LogError($"{DateTime.Now} - ERROR. UserId: {_userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Supplier {id} not found");
+                return BadRequest("Supplier doesn't exist");
+            }
+            else
+            {
+                await _db.SupplierRepository.Change(_userId, supplierBody);
+                return Ok(supplier);
+            }
+        }
+
+        [HttpDelete("Delete/{id}")]
+        public async Task<ActionResult<Supplier>> Delete(int id)
+        {
+            Supplier supplier = _db.SupplierRepository.Get(_userId, new Supplier() { Id = id });
+            if (supplier == null)
+            {
+                _logger.LogError($"{DateTime.Now} ERROR. UserId: {_userId}. \nController: {GetType().Name} " +
+                    $"\nMethod: {new StackTrace().GetFrame(0).GetMethod()} \nErrorMessage: Supplier {id} not found");
                 return NotFound();
             }
-            await _db.SupplierRepository.Delete(userId, supplier);
-            return Ok(supplier);
+            else
+            {
+                await _db.SupplierRepository.Delete(_userId, supplier);
+                return Ok(supplier);
+            }
         }
     }
 }
