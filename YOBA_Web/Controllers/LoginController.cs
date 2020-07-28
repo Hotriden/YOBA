@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +41,11 @@ namespace YOBA_Web.Controllers
             _logger = loggerFactory.CreateLogger<LoginController>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("SignIn")]
         public async Task<ActionResult> Login(UserModel model)
         {
@@ -49,11 +55,19 @@ namespace YOBA_Web.Controllers
             {
                 var jwt = new JwtService(_config);
                 var token = jwt.GenerateSecurityToken(user.Email, user.Id);
+                _logger.LogInformation($"{DateTime.Now} - INFO: Signed In. UserId: {user.Id}.");
                 return StatusCode(200, token);
             }
             return StatusCode(401, "Wrong email or password");
         }
 
+        /// <summary>
+        /// Created for make JWT token
+        /// unavailable.
+        /// Could be used just clearing cookies
+        /// on client side
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("SignOut")]
         public async Task<IActionResult> LogOut()
         {

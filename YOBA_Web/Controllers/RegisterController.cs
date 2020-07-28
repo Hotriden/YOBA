@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -35,12 +36,16 @@ namespace YOBA_Web.Controllers
         {
             if (Verification.VerifyEmail(identityUser.Email) == false)
             {
-                return StatusCode(409, "Incorrect mail address");
+                _logger.LogWarning($"{DateTime.Now} WARNING. User: {identityUser.Email} tried to registry with the same" +
+                    $" email throught WebUi using API");
+                return StatusCode(409, "Incorrect email address");
             }
 
             var findEmail = _userManager.FindByEmailAsync(identityUser.Email).Result;
             if (findEmail != null)
             {
+                _logger.LogWarning($"{DateTime.Now} WARNING. User: {identityUser.Email} tried to registry with the same" +
+                    $" on WebAPI");
                 return StatusCode(409, "User already exist. Wanna recover your account?");
             }
 
@@ -57,6 +62,7 @@ namespace YOBA_Web.Controllers
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var link = Url.Action(nameof(VerifyEmail), "Register", new { userId = user.Id, code }, Request.Scheme, Request.Host.ToString());
                 await _emailService.SendAsync(identityUser.Email, "Account Confirmation", Verification.VerificationMessage(identityUser.FirstName, link), true);
+                _logger.LogInformation($"{DateTime.Now} INFO. User: {identityUser.Email} registered account");
                 return StatusCode(200, $"Check {user.Email} to verificate your account");
             }
             return StatusCode(400, "Some Thing Gone Wrong");
@@ -69,8 +75,10 @@ namespace YOBA_Web.Controllers
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
+                _logger.LogInformation($"{DateTime.Now} INFO. User: {userId} succeeded done registration");
                 return Redirect("https://yoba.netlify.app/Verify");
             }
+            _logger.LogError($"{DateTime.Now} ERROR. User: {userId} got error while verified account");
             return Redirect("https://yoba.netlify.app/VerifyError");
         }
     }

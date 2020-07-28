@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NETCore.MailKit.Core;
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using YOBA_Web.Models;
@@ -50,11 +51,12 @@ namespace YOBA_Web.Controllers
         {
             if (Verification.VerifyEmail(model.Email) == false)
             {
+                _logger.LogWarning($"{DateTime.Now} WARNING. User: {model.Email} tried to recover" +
+                    $" password for account which doesn't exist");
                 return StatusCode(409, "Incorrect mail address");
             }
 
             var findEmail = _userManager.FindByEmailAsync(model.Email).Result;
-
             if (findEmail != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(findEmail);
@@ -62,9 +64,15 @@ namespace YOBA_Web.Controllers
 
                 await _emailService.SendAsync(findEmail.Email, "Recover password", 
                     Verification.RecoverMessage(findEmail.UserName, url), true);
+                _logger.LogInformation($"{DateTime.Now} INFO. User: {model.Email} send email for recover password");
                 return StatusCode(200, $"On {findEmail.Email} was send letter for recover your password.");
             }
-            return StatusCode(400, "SomeThingGoneWrong");
+            else
+            {
+                _logger.LogWarning($"{DateTime.Now} WARNING. User: {model.Email} tried to recover" +
+                    $" password for account which doesn't exist");
+                return StatusCode(400, "SomeThingGoneWrong");
+            }
         }
 
         /// <summary>
@@ -79,25 +87,29 @@ namespace YOBA_Web.Controllers
         {
             if (Verification.VerifyEmail(model.Email) == false)
             {
+                _logger.LogWarning($"{DateTime.Now} WARNING. User: {model.Email} tried to recover" +
+                    $" password for account which doesn't exist");
                 return StatusCode(409, "Incorrect mail address");
             }
 
             var user = _userManager.FindByEmailAsync(model.Email).Result;
-
             if (user != null)
             {
-                var verify = _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", model.Token);
+                var verify = _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, 
+                    "ResetPassword", model.Token);
                 if (verify.Result)
                 {
                     var code = await _userManager.ResetPasswordAsync(user, model.Token, model.ConfirmPassword);
                     if (code.Succeeded)
                     {
+                        _logger.LogInformation($"{DateTime.Now} INFO. User: {user.Id} successfully changed password");
                         return StatusCode(200, $"{user.UserName} your password was changed. Now you can log in.");
                     }
                 }
-                return StatusCode(200, "You changed your password by this link. Try again");
             }
-            return StatusCode(400, "Something gone wrong");
+            _logger.LogWarning($"{DateTime.Now} WARNING. User: {model.Email} tried to recover" +
+                $" password for account which doesn't exist");
+            return StatusCode(422, "Check user data. Such user doesn't exist");
         }
     }
 }
