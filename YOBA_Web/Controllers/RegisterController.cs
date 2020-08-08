@@ -68,6 +68,7 @@ namespace YOBA_Web.Controllers
             return StatusCode(400, "Some Thing Gone Wrong");
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult> VerifyEmail(string userId, string code)
         {
             var user = await _userManager.FindByIdAsync(userId);

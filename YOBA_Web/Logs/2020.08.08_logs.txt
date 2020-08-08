@@ -1,0 +1,54 @@
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web
+Failed to determine the https port for redirect.
+Connection ID "18014398511092596737", Request ID "80000003-0000-fa00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Connection ID "18158513712053354538", Request ID "8000002d-0003-fc00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Connection ID "18158513712053354538", Request ID "8000002f-0003-fc00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web
+Failed to determine the https port for redirect.
+Connection ID "18230571297501347841", Request ID "80000003-0001-fd00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web
+Failed to determine the https port for redirect.
+Connection ID "18302628895834243125", Request ID "80000037-0002-fe00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Connection ID "18086456105130524693", Request ID "80000016-0000-fb00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web
+Failed to determine the https port for redirect.
+Connection ID "18302628895834243129", Request ID "8000003a-0002-fe00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Connection ID "18302628895834243129", Request ID "8000003d-0002-fe00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Connection ID "18302628895834243129", Request ID "8000003e-0002-fe00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web
+Failed to determine the https port for redirect.
+Connection ID "18158513699168452700", Request ID "8000005d-0000-fc00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web
+Failed to determine the https port for redirect.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web
+Failed to determine the https port for redirect.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web
+Failed to determine the https port for redirect.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web
+Failed to determine the https port for redirect.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web
+Failed to determine the https port for redirect.
+Application started. Press Ctrl+C to shut down.
+Hosting environment: Development
+Content root path: C:\Temp\YOBA_App\YOBA_Core\YOBA_Web
+Failed to determine the https port for redirect.

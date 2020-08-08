@@ -18,11 +18,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EntitiesDTO\FinanceDTO\" />
-    <Folder Include="EntitiesDTO\UserDTO\" />
-    <Folder Include="EntitiesDTO\StaffDTO\" />
-    <Folder Include="EntitiesDTO\SellDTO\" />
-  </ItemGroup>
-
 </Project>
