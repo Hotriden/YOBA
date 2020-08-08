@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using YOBA_LibraryData.BLL.Entities.Finance;
 using YOBA_LibraryData.BLL.Entities.Supply;
 using YOBA_LibraryData.BLL.Interfaces;
 

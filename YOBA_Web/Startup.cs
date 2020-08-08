@@ -1,17 +1,16 @@
-using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using NETCore.MailKit.Extensions;
 using NETCore.MailKit.Infrastructure.Internal;
 using System;
 using System.IO;
+using System.Reflection;
 using YOBA_LibraryData.BLL.Interfaces;
 using YOBA_LibraryData.BLL.UOF;
 using YOBA_LibraryData.DAL;
@@ -33,6 +32,28 @@ namespace YOBA_Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "YOBA API",
+                    Version = "v1",
+                    Description = "YOBA Controllers API",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Rifter",
+                        Email = "kvpdotnet@gmail.com",
+                        Url = new Uri("https://github.com/Hotriden"),
+                    }
+                });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+            #endregion
             #region Data access layer
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -81,6 +102,10 @@ namespace YOBA_Web
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            #region Swagger
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+
+            #endregion
             #region Logging
             if (Directory.GetCurrentDirectory() + "/Logs" != null)
             {
@@ -106,6 +131,14 @@ namespace YOBA_Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+            });
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
     }

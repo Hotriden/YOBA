@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>YOBA_Web</name>
+    </assembly>
+    <members>
+        <member name="T:YOBA_Web.Models.JwtAuth.ForgotPasswordModel">
+            <summary>
+            Simple user model for
+            recover password by email
+            </summary>
+        </member>
+        <member name="T:YOBA_Web.Models.JwtAuth.JwtService">
+            <summary>
+            Generator and validator JWT
+            user access tokens
+            </summary>
+        </member>
+        <member name="M:YOBA_Web.Models.JwtAuth.JwtService.GenerateSecurityToken(System.String,System.String)">
+            <summary>
+            Token generator using HS256 algoritm
+            including user email and id claims and
+            secret identified on appsettings.json.
+            Should be extended for domain roles of
+            applcation model
+            </summary>
+            <param name="email"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YOBA_Web.Models.JwtAuth.JwtService.ValidateToken(System.String)">
+            <summary>
+            Token security validator.
+            Based on appsettings.json params as
+            token lifetime and claims from
+            authenticationExtension
+            </summary>
+            <param name="jwtToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:YOBA_Web.Models.JwtAuth.ResetPasswordModel">
+            <summary>
+            Same as recover model
+            this one for change password
+            by email
+            </summary>
+        </member>
+        <member name="T:YOBA_Web.Models.Logger.FileLogger">
+            <summary>
+            Main implementation of logger
+            instance
+            </summary>
+        </member>
+        <member name="F:YOBA_Web.Models.Logger.FileLogger._lock">
+            <summary>
+            log file locker
+            </summary>
+        </member>
+        <member name="T:YOBA_Web.Models.Logger.FileLoggerExtension">
+            <summary>
+            Extencion method for ILoggerFactory
+            to add LoggerFactory as text file
+            </summary>
+        </member>
+        <member name="T:YOBA_Web.Models.Logger.FileLoggerProvider">
+            <summary>
+            Logger provider create filelogger
+            on cunstructor instance
+            </summary>
+        </member>
+        <member name="T:YOBA_Web.Models.Verification">
+            <summary>
+            As web UI on core layer should be checks
+            on validation date
+            </summary>
+        </member>
+        <member name="T:YOBA_Web.Controllers.LoginController">
+            <summary>
+            Authentication controller
+            for give JWT token in sign in
+            method 
+            </summary>
+        </member>
+        <member name="M:YOBA_Web.Controllers.LoginController.Login(YOBA_LibraryData.DAL.Entities.User.UserModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YOBA_Web.Controllers.LoginController.LogOut">
+            <summary>
+            Created for make JWT token
+            unavailable.
+            Could be used just clearing cookies
+            on client side
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YOBA_Web.Controllers.LoginController.GetUser">
+            <summary>
+            WebUi method for identify user
+            by taken JWT token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:YOBA_Web.Controllers.RecoverController">
+            <summary>
+            Controller for recover 
+            personal user data. User email
+            address is necessary
+            </summary>
+        </member>
+        <member name="M:YOBA_Web.Controllers.RecoverController.Recover(YOBA_Web.Models.JwtAuth.ForgotPasswordModel)">
+            <summary>
+            Should be used when user
+            trying to recover password
+            using gmail smtp server and 
+            personal mail box
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YOBA_Web.Controllers.RecoverController.ResetPassword(YOBA_Web.Models.JwtAuth.ResetPasswordModel)">
+            <summary>
+            Hiden on WebUI method can be
+            triggered just but getting recover
+            token from Recover method
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:YOBA_Web.Filters.ErrorDetails">
+            <summary>
+            Error model handling on
+            global exception middleware
+            </summary>
+        </member>
+        <member name="T:YOBA_Web.Filters.ExceptionMiddleware">
+            <summary>
+            Global exception handler.
+            Through pipeline exceptions from
+            assemblies filtering on this
+            middleware
+            </summary>
+        </member>
+        <member name="M:YOBA_Web.Filters.ExceptionMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Every httpcontext moving
+            throught this method and in
+            case of exception triggering
+            HandleException method for
+            create response about exception
+            and logging into txt file
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
